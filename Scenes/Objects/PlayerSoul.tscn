@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://bbcmh5nkjdc4m"]
+
+[ext_resource type="Script" path="res://PlayerSoul.gd" id="1_y7kw2"]
+[ext_resource type="Texture2D" uid="uid://dsm5lfgjmkwyr" path="res://Assets/MiniGame/Objects/PlayerSoul/Soul.png" id="2_mtnyf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejx5i"]
+size = Vector2(6, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekvjd"]
+atlas = ExtResource("2_mtnyf")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ms74"]
+atlas = ExtResource("2_mtnyf")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb8jv"]
+atlas = ExtResource("2_mtnyf")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkye8"]
+atlas = ExtResource("2_mtnyf")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddn56"]
+atlas = ExtResource("2_mtnyf")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fmd76"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekvjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ms74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb8jv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkye8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddn56")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_54qkp"]
+radius = 1.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_y7kw2")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_ejx5i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -2)
+sprite_frames = SubResource("SpriteFrames_fmd76")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.143469
+
+[node name="Area2D" type="Area2D" parent="." groups=["Draw_Check"]]
+position = Vector2(0, 8)
+
+[node name="CheckerCircle" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_54qkp")

@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsywphos50nvj"]
+
+[ext_resource type="Script" path="res://Scripts/BrushDrawer.gd" id="1_e4eou"]
+[ext_resource type="Texture2D" uid="uid://o0347m1nse4" path="res://Assets/MiniGame/Brushes/Brush.png" id="2_5fnwd"]
+[ext_resource type="PackedScene" uid="uid://bbcmh5nkjdc4m" path="res://Scenes/Objects/PlayerSoul.tscn" id="3_xg640"]
+[ext_resource type="PackedScene" uid="uid://h56q6uhqsooe" path="res://Scenes/Objects/Checkpoint.tscn" id="4_5tqna"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3st1b"]
+distance = 2.0
+
+[node name="ExampleDrawGame" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-4, 141)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-238, -144)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 1)
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(246, -144)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -273)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="Drawer" type="Node2D" parent="."]
+modulate = Color(0.580392, 0.854902, 1, 1)
+script = ExtResource("1_e4eou")
+brush_texture = ExtResource("2_5fnwd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 5)
+zoom = Vector2(4, 4)
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("draw_holder") instance=ExtResource("3_xg640")]
+speed = 100.0
+draw_holder = NodePath("../Drawer")
+
+[node name="Checkpoint" parent="." instance=ExtResource("4_5tqna")]
+modulate = Color(0.608, 1, 0.58, 1)
+position = Vector2(-1, -57)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("4_5tqna")]
+modulate = Color(1, 0.853, 0.58, 1)
+position = Vector2(81, -57)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("4_5tqna")]
+modulate = Color(1, 0.58, 0.58, 1)
+position = Vector2(81, 21)

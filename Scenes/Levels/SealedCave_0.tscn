@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://1q1wwvye1135"]
+
+[ext_resource type="PackedScene" uid="uid://b7e1s3cp2l1b8" path="res://Scenes/Objects/Player.tscn" id="1_i7tye"]
+[ext_resource type="PackedScene" uid="uid://b72r66dvb5ahr" path="res://Scenes/Objects/Interactable/Wooden_Crate.tscn" id="2_gvm3x"]
+
+[node name="SealedValley" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_i7tye")]
+
+[node name="BodyAnimSprite" parent="Player" index="2"]
+modulate = Color(1, 0.901, 0.78, 1)
+
+[node name="LensAnimSprite" parent="Player" index="3"]
+modulate = Color(0.439216, 0.74902, 0, 1)
+
+[node name="LensHalfAnimSprite" parent="Player" index="4"]
+modulate = Color(0.4375, 0.75, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -8)
+zoom = Vector2(5, 5)
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="RigidBody2D" parent="." instance=ExtResource("2_gvm3x")]
+position = Vector2(40, -22)
+
+[node name="RigidBody2D2" parent="." instance=ExtResource("2_gvm3x")]
+position = Vector2(-39, 14)
+
+[editable path="Player"]
