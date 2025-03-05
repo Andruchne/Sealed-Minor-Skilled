@@ -465,12 +465,12 @@ animations = [{
 "frames": [],
 "loop": true,
 "name": &"Walk_Top",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [],
 "loop": true,
 "name": &"Walk_Top_Right",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1uewc"]
@@ -604,12 +604,12 @@ animations = [{
 "frames": [],
 "loop": true,
 "name": &"Walk_Top",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [],
 "loop": true,
 "name": &"Walk_Top_Right",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vth6x"]
@@ -743,12 +743,12 @@ animations = [{
 "frames": [],
 "loop": true,
 "name": &"Walk_Top",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [],
 "loop": true,
 "name": &"Walk_Top_Right",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pqnyk"]
@@ -882,12 +882,12 @@ animations = [{
 "frames": [],
 "loop": true,
 "name": &"Walk_Top",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [],
 "loop": true,
 "name": &"Walk_Top_Right",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
@@ -915,27 +915,27 @@ autoplay = "Idle_Bottom"
 [node name="LensAnimSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_rw06s")
-animation = &"Walk_Top"
+animation = &"Idle_Bottom"
 autoplay = "Idle_Bottom"
 
 [node name="LensHalfAnimSprite" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_r1rfa")
-animation = &"Walk_Top_Right"
+animation = &"Idle_Bottom"
 autoplay = "Idle_Bottom"
 
 [node name="WhiteAnimSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_u52po")
-animation = &"Walk_Top_Right"
+animation = &"Idle_Bottom"
 autoplay = "Idle_Bottom"
 
 [node name="WhiteHalfAnimSprite" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_wijjg")
-animation = &"Idle_Bottom_Right"
+animation = &"Idle_Bottom"
 autoplay = "Idle_Bottom"
 
 [node name="BlinkInterval" type="Timer" parent="."]

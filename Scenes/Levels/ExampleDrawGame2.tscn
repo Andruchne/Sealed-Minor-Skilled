@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://ce1f5xeexf41"]
+
+[ext_resource type="Script" path="res://Scripts/BrushDrawer.gd" id="1_hq8yg"]
+[ext_resource type="Texture2D" uid="uid://o0347m1nse4" path="res://Assets/MiniGame/Brushes/Brush.png" id="2_sedpb"]
+[ext_resource type="PackedScene" uid="uid://bc2gj2qwoep4v" path="res://Scenes/Objects/CheckpointManager.tscn" id="3_utb2r"]
+[ext_resource type="PackedScene" uid="uid://h56q6uhqsooe" path="res://Scenes/Objects/Checkpoint.tscn" id="4_pb6h3"]
+[ext_resource type="PackedScene" uid="uid://bbcmh5nkjdc4m" path="res://Scenes/Objects/PlayerSoul.tscn" id="5_qopow"]
+[ext_resource type="PackedScene" uid="uid://cxvip0bl50tp6" path="res://Scenes/Objects/DrawEnemy.tscn" id="6_nymj6"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3st1b"]
+distance = 2.0
+
+[node name="ExampleDrawGame" type="Node2D"]
+
+[node name="MapBorders" type="StaticBody2D" parent="."]
+position = Vector2(-4, 141)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="MapBorders"]
+position = Vector2(-238, -144)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="MapBorders"]
+position = Vector2(0, 1)
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="MapBorders"]
+position = Vector2(246, -144)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="MapBorders"]
+position = Vector2(0, -273)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="Drawer" type="Node2D" parent="."]
+modulate = Color(0.580392, 0.854902, 1, 1)
+script = ExtResource("1_hq8yg")
+brush_texture = ExtResource("2_sedpb")
+
+[node name="CheckpointManager" parent="." instance=ExtResource("3_utb2r")]
+
+[node name="Checkpoint" parent="CheckpointManager" instance=ExtResource("4_pb6h3")]
+position = Vector2(38, -36)
+
+[node name="Checkpoint2" parent="CheckpointManager" instance=ExtResource("4_pb6h3")]
+position = Vector2(154, -85)
+
+[node name="Checkpoint3" parent="CheckpointManager" instance=ExtResource("4_pb6h3")]
+position = Vector2(57, 90)
+
+[node name="Checkpoint4" parent="CheckpointManager" instance=ExtResource("4_pb6h3")]
+position = Vector2(-113, 50)
+
+[node name="Checkpoint5" parent="CheckpointManager" instance=ExtResource("4_pb6h3")]
+position = Vector2(-114, -85)
+
+[node name="Checkpoint6" parent="CheckpointManager" instance=ExtResource("4_pb6h3")]
+position = Vector2(198, -21)
+
+[node name="Checkpoint7" parent="CheckpointManager" instance=ExtResource("4_pb6h3")]
+position = Vector2(-159, 87)
+
+[node name="Checkpoint8" parent="CheckpointManager" instance=ExtResource("4_pb6h3")]
+position = Vector2(1, 17)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 5)
+zoom = Vector2(4, 4)
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("drawer") instance=ExtResource("5_qopow")]
+speed = 100.0
+drawer = NodePath("../Drawer")
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("6_nymj6")]
+position = Vector2(-175, -86)
+move_speed = 40.0

@@ -14,6 +14,7 @@ extends CharacterBody2D
 @onready var anim_eyes_white = $WhiteAnimSprite
 @onready var anim_eyes_white_half = $WhiteHalfAnimSprite
 var eyes_hidden : bool = false
+var last_anim : String = ""
 
 # For blinking animation
 @onready var timer_blink_interval = $BlinkInterval
@@ -125,8 +126,12 @@ func handle_animation(direction : Vector2) -> void:
 
 # Keep all Animations synced
 func play_animation(anim_name : String) -> void:
-	for anim in animations:
-		anim.play(anim_name)
+	if (anim_name != last_anim):
+		for anim in animations:
+			anim.play(anim_name)
+			anim.frame = 0
+	
+	last_anim = anim_name
 
 
 func flip_horizontal(flip : bool) -> void:
@@ -191,15 +196,8 @@ func hide_eyes() -> void:
 
 
 func unhide_eyes() -> void:
-	# Also reset the current frame to 0, to keep in sync
-	# Even when invisible, animations will continue running
-	# If we were to switch onto the same animation twice for the eyes, it would get out of sync with the body
 	anim_eyes_lens.visible = true
-	anim_eyes_lens.frame = 0
-	anim_eyes_lens_half.frame = 0
 	anim_eyes_white.visible = true
-	anim_eyes_white.frame = 0
-	anim_eyes_white_half.frame = 0
 	
 	blink_stage = 0
 	timer_blink_interval.start()

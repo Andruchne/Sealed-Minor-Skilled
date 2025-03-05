@@ -12,6 +12,8 @@ var current_line_start : Vector2
 
 var last_direction : Vector2 = Vector2(-1, -1)
 
+signal line_crossed()
+
 
 func move_draw(pos : Vector2, dir : Vector2) -> void:
 	if (is_drawing):
@@ -26,7 +28,8 @@ func move_draw(pos : Vector2, dir : Vector2) -> void:
 		
 		points.append(pos)
 		
-		print(check_intersection(pos))
+		if check_intersection(pos):
+			emit_signal("line_crossed")
 		
 		queue_redraw()
 
