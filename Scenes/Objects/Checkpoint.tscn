@@ -136,7 +136,7 @@ autoplay = "Idle"
 script = ExtResource("2_jgtc5")
 checked_color = Color(1, 1, 1, 1)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["Soulcheck"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false

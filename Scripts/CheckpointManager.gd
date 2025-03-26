@@ -7,6 +7,7 @@ extends Node2D
 var checkpoints : Array
 var current_active_checkpoints : Array
 
+signal checkpoints_cleared()
 
 func _ready() -> void:
 	checkpoints = get_tree().get_nodes_in_group("Checkpoint")
@@ -51,3 +52,9 @@ func on_checkpoint_checked() -> void:
 	current_active_checkpoints.remove_at(0)
 	add_next_checkpoint()
 	set_checkpoint_activeness()
+	check_completion()
+
+
+func check_completion() -> void:
+	if checkpoints.size() <= 0 && current_active_checkpoints.size() <= 0:
+		emit_signal("checkpoints_cleared") 

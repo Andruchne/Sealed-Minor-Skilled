@@ -18,6 +18,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	elif !active && !checked && !is_playing():
 		play("InvalidCheck")
 
+
 func transition_color() -> void:
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", checked_color, color_trans_duration).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)

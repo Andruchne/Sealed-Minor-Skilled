@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp82tmcyldyxa"]
+
+[ext_resource type="Script" path="res://Scenes/Utility/BackgroundTransitioner.gd" id="1_udh6y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_443ge"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8y8h0"]
+bg_color = Color(0.099986, 0.099986, 0.099986, 1)
+
+[node name="Transitioner" type="Control"]
+z_index = 5
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_udh6y")
+transition_duration = 0.6
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -485.0
+offset_top = -315.0
+offset_right = 467.0
+offset_bottom = 287.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_443ge")
+
+[node name="BlackBackground" type="Panel" parent="Panel"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8y8h0")

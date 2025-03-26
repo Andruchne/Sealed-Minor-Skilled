@@ -1,0 +1,145 @@
+[gd_scene load_steps=13 format=3 uid="uid://bsywphos50nvj"]
+
+[ext_resource type="Script" path="res://Scripts/MinigameManager.gd" id="1_2wwns"]
+[ext_resource type="Script" path="res://Scripts/BrushDrawer.gd" id="1_288dj"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/FlameDrawShader.gdshader" id="1_rlubf"]
+[ext_resource type="Texture2D" uid="uid://o0347m1nse4" path="res://Assets/MiniGame/Brushes/Brush.png" id="2_hld81"]
+[ext_resource type="PackedScene" uid="uid://bc2gj2qwoep4v" path="res://Scenes/Objects/CheckpointManager.tscn" id="3_34xqh"]
+[ext_resource type="PackedScene" uid="uid://h56q6uhqsooe" path="res://Scenes/Objects/Checkpoint.tscn" id="4_it4bf"]
+[ext_resource type="PackedScene" uid="uid://bbcmh5nkjdc4m" path="res://Scenes/Player/PlayerSoul.tscn" id="5_akql0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm0wi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_25vd1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqlxp"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3st1b"]
+normal = Vector2(3.61353e-06, -1)
+distance = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_feac2"]
+shader = ExtResource("1_rlubf")
+shader_parameter/time_scale = 1.5
+shader_parameter/distortion_strength = 2.0
+shader_parameter/flicker_speed = 2.0
+shader_parameter/flicker_intensity = 0.5
+
+[node name="Minigame_Soulcheck" type="Node2D"]
+z_index = 5
+script = ExtResource("1_2wwns")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 5)
+zoom = Vector2(4, 4)
+
+[node name="UI" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WindowSize" type="Panel" parent="Camera2D/UI"]
+layout_mode = 0
+offset_left = -240.0
+offset_top = -130.0
+offset_right = 240.0
+offset_bottom = 140.0
+
+[node name="Left" type="Panel" parent="Camera2D/UI/WindowSize"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.15
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bm0wi")
+
+[node name="Right" type="Panel" parent="Camera2D/UI/WindowSize"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.85
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_25vd1")
+
+[node name="Main" type="Panel" parent="Camera2D/UI/WindowSize"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_right = 0.85
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uqlxp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-4, 141)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-166, -141)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 1)
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(174, -141)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -273)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="Drawer" type="Node2D" parent="."]
+modulate = Color(0.580392, 0.854902, 1, 1)
+material = SubResource("ShaderMaterial_feac2")
+script = ExtResource("1_288dj")
+brush_texture = ExtResource("2_hld81")
+
+[node name="CheckpointManager" parent="." groups=["Checkpoint_Manager"] instance=ExtResource("3_34xqh")]
+
+[node name="Checkpoint" parent="CheckpointManager" instance=ExtResource("4_it4bf")]
+position = Vector2(0, -53)
+
+[node name="Checkpoint2" parent="CheckpointManager" instance=ExtResource("4_it4bf")]
+position = Vector2(61, 0)
+
+[node name="Checkpoint3" parent="CheckpointManager" instance=ExtResource("4_it4bf")]
+position = Vector2(0, 56)
+
+[node name="Checkpoint4" parent="CheckpointManager" instance=ExtResource("4_it4bf")]
+position = Vector2(-58, 0)
+
+[node name="Checkpoint5" parent="CheckpointManager" instance=ExtResource("4_it4bf")]
+position = Vector2(0, -80)
+
+[node name="Checkpoint6" parent="CheckpointManager" instance=ExtResource("4_it4bf")]
+position = Vector2(88, 0)
+
+[node name="Checkpoint7" parent="CheckpointManager" instance=ExtResource("4_it4bf")]
+position = Vector2(0, 79)
+
+[node name="Checkpoint8" parent="CheckpointManager" instance=ExtResource("4_it4bf")]
+position = Vector2(-87, 0)
+
+[node name="PlayerSoul" parent="." node_paths=PackedStringArray("drawer") instance=ExtResource("5_akql0")]
+collision_layer = 8
+collision_mask = 8
+speed = 100.0
+drawer = NodePath("../Drawer")

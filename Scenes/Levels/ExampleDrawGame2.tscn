@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://o0347m1nse4" path="res://Assets/MiniGame/Brushes/Brush.png" id="2_sedpb"]
 [ext_resource type="PackedScene" uid="uid://bc2gj2qwoep4v" path="res://Scenes/Objects/CheckpointManager.tscn" id="3_utb2r"]
 [ext_resource type="PackedScene" uid="uid://h56q6uhqsooe" path="res://Scenes/Objects/Checkpoint.tscn" id="4_pb6h3"]
-[ext_resource type="PackedScene" uid="uid://bbcmh5nkjdc4m" path="res://Scenes/Objects/PlayerSoul.tscn" id="5_qopow"]
+[ext_resource type="PackedScene" uid="uid://bbcmh5nkjdc4m" path="res://Scenes/Player/PlayerSoul.tscn" id="5_qopow"]
 [ext_resource type="PackedScene" uid="uid://cxvip0bl50tp6" path="res://Scenes/Objects/DrawEnemy.tscn" id="6_nymj6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3st1b"]

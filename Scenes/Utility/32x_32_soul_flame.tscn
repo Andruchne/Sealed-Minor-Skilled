@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=3 uid="uid://bvaw7tm34ue3"]
+
+[ext_resource type="Texture2D" uid="uid://62mnx1gpb6hm" path="res://Assets/Sprites/Effects/32x32_Soul_Flame.png" id="1_ybogi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ylx7"]
+atlas = ExtResource("1_ybogi")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjl5r"]
+atlas = ExtResource("1_ybogi")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kldn"]
+atlas = ExtResource("1_ybogi")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4unp6"]
+atlas = ExtResource("1_ybogi")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh2mo"]
+atlas = ExtResource("1_ybogi")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ge1go"]
+atlas = ExtResource("1_ybogi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob0lh"]
+atlas = ExtResource("1_ybogi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ms2e"]
+atlas = ExtResource("1_ybogi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm7fe"]
+atlas = ExtResource("1_ybogi")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0on0"]
+atlas = ExtResource("1_ybogi")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kqd1e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ylx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjl5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kldn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4unp6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mh2mo")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Off",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ge1go")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ob0lh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ms2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tm7fe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0on0")
+}],
+"loop": true,
+"name": &"On",
+"speed": 7.0
+}]
+
+[node name="32x32_SoulFlame" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_kqd1e")
+animation = &"Off"
+autoplay = "Off"
