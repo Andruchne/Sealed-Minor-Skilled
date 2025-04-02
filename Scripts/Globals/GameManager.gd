@@ -8,22 +8,28 @@ var FPS_MAX : int = 60
 var MAIN_ACTIVE : bool = true
 
 signal minigame_triggered()
-signal minigame_finished()
+signal minigame_finished(has_won : bool)
 
 func _ready() -> void:
 	CAP_FPS()
+	SET_LANGUAGE("en")
 
 
 func CAP_FPS() -> void:
 	Engine.max_fps = FPS_MAX
 
 
+func SET_LANGUAGE(language : String) -> void:
+	TranslationServer.set_locale(language)
+
+
 func TRIGGER_SOULCHECK() -> void:
+	emit_signal("minigame_triggered")
 	var soulcheck_minigame = load(soulcheck).instantiate()
 	get_tree().current_scene.add_child(soulcheck_minigame)
 	MAIN_ACTIVE = false
-	print("huhu")
 
-func MINIGAME_END() -> void:
-	minigame_finished.emit()
+
+func MINIGAME_END(has_won : bool) -> void:
+	emit_signal("minigame_finished", has_won)
 	MAIN_ACTIVE = true

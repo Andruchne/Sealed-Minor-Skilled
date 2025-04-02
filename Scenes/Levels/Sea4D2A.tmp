@@ -11,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://cai8sn07yrd5w" path="res://Assets/Tiles/BeginningCave/Wall/WallTexture.png" id="7_lkbxk"]
 [ext_resource type="Texture2D" uid="uid://ybyfousoli3l" path="res://Assets/Tiles/BeginningCave/Deco/Stone_Ground_Deco.png" id="9_83ofd"]
 [ext_resource type="Script" path="res://Scripts/Globals/GameManager.gd" id="11_t41jn"]
-[ext_resource type="PackedScene" uid="uid://dgp2gohgsbany" path="res://Dirr.tscn" id="13_g3pcf"]
 [ext_resource type="PackedScene" uid="uid://dp0lg3ljd68hc" path="res://Scenes/Objects/Interactable/Forbidden_Door.tscn" id="13_h0b32"]
+[ext_resource type="PackedScene" uid="uid://dtgrffx40e8om" path="res://Dialogue.tscn" id="13_je8gy"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3e4s4"]
 light_mode = 2
@@ -29,7 +29,7 @@ shader_parameter/overlay_tex_ground = ExtResource("2_s13ij")
 shader_parameter/overlay_tex_water_ground = ExtResource("2_s13ij")
 shader_parameter/overlay_tex_water = ExtResource("3_kfh0u")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uybj2"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ru5l5"]
 texture = ExtResource("4_67djg")
 0:3/0 = 0
 0:3/0/material = SubResource("ShaderMaterial_schmr")
@@ -152,14 +152,14 @@ terrain_set_0/terrain_0/name = "Water"
 terrain_set_0/terrain_0/color = Color(0.933333, 0.509804, 0.933333, 1)
 terrain_set_0/terrain_1/name = "Ground"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
-sources/0 = SubResource("TileSetAtlasSource_uybj2")
+sources/0 = SubResource("TileSetAtlasSource_ru5l5")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0llej"]
 shader = ExtResource("6_qqjyc")
 shader_parameter/scale = 0.01
 shader_parameter/overlay_tex_ground = ExtResource("7_lkbxk")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_syuwl"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rei0u"]
 texture = ExtResource("6_kp135")
 0:0/0 = 0
 0:0/0/y_sort_origin = -8
@@ -288,9 +288,9 @@ texture = ExtResource("6_kp135")
 [sub_resource type="TileSet" id="TileSet_wpik1"]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 7
-sources/0 = SubResource("TileSetAtlasSource_syuwl")
+sources/0 = SubResource("TileSetAtlasSource_rei0u")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_de6nc"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_msdq3"]
 texture = ExtResource("9_83ofd")
 1:0/0 = 0
 1:0/0/y_sort_origin = 21
@@ -337,7 +337,7 @@ texture = ExtResource("9_83ofd")
 [sub_resource type="TileSet" id="TileSet_6urgd"]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 7
-sources/0 = SubResource("TileSetAtlasSource_de6nc")
+sources/0 = SubResource("TileSetAtlasSource_msdq3")
 
 [node name="SealedCave" type="Node2D"]
 y_sort_enabled = true
@@ -360,6 +360,7 @@ tile_map_data = PackedByteArray("AAD8////AAAEAAAAAAD8/wAAAAAEAAEAAAD8/wEAAAAEAAI
 tile_set = SubResource("TileSet_6urgd")
 
 [node name="Player" parent="." instance=ExtResource("1_i7tye")]
+y_sort_enabled = true
 speed = 75.0
 
 [node name="BodyAnimSprite" parent="Player" index="5"]
@@ -377,11 +378,9 @@ script = ExtResource("11_t41jn")
 [node name="Forbidden_Door" parent="." instance=ExtResource("13_h0b32")]
 position = Vector2(16, -183)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["Canvas"]]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Dirr" parent="." instance=ExtResource("13_g3pcf")]
-visible = false
-position = Vector2(16, -61)
+[node name="Dialogue" parent="CanvasLayer" instance=ExtResource("13_je8gy")]
 
 [editable path="Player"]
 [editable path="Player/StepHandler"]

@@ -353,7 +353,9 @@ func begin_minigame(type : String) -> void:
 			execute_after_trans = GameManager.TRIGGER_SOULCHECK
 
 
-func on_minigame_finished() -> void:
+
+
+func on_minigame_finished(_has_won : bool) -> void:
 	transition_in()
 
 

@@ -17,12 +17,15 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 GameManager="*res://Scripts/Globals/GameManager.gd"
+MainSignals="*res://Scripts/Globals/MainSignals.gd"
+DialogueManager="*res://DialogueManager.gd"
 
 [dialogic]
 
-directories/dch_directory={}
+directories/dch_directory={
+"Dirr": "res://Dialogic/Characters/Dirr.dch"
+}
 directories/dtl_directory={}
 glossary/default_case_sensitive=true
 layout/style_list=["res://Dialogic/Styles/New_File.tres"]
@@ -70,7 +73,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/TileMapDual/plugin.cfg", "res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray("res://addons/TileMapDual/plugin.cfg")
 
 [global_group]
 
@@ -78,6 +81,7 @@ Player=""
 Enemy=""
 Ground=""
 Interactable=""
+Canvas=""
 
 [gui]
 
@@ -125,6 +129,10 @@ dialogic_default_action={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://Assets/Dialogue/dialogue_translation.de.translation", "res://Assets/Dialogue/dialogue_translation.en.translation")
 
 [layer_names]
 

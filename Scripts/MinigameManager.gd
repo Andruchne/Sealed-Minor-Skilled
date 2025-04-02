@@ -11,7 +11,7 @@ func _ready() -> void:
 	player.minigame_finished.connect(on_minigame_finished)
 
 
-func on_minigame_finished() -> void:
+func on_minigame_finished(has_won : bool) -> void:
 	main_camera.make_current()
-	GameManager.MINIGAME_END()
+	GameManager.MINIGAME_END(has_won)
 	queue_free()

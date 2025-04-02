@@ -238,8 +238,7 @@ animation = &"Closed"
 autoplay = "Closed"
 
 [node name="32x32_SoulFlame" parent="." instance=ExtResource("3_y4p1b")]
-position = Vector2(0, -9)
-animation = &"On"
+position = Vector2(0, -8)
 autoplay = "On"
 
 [node name="Area2D" type="Area2D" parent="." groups=["Interactable"]]
@@ -248,3 +247,6 @@ position = Vector2(0, -9)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 14)
 shape = SubResource("RectangleShape2D_rg0ra")
+
+[connection signal="animation_finished" from="Door" to="." method="_on_door_animation_finished"]
+[connection signal="animation_finished" from="32x32_SoulFlame" to="." method="_on_32_soul_flame_animation_finished"]

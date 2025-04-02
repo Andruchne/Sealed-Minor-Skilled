@@ -26,7 +26,7 @@ var is_won : bool = false
 var finished_won : bool = false
 var checkpoint_manager
 
-signal minigame_finished()
+signal minigame_finished(has_won : bool)
 
 func _ready() -> void:
 	if !drawer:
@@ -167,6 +167,6 @@ func on_checkpoints_complete() -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	# After a single loop animation finishes, an end-condition is settled
 	if is_won && !death_triggered:
-		minigame_finished.emit()
+		emit_signal("minigame_finished", true)
 	else:
-		minigame_finished.emit()
+		emit_signal("minigame_finished", false)

@@ -1,7 +1,7 @@
 extends Node2D
 
 # Collection of different step particles
-var step_particle_dictionary = {
+var step_particle_dictionary : Dictionary = {
 	"Water" : "res://Scenes/ParticleEffects/StepEffect/water_step.tscn"
 }
 
