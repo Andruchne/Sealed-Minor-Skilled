@@ -1,16 +1,16 @@
 [gd_scene load_steps=22 format=4 uid="uid://bbl6ag5sg3wrf"]
 
-[ext_resource type="Shader" path="res://Scripts/Shaders/CaveEntrance.gdshader" id="1_04lj0"]
+[ext_resource type="Shader" uid="uid://bo2yk1ic0vnp8" path="res://Scripts/Shaders/CaveEntrance.gdshader" id="1_04lj0"]
 [ext_resource type="PackedScene" uid="uid://b7e1s3cp2l1b8" path="res://Scenes/Player/Player.tscn" id="1_75qh5"]
-[ext_resource type="Texture2D" uid="uid://bmuc5gfcf8aws" path="res://Assets/Tiles/BeginningCave/Ground/Stone_Ground-export.png" id="2_idvn2"]
-[ext_resource type="Texture2D" uid="uid://dgu15fj8p0gty" path="res://Assets/Tiles/BeginningCave/Ground/Water2.png" id="3_g343p"]
+[ext_resource type="Texture2D" uid="uid://bmuc5gfcf8aws" path="res://Assets/Tiles/BeginningCave/Ground/Stone_Ground.png" id="2_idvn2"]
+[ext_resource type="Texture2D" uid="uid://dgu15fj8p0gty" path="res://Assets/Tiles/BeginningCave/Ground/Water.png" id="3_g343p"]
 [ext_resource type="Texture2D" uid="uid://24wyaaih40in" path="res://Assets/Tiles/BeginningCave/Ground/Cave_Ground.png" id="4_saoj7"]
-[ext_resource type="Script" path="res://addons/TileMapDual/TileMapDual.gd" id="5_g4vv0"]
-[ext_resource type="Shader" path="res://Scripts/Shaders/WallShader.gdshader" id="6_4beme"]
+[ext_resource type="Script" uid="uid://cjk8nronimk5r" path="res://addons/TileMapDual/TileMapDual.gd" id="5_g4vv0"]
+[ext_resource type="Shader" uid="uid://c0b6lj3fhlpug" path="res://Scripts/Shaders/WallShader.gdshader" id="6_4beme"]
 [ext_resource type="Texture2D" uid="uid://cai8sn07yrd5w" path="res://Assets/Tiles/BeginningCave/Wall/WallTexture.png" id="7_uf3q0"]
 [ext_resource type="Texture2D" uid="uid://dgtfivdcupboa" path="res://Assets/Tiles/BeginningCave/Wall/Wall_Tileset.png" id="8_1hh1g"]
 [ext_resource type="Texture2D" uid="uid://ybyfousoli3l" path="res://Assets/Tiles/BeginningCave/Deco/Stone_Ground_Deco.png" id="9_fogo6"]
-[ext_resource type="PackedScene" uid="uid://dgp2gohgsbany" path="res://Dirr.tscn" id="11_pglln"]
+[ext_resource type="PackedScene" uid="uid://dgp2gohgsbany" path="res://Scenes/Characters/Dirr.tscn" id="11_pglln"]
 [ext_resource type="PackedScene" uid="uid://b72r66dvb5ahr" path="res://Scenes/Objects/Interactable/Wooden_Crate.tscn" id="12_7fsbe"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wr85x"]
@@ -18,15 +18,15 @@ light_mode = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_schmr"]
 shader = ExtResource("1_04lj0")
+shader_parameter/overlay_tex_ground = ExtResource("2_idvn2")
+shader_parameter/overlay_tex_water_ground = ExtResource("2_idvn2")
+shader_parameter/overlay_tex_water = ExtResource("3_g343p")
 shader_parameter/scale_ground = 0.02
 shader_parameter/scale_water = 0.012
 shader_parameter/water_opacity = 0.55
 shader_parameter/distortion_strength = 0.01
 shader_parameter/distortion_frequency = 0.1
 shader_parameter/time_speed = 1.5
-shader_parameter/overlay_tex_ground = ExtResource("2_idvn2")
-shader_parameter/overlay_tex_water_ground = ExtResource("2_idvn2")
-shader_parameter/overlay_tex_water = ExtResource("3_g343p")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x3kuq"]
 texture = ExtResource("4_saoj7")
@@ -155,8 +155,8 @@ sources/0 = SubResource("TileSetAtlasSource_x3kuq")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0llej"]
 shader = ExtResource("6_4beme")
-shader_parameter/scale = 0.01
 shader_parameter/overlay_tex_ground = ExtResource("7_uf3q0")
+shader_parameter/scale = 0.01
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_riebv"]
 texture = ExtResource("8_1hh1g")

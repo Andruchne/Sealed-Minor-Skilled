@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://bsywphos50nvj"]
 
-[ext_resource type="Script" path="res://Scripts/MinigameManager.gd" id="1_2wwns"]
-[ext_resource type="Script" path="res://Scripts/BrushDrawer.gd" id="1_288dj"]
-[ext_resource type="Shader" path="res://Scripts/Shaders/FlameDrawShader.gdshader" id="1_rlubf"]
+[ext_resource type="Script" uid="uid://dqxqj61mmxqd6" path="res://Scripts/Minigames/MinigameManager.gd" id="1_2wwns"]
+[ext_resource type="Script" uid="uid://dah0h0t3keebb" path="res://Scripts/Minigames/Soul_Check/BrushDrawer.gd" id="1_288dj"]
+[ext_resource type="Shader" uid="uid://bkgth65dxr8wx" path="res://Scripts/Shaders/FlameDrawShader.gdshader" id="1_rlubf"]
 [ext_resource type="Texture2D" uid="uid://o0347m1nse4" path="res://Assets/MiniGame/Brushes/Brush.png" id="2_hld81"]
 [ext_resource type="PackedScene" uid="uid://bc2gj2qwoep4v" path="res://Scenes/Objects/CheckpointManager.tscn" id="3_34xqh"]
 [ext_resource type="PackedScene" uid="uid://h56q6uhqsooe" path="res://Scenes/Objects/Checkpoint.tscn" id="4_it4bf"]

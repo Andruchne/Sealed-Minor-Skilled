@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://bse2tjxj1hbof"]
+
+[ext_resource type="Script" uid="uid://bj1d0u4ybh4h3" path="res://Scripts/Dialogue/PortraitAnimator.gd" id="1_kejy3"]
+[ext_resource type="Texture2D" uid="uid://b7s73ijfnlfw0" path="res://Assets/Characters/Dirr/Dirr_Portrait.png" id="2_hv380"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_amyrg"]
+
+[node name="Portrait" type="Panel"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_amyrg")
+script = ExtResource("1_kejy3")
+
+[node name="Eyes" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hv380")
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="Mouth" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hv380")
+region_rect = Rect2(128, 0, 64, 64)
+
+[node name="Head" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hv380")
+region_rect = Rect2(256, 128, 64, 64)
+
+[node name="AnimTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="AnimTimer" to="." method="_on_anim_timer_timeout"]

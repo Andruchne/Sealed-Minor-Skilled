@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxvip0bl50tp6"]
 
-[ext_resource type="Script" path="res://Scripts/DrawEnemy.gd" id="1_p5sgo"]
+[ext_resource type="Script" uid="uid://slfy1yc7ipah" path="res://Scripts/Minigames/Soul_Check/DrawEnemy.gd" id="1_p5sgo"]
 [ext_resource type="Texture2D" uid="uid://hjf5skt2xsqr" path="res://Assets/MiniGame/Objects/Enemy/enemy placeholder.png" id="2_8rq0p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xoifg"]

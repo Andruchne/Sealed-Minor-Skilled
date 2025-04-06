@@ -1,6 +1,8 @@
 shader_type canvas_item;
 
 uniform sampler2D overlay_tex_ground: repeat_enable, filter_nearest;
+uniform sampler2D overlay_tex_moss: repeat_enable, filter_nearest;
+
 uniform sampler2D overlay_tex_water_ground: repeat_enable, filter_nearest;
 uniform sampler2D overlay_tex_water: repeat_enable, filter_nearest;
 
@@ -25,7 +27,10 @@ void fragment() {
     if (pos_color.r == 1.0) {
         // Regular ground overlay without distortion.
         vec4 overlay_color_ground = texture(overlay_tex_ground, world_position * scale_ground);
-        COLOR = mix(COLOR, overlay_color_ground, 1.0);
+		COLOR = mix(COLOR, overlay_color_ground, overlay_color_ground.a);
+
+		vec4 overlay_color_moss = texture(overlay_tex_moss, world_position * 0.01);
+		COLOR = mix(COLOR, overlay_color_moss, overlay_color_moss.a);
     }
     else if (pos_color.b == 1.0) {
         // Apply time-based distortion to mimic a moving watery effect.

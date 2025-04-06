@@ -1,12 +1,12 @@
 [gd_scene load_steps=96 format=3 uid="uid://b7e1s3cp2l1b8"]
 
-[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_tbwei"]
+[ext_resource type="Script" uid="uid://hsjcq70wbq6e" path="res://Scripts/Player/Player.gd" id="1_tbwei"]
 [ext_resource type="Texture2D" uid="uid://cn8guyn7hna73" path="res://Assets/Sprites/Player/Shadow/Player_Shadow.png" id="2_hoh10"]
 [ext_resource type="Texture2D" uid="uid://cplucyioefl0q" path="res://Assets/Sprites/Player/Body/Player_Body.png" id="2_ml5qx"]
 [ext_resource type="Texture2D" uid="uid://d06s8nrvdxsui" path="res://Assets/Sprites/Player/Eyes/Eyes_Lens.png" id="3_o1wp0"]
 [ext_resource type="Texture2D" uid="uid://dg2027tgat8e1" path="res://Assets/Sprites/Player/Eyes/Eyes_White.png" id="4_xaxgv"]
 [ext_resource type="PackedScene" uid="uid://62xjx060th7d" path="res://Scenes/Components/step_handler.tscn" id="6_fjucl"]
-[ext_resource type="PackedScene" uid="uid://bp82tmcyldyxa" path="res://Scripts/Transitioner.tscn" id="7_tuvdi"]
+[ext_resource type="PackedScene" uid="uid://bp82tmcyldyxa" path="res://Scenes/Components/Transitioner.tscn" id="7_tuvdi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_psewl"]
 size = Vector2(12, 2)
@@ -990,6 +990,7 @@ one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
+process_callback = 0
 
 [node name="Transitioner" parent="Camera2D" instance=ExtResource("7_tuvdi")]
 

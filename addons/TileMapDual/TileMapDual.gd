@@ -18,6 +18,7 @@ func _ready() -> void:
 		set_process(false)
 		changed.connect(_changed, 1)
 	# Update full tileset on first instance
+	await get_tree().process_frame
 	_changed()
 
 
@@ -31,9 +32,9 @@ func _atlas_autotiled(source_id: int, atlas: TileSetAtlasSource):
 	urm.commit_action()
 
 
-## Makes the main world grid invisible.
-## The main tiles don't need to be seen. Only the DisplayLayers should be visible.
-## Called on ready.
+##[br] Makes the main world grid invisible.
+##[br] The main tiles don't need to be seen. Only the DisplayLayers should be visible.
+##[br] Called on ready.
 func _make_self_invisible() -> void:
 	if material != null:
 		return
@@ -58,15 +59,20 @@ func _process(delta: float) -> void: # Only used inside the editor
 ## or by _process inside the editor.
 func _changed() -> void:
 	_tileset_watcher.update(tile_set)
-	_display.update(self)
 
 
-## Public method to add and remove tiles.
-##
-## 'cell' is a vector with the cell position.
-## 'terrain' is which terrain type to draw.
-## terrain -1 completely removes the tile,
-## and by default, terrain 0 is the empty tile.
+## Called when the user draws on the map or presses undo/redo.
+func _update_cells(coords: Array[Vector2i], forced_cleanup: bool) -> void:
+	if _display != null:
+		_display.update(coords)
+
+
+##[br] Public method to add and remove tiles.
+##[br]
+##[br] - 'cell' is a vector with the cell position.
+##[br] - 'terrain' is which terrain type to draw.
+##[br] - terrain -1 completely removes the tile,
+##[br] - and by default, terrain 0 is the empty tile.
 func draw_cell(cell: Vector2i, terrain: int = 1) -> void:
 	var terrains := _display.terrain.terrains
 	if terrain not in terrains:
@@ -78,3 +84,7 @@ func draw_cell(cell: Vector2i, terrain: int = 1) -> void:
 	var tile: Vector2i = tile_to_use.tile
 	set_cell(cell, sid, tile)
 	changed.emit()
+
+## Public method to get the terrain at a specific coordinate.
+func get_cell(cell: Vector2i) -> int:
+	return get_cell_tile_data(cell).terrain

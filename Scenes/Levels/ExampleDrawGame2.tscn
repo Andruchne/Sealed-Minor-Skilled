@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ce1f5xeexf41"]
 
-[ext_resource type="Script" path="res://Scripts/BrushDrawer.gd" id="1_hq8yg"]
+[ext_resource type="Script" uid="uid://dah0h0t3keebb" path="res://Scripts/Minigames/Soul_Check/BrushDrawer.gd" id="1_hq8yg"]
 [ext_resource type="Texture2D" uid="uid://o0347m1nse4" path="res://Assets/MiniGame/Brushes/Brush.png" id="2_sedpb"]
 [ext_resource type="PackedScene" uid="uid://bc2gj2qwoep4v" path="res://Scenes/Objects/CheckpointManager.tscn" id="3_utb2r"]
 [ext_resource type="PackedScene" uid="uid://h56q6uhqsooe" path="res://Scenes/Objects/Checkpoint.tscn" id="4_pb6h3"]

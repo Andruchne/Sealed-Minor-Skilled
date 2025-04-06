@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=3 uid="uid://dp0lg3ljd68hc"]
 
-[ext_resource type="Script" path="res://Scripts/ForbiddenDoor.gd" id="1_2m2se"]
+[ext_resource type="Script" uid="uid://caj2mi8odx2ju" path="res://Scripts/Objects/Doors/ForbiddenDoor.gd" id="1_2m2se"]
 [ext_resource type="Texture2D" uid="uid://cg5jhhn5kukvt" path="res://Assets/Sprites/Objects/Interactable/Doors/ForbiddenDoor/Forbidden_Wish_Door.png" id="2_km8bn"]
 [ext_resource type="PackedScene" uid="uid://bvaw7tm34ue3" path="res://Scenes/Utility/32x_32_soul_flame.tscn" id="3_y4p1b"]
 

@@ -10,6 +10,8 @@ var MAIN_ACTIVE : bool = true
 signal minigame_triggered()
 signal minigame_finished(has_won : bool)
 
+signal scene_changed()
+
 func _ready() -> void:
 	CAP_FPS()
 	SET_LANGUAGE("en")
@@ -33,3 +35,8 @@ func TRIGGER_SOULCHECK() -> void:
 func MINIGAME_END(has_won : bool) -> void:
 	emit_signal("minigame_finished", has_won)
 	MAIN_ACTIVE = true
+
+
+func CHANGE_SCENE(new_scene : String) -> void:
+	get_tree().change_scene_to_file(new_scene)
+	emit_signal("scene_changed")

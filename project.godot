@@ -12,14 +12,13 @@ config_version=5
 
 config/name="Minor Skilled"
 run/main_scene="res://Scenes/Levels/SealedCave_0.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameManager="*res://Scripts/Globals/GameManager.gd"
-MainSignals="*res://Scripts/Globals/MainSignals.gd"
-DialogueManager="*res://DialogueManager.gd"
+DialogueManager="*res://Scripts/Dialogue/DialogueManager.gd"
 
 [dialogic]
 
@@ -73,7 +72,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/TileMapDual/plugin.cfg")
+enabled=PackedStringArray("res://addons/DialogueHolder/plugin.cfg", "res://addons/TileMapDual/plugin.cfg", "res://addons/dialogueholder/plugin.cfg")
 
 [global_group]
 

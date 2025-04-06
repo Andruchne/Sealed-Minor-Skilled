@@ -1,6 +1,6 @@
 [gd_scene load_steps=56 format=3 uid="uid://bbcmh5nkjdc4m"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerSoul.gd" id="1_y7kw2"]
+[ext_resource type="Script" uid="uid://fpldjltbxj7g" path="res://Scripts/Minigames/Player/PlayerSoul.gd" id="1_y7kw2"]
 [ext_resource type="Texture2D" uid="uid://bhjxtbuh0sorj" path="res://Assets/MiniGame/Objects/PlayerSoul/Player_Soul.png" id="2_gf236"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejx5i"]
