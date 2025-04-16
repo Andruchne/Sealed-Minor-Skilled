@@ -16,6 +16,8 @@ var option_answers : Dictionary
 var character_said : bool
 var player_has_options : bool
 
+var finish_id : String
+
 signal options_given(options : Array)
 signal dialogue_finished()
 
@@ -38,6 +40,15 @@ func add_dialogue_options(options_array : Array, answer_id_array : Array, answer
 		option_answers[answer_id_array[i]] = answer_text_array[i]
 
 
+func add_moods(eyes_mood : Array, mouth_mood : Array) -> void:
+	character_eyes_mood = eyes_mood
+	character_mouth_mood = mouth_mood
+
+
+func set_finish_id(id : String) -> void:
+	finish_id = id
+
+
 func get_next_text(given_answer = ""):
 	# If character simply talks (Usually the first words)
 	if !character_said:
@@ -56,9 +67,8 @@ func get_next_text(given_answer = ""):
 	return
 
 
-func add_moods(eyes_mood : Array, mouth_mood : Array) -> void:
-	character_eyes_mood = eyes_mood
-	character_mouth_mood = mouth_mood
+func get_finish_id() -> String:
+	return finish_id
 
 
 func get_option_ids() -> Array:
@@ -72,3 +82,8 @@ func get_eyes_moods() -> Array:
 
 func get_mouth_moods() -> Array:
 	return character_mouth_mood
+
+
+func reset() -> void:
+	character_said = false
+	player_has_options = false

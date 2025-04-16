@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://b7e1s3cp2l1b8"]
+[gd_scene load_steps=97 format=3 uid="uid://b7e1s3cp2l1b8"]
 
 [ext_resource type="Script" uid="uid://hsjcq70wbq6e" path="res://Scripts/Player/Player.gd" id="1_tbwei"]
 [ext_resource type="Texture2D" uid="uid://cn8guyn7hna73" path="res://Assets/Sprites/Player/Shadow/Player_Shadow.png" id="2_hoh10"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dg2027tgat8e1" path="res://Assets/Sprites/Player/Eyes/Eyes_White.png" id="4_xaxgv"]
 [ext_resource type="PackedScene" uid="uid://62xjx060th7d" path="res://Scenes/Components/step_handler.tscn" id="6_fjucl"]
 [ext_resource type="PackedScene" uid="uid://bp82tmcyldyxa" path="res://Scenes/Components/Transitioner.tscn" id="7_tuvdi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t26db"]
+size = Vector2(12, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_psewl"]
 size = Vector2(12, 2)
@@ -912,7 +915,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["GameObject", "Player"]]
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 7
@@ -925,6 +928,13 @@ position = Vector2(-3, 1)
 
 [node name="Node2D2" parent="StepHandler" index="1"]
 position = Vector2(3, 1)
+
+[node name="FeetArea" type="Area2D" parent="." groups=["Player"]]
+position = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FeetArea"]
+shape = SubResource("RectangleShape2D_t26db")
+debug_color = Color(0.84937, 0.333084, 0.450036, 0.42)
 
 [node name="FeetCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmuc5gfcf8aws"
-path="res://.godot/imported/stone_ground.png-9ca0b1d4cded73674d02fddcfc8843d5.ctex"
+uid="uid://dpmb6od1mbllb"
+path="res://.godot/imported/Platform_Activeness.png-144d2aefd618cf6aa09a2835feb1e432.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/BeginningCave/Ground/stone_ground.png"
-dest_files=["res://.godot/imported/stone_ground.png-9ca0b1d4cded73674d02fddcfc8843d5.ctex"]
+source_file="res://Assets/Sprites/Objects/Platform/Platform_Activeness.png"
+dest_files=["res://.godot/imported/Platform_Activeness.png-144d2aefd618cf6aa09a2835feb1e432.ctex"]
 
 [params]
 

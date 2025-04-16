@@ -1,5 +1,8 @@
 extends Node2D
 
+const save_game_path = "user://savegame.tres"
+
+
 var soulcheck : String = "res://Scenes/Levels/Minigame_Soulcheck.tscn"
 
 # To cap fps
@@ -40,3 +43,11 @@ func MINIGAME_END(has_won : bool) -> void:
 func CHANGE_SCENE(new_scene : String) -> void:
 	get_tree().change_scene_to_file(new_scene)
 	emit_signal("scene_changed")
+
+
+func SAVE_GAME() -> void:
+	pass
+
+
+func LOAD_GAME() -> void:
+	pass

@@ -15,6 +15,8 @@ var mouth_mood_size : int = 0
 
 @export var options : Dictionary[String, DialogueHolderObject] = {}
 
+@export var finish_id : String = ""
+
 
 # Setter functions to sync arrays when they change in the Inspector
 func _set_dialogues(ids):

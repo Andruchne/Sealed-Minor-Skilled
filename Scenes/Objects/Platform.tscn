@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ka4r5qo7w2c7"]
+
+[ext_resource type="Script" uid="uid://bqkfljigy2bhb" path="res://Platform.gd" id="1_x8n5u"]
+[ext_resource type="Texture2D" uid="uid://c4pgf1ximqh0y" path="res://Assets/Sprites/Objects/Platform/Platform.png" id="2_wbv6q"]
+[ext_resource type="Texture2D" uid="uid://dpmb6od1mbllb" path="res://Assets/Sprites/Objects/Platform/Platform_Activeness.png" id="3_b6yqw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sqnm0"]
+radius = 16.0
+
+[node name="Platform" type="Node2D" groups=["GameObject"]]
+script = ExtResource("1_x8n5u")
+activeness_color = Color(0.435294, 0.929412, 0.698039, 1)
+
+[node name="Platform" type="Sprite2D" parent="."]
+position = Vector2(0, 24)
+texture = ExtResource("2_wbv6q")
+
+[node name="Activeness" type="Sprite2D" parent="."]
+modulate = Color(0.4371, 0.93, 0.69998, 0)
+position = Vector2(0, 24)
+texture = ExtResource("3_b6yqw")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_sqnm0")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

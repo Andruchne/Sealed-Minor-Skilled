@@ -1,8 +1,8 @@
-[gd_scene load_steps=23 format=4 uid="uid://1q1wwvye1135"]
+[gd_scene load_steps=22 format=4 uid="uid://1q1wwvye1135"]
 
 [ext_resource type="Shader" uid="uid://bo2yk1ic0vnp8" path="res://Scripts/Shaders/CaveEntrance.gdshader" id="1_1um16"]
 [ext_resource type="PackedScene" uid="uid://b7e1s3cp2l1b8" path="res://Scenes/Player/Player.tscn" id="1_i7tye"]
-[ext_resource type="Texture2D" uid="uid://bmuc5gfcf8aws" path="res://Assets/Tiles/BeginningCave/Ground/Stone_Ground.png" id="2_s13ij"]
+[ext_resource type="Texture2D" uid="uid://bmuc5gfcf8aws" path="res://Assets/Tiles/BeginningCave/Ground/stone_ground.png" id="2_s13ij"]
 [ext_resource type="Texture2D" uid="uid://dgu15fj8p0gty" path="res://Assets/Tiles/BeginningCave/Ground/Water.png" id="3_kfh0u"]
 [ext_resource type="Texture2D" uid="uid://cglcy4336r6n7" path="res://Assets/Tiles/BeginningCave/Ground/Stone_Ground_Moss.png" id="3_xaaj0"]
 [ext_resource type="Texture2D" uid="uid://24wyaaih40in" path="res://Assets/Tiles/BeginningCave/Ground/Cave_Ground.png" id="4_67djg"]
@@ -11,7 +11,6 @@
 [ext_resource type="Shader" uid="uid://c0b6lj3fhlpug" path="res://Scripts/Shaders/WallShader.gdshader" id="6_qqjyc"]
 [ext_resource type="Texture2D" uid="uid://cai8sn07yrd5w" path="res://Assets/Tiles/BeginningCave/Wall/WallTexture.png" id="7_lkbxk"]
 [ext_resource type="Texture2D" uid="uid://ybyfousoli3l" path="res://Assets/Tiles/BeginningCave/Deco/Stone_Ground_Deco.png" id="9_83ofd"]
-[ext_resource type="PackedScene" uid="uid://dgp2gohgsbany" path="res://Scenes/Characters/Dirr.tscn" id="12_6e0nw"]
 [ext_resource type="PackedScene" uid="uid://dp0lg3ljd68hc" path="res://Scenes/Objects/Interactable/Forbidden_Door.tscn" id="13_h0b32"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3e4s4"]
@@ -23,7 +22,7 @@ shader_parameter/overlay_tex_ground = ExtResource("2_s13ij")
 shader_parameter/overlay_tex_moss = ExtResource("3_xaaj0")
 shader_parameter/overlay_tex_water_ground = ExtResource("2_s13ij")
 shader_parameter/overlay_tex_water = ExtResource("3_kfh0u")
-shader_parameter/scale_ground = 0.02
+shader_parameter/scale_ground = 0.012
 shader_parameter/scale_water = 0.012
 shader_parameter/water_opacity = 0.55
 shader_parameter/distortion_strength = 0.01
@@ -363,22 +362,19 @@ tile_set = SubResource("TileSet_6urgd")
 [node name="Player" parent="." instance=ExtResource("1_i7tye")]
 speed = 75.0
 
-[node name="BodyAnimSprite" parent="Player" index="5"]
+[node name="BodyAnimSprite" parent="Player" index="6"]
 modulate = Color(1, 0.879167, 0.75, 1)
 
-[node name="LensAnimSprite" parent="Player" index="6"]
+[node name="LensAnimSprite" parent="Player" index="7"]
 modulate = Color(0.6, 0.766667, 1, 1)
 
-[node name="LensHalfAnimSprite" parent="Player" index="7"]
+[node name="LensHalfAnimSprite" parent="Player" index="8"]
 modulate = Color(0.6, 0.766667, 1, 1)
 
 [node name="Forbidden_Door" parent="." instance=ExtResource("13_h0b32")]
 position = Vector2(16, -183)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." groups=["Canvas"]]
-
-[node name="Dirr" parent="." instance=ExtResource("12_6e0nw")]
-position = Vector2(-6, -51)
 
 [editable path="Player"]
 [editable path="Player/StepHandler"]

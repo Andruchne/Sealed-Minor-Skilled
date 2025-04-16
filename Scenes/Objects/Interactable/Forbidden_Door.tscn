@@ -221,7 +221,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rg0ra"]
 size = Vector2(26, 4)
 
-[node name="Forbidden_Door" type="Node2D"]
+[node name="Forbidden_Door" type="Node2D" groups=["GameObject"]]
 script = ExtResource("1_2m2se")
 
 [node name="Door" type="AnimatedSprite2D" parent="."]

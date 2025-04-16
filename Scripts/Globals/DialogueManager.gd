@@ -24,6 +24,13 @@ var current_eyes_moods : Array
 var is_text_displayed : bool
 var is_text_finished : bool
 
+var saved_finish_id : String
+
+signal character_talk()
+signal character_stop_talk()
+
+signal dialogue_finished(finish_id : String)
+
 func _ready() -> void:
 	setup()
 
@@ -79,10 +86,12 @@ func display_text() -> void:
 	current_box.set_mood(current_mouth_moods[current_progress_index], current_eyes_moods[current_progress_index])
 	current_progress_index += 1
 	is_text_finished = false
+	emit_signal("character_talk")
 
 
 func on_text_finished() -> void:
 	is_text_finished = true
+	emit_signal("character_stop_talk")
 
 
 func on_options_given(options : Array) -> void:
@@ -102,11 +111,14 @@ func on_options_given(options : Array) -> void:
 func on_option_picked(option_picked : String) -> void:
 	current_box.option_picked.disconnect(on_option_picked)
 	current_box.queue_free()
-	disconnect_current_dialogue()
 	
 	# Get new dialogue instance
-	current_dialogue = current_dialogue.get_next_text(option_picked)
+	var dialogue : Dialogue = current_dialogue.get_next_text(option_picked)
+	disconnect_current_dialogue()
+	current_dialogue = dialogue
+	
 	current_progress_index = 0
+	
 	
 	current_box.queue_free()
 	POPUP_DIALOGUE(current_dialogue)
@@ -120,9 +132,11 @@ func on_dialogue_finished() -> void:
 	
 	current_progress_index = 0
 	current_texts = []
+	emit_signal("dialogue_finished", current_dialogue.finish_id)
 	GameManager.MAIN_ACTIVE = true
 
 
 func disconnect_current_dialogue() -> void:
+	current_dialogue.reset()
 	current_dialogue.options_given.disconnect(on_options_given)
 	current_dialogue.dialogue_finished.disconnect(on_dialogue_finished)

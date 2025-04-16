@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://Scripts/Globals/GameManager.gd"
-DialogueManager="*res://Scripts/Dialogue/DialogueManager.gd"
+DialogueManager="*res://Scripts/Globals/DialogueManager.gd"
 
 [dialogic]
 
@@ -72,7 +72,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/DialogueHolder/plugin.cfg", "res://addons/TileMapDual/plugin.cfg", "res://addons/dialogueholder/plugin.cfg")
+enabled=PackedStringArray("res://addons/TileMapDual/plugin.cfg")
 
 [global_group]
 
@@ -81,6 +81,7 @@ Enemy=""
 Ground=""
 Interactable=""
 Canvas=""
+GameObject=""
 
 [gui]
 

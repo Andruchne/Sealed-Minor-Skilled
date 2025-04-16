@@ -20,6 +20,8 @@ func setup_dialogues(dialogueHolderObject : DialogueHolderObject) -> Dialogue:
 	
 	new_dialogue.add_moods(dialogueHolderObject.eyes_mood, dialogueHolderObject.mouth_mood)
 	
+	new_dialogue.set_finish_id(dialogueHolderObject.finish_id)
+	
 	if dialogueHolderObject.options.size() > 0:
 		
 		var ordered_keys : Array[String]
@@ -31,8 +33,6 @@ func setup_dialogues(dialogueHolderObject : DialogueHolderObject) -> Dialogue:
 		while ordered_keys.size() != dialogueHolderObject.options.size():
 			for i in range(dialogueHolderObject.options.size()):
 				if current_row == dialogueHolderObject.options.values()[i].order:
-					print(dialogueHolderObject.options.values()[i].order)
-					print(dialogueHolderObject.options.keys()[i])
 					ordered_keys.append(dialogueHolderObject.options.keys()[i])
 					ordered_values.append(dialogueHolderObject.options.values()[i])
 			current_row += 1
