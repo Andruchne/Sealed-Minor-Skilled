@@ -1004,9 +1004,4 @@ process_callback = 0
 
 [node name="Transitioner" parent="Camera2D" instance=ExtResource("7_tuvdi")]
 
-[connection signal="area_entered" from="InteractArea" to="." method="_on_interact_area_entered"]
-[connection signal="area_exited" from="InteractArea" to="." method="_on_interact_area_area_exited"]
-[connection signal="timeout" from="BlinkInterval" to="." method="_on_blink_interval_timeout"]
-[connection signal="timeout" from="BlinkProgression" to="." method="_on_blink_progression_timeout"]
-
 [editable path="StepHandler"]

@@ -1,0 +1,151 @@
+[gd_scene load_steps=8 format=3 uid="uid://drtc6bekpkmus"]
+
+[ext_resource type="Texture2D" uid="uid://t3tug4fs0fmd" path="res://Assets/UI/Dialogue/DialogueBox.png" id="1_f60yo"]
+[ext_resource type="Script" uid="uid://5b143mgi61rw" path="res://Game_Menu.gd" id="1_go8lt"]
+[ext_resource type="PackedScene" uid="uid://bvi606w45k54p" path="res://Scenes/UI/Option_Button.tscn" id="2_55bfj"]
+[ext_resource type="FontFile" uid="uid://c4vkhox6clp7l" path="res://Assets/Fonts/FiveFontsatFreddy's-Regular.ttf" id="2_phepk"]
+[ext_resource type="Script" uid="uid://6vl1qahxepu4" path="res://Saves_Menu.gd" id="5_hv635"]
+[ext_resource type="PackedScene" uid="uid://cjtu2m2m61c1h" path="res://Scenes/UI/Save_Slot.tscn" id="5_wtucc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_go8lt"]
+font = ExtResource("2_phepk")
+font_size = 64
+
+[node name="Game_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_go8lt")
+title_variations = Array[String](["Blub", "Huhu!", "Gawk", "Very Menu", "Totally Menu", "Huh?", "What is it?", "Heya!"])
+
+[node name="Background" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.1
+anchor_right = 0.798958
+anchor_bottom = 0.896296
+offset_right = -1035.0
+offset_bottom = -774.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(10, 10)
+texture = ExtResource("1_f60yo")
+region_rect = Rect2(0, 0, 150, 40)
+patch_margin_left = 4
+patch_margin_top = 3
+patch_margin_right = 4
+patch_margin_bottom = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.270312
+anchor_top = 0.17963
+anchor_right = 0.730729
+anchor_bottom = 0.344444
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(435, 70)
+text = "Title"
+label_settings = SubResource("LabelSettings_go8lt")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Save_Button" parent="Main" instance=ExtResource("2_55bfj")]
+layout_mode = 1
+anchor_left = 0.347917
+anchor_top = 0.382407
+anchor_right = 0.644792
+anchor_bottom = 0.456481
+offset_right = -456.0
+offset_bottom = -64.0
+label_text = "Save"
+
+[node name="Load_Button" parent="Main" instance=ExtResource("2_55bfj")]
+layout_mode = 1
+anchor_left = 0.347917
+anchor_top = 0.483333
+anchor_right = 0.644792
+anchor_bottom = 0.557407
+offset_top = -1.00003
+offset_right = -456.0
+offset_bottom = -65.0
+label_text = "Load"
+
+[node name="Option_Button" parent="Main" instance=ExtResource("2_55bfj")]
+layout_mode = 1
+anchor_left = 0.347917
+anchor_top = 0.587037
+anchor_right = 0.644792
+anchor_bottom = 0.661111
+offset_top = -5.0
+offset_right = -456.0
+offset_bottom = -69.0
+
+[node name="Exit_Button" parent="Main" instance=ExtResource("2_55bfj")]
+layout_mode = 1
+anchor_left = 0.347917
+anchor_top = 0.693519
+anchor_right = 0.644792
+anchor_bottom = 0.767593
+offset_left = -6.10352e-05
+offset_top = -12.0
+offset_right = -456.0
+offset_bottom = -76.0
+label_text = "Exit"
+
+[node name="Save" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_hv635")
+
+[node name="SaveSlot" parent="Save" instance=ExtResource("5_wtucc")]
+layout_mode = 0
+anchor_left = 0.247396
+anchor_top = 0.165741
+anchor_right = 0.755208
+anchor_bottom = 0.355556
+offset_right = -780.0
+offset_bottom = -164.0
+metadata/_edit_use_anchors_ = true
+
+[node name="SaveSlot2" parent="Save" instance=ExtResource("5_wtucc")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.247396
+anchor_top = 0.390741
+anchor_right = 0.755208
+anchor_bottom = 0.580556
+offset_right = -780.0
+offset_bottom = -164.0
+metadata/_edit_use_anchors_ = true
+
+[node name="SaveSlot3" parent="Save" instance=ExtResource("5_wtucc")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.247396
+anchor_top = 0.615741
+anchor_right = 0.755208
+anchor_bottom = 0.805556
+offset_right = -780.0
+offset_bottom = -164.0
+metadata/_edit_use_anchors_ = true

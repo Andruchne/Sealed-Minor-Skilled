@@ -34,3 +34,33 @@ func _on_32_soul_flame_animation_finished() -> void:
 func _on_door_animation_finished() -> void:
 	if is_cleared:
 		is_open = true
+
+
+func get_save_state() -> Dictionary:
+	var dict : Dictionary = {
+		"is_completed" : is_completed,
+		"is_cleared" : is_cleared,
+		"is_open" : is_open
+	}
+	var door_state : Dictionary = Useful.GET_ANIMATION_STATES(door)
+	var door_moss_state : Dictionary = Useful.GET_ANIMATION_STATES(door_moss)
+	var flame_state : Dictionary = Useful.GET_ANIMATION_STATES(flame)
+	
+	for key in door_state:
+		dict[key] = door_state[key]
+	for key in door_moss_state:
+		dict[key] = door_moss_state[key]
+	for key in flame_state:
+		dict[key] = flame_state[key]
+	
+	return dict
+
+
+func apply_save_state(state : Dictionary) -> void:
+	is_completed = state.get("is_completed")
+	is_cleared = state.get("is_cleared")
+	is_open = state.get("is_open")
+	
+	Useful.APPLY_ANIMATION_STATES(door, state)
+	Useful.APPLY_ANIMATION_STATES(door_moss, state)
+	Useful.APPLY_ANIMATION_STATES(flame, state)

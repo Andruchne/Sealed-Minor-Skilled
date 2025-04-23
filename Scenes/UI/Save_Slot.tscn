@@ -1,0 +1,113 @@
+[gd_scene load_steps=14 format=3 uid="uid://cjtu2m2m61c1h"]
+
+[ext_resource type="Texture2D" uid="uid://t3tug4fs0fmd" path="res://Assets/UI/Dialogue/DialogueBox.png" id="1_2d5rm"]
+[ext_resource type="Script" uid="uid://c35sm6jxywwns" path="res://SaveSlot.gd" id="2_uk4nl"]
+[ext_resource type="FontFile" uid="uid://c4vkhox6clp7l" path="res://Assets/Fonts/FiveFontsatFreddy's-Regular.ttf" id="3_2s5kx"]
+[ext_resource type="Texture2D" uid="uid://0kjqrt063kkw" path="res://Assets/UI/Dialogue/DialogueBox_Hovered.png" id="3_q6ni6"]
+[ext_resource type="Texture2D" uid="uid://cplucyioefl0q" path="res://Assets/Sprites/Player/Body/Player_Body.png" id="4_uk4nl"]
+[ext_resource type="Texture2D" uid="uid://dgkibj2vibflf" path="res://Assets/UI/Dialogue/DialogueBox_Pressed.png" id="4_vnm5f"]
+[ext_resource type="Texture2D" uid="uid://d06s8nrvdxsui" path="res://Assets/Sprites/Player/Eyes/Eyes_Lens.png" id="5_ipfhs"]
+[ext_resource type="Texture2D" uid="uid://dg2027tgat8e1" path="res://Assets/Sprites/Player/Eyes/Eyes_White.png" id="6_q6ni6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ipfhs"]
+font = ExtResource("3_2s5kx")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_vnm5f"]
+font = ExtResource("3_2s5kx")
+font_size = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk4nl"]
+atlas = ExtResource("4_uk4nl")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_136wl"]
+atlas = ExtResource("5_ipfhs")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1lun"]
+atlas = ExtResource("6_q6ni6")
+region = Rect2(0, 0, 16, 24)
+
+[node name="SaveSlot" type="NinePatchRect"]
+offset_right = 210.0
+offset_bottom = 71.0
+scale = Vector2(5, 5)
+mouse_filter = 0
+texture = ExtResource("1_2d5rm")
+patch_margin_left = 4
+patch_margin_top = 3
+patch_margin_right = 4
+patch_margin_bottom = 3
+script = ExtResource("2_uk4nl")
+default_texture = ExtResource("1_2d5rm")
+hovered_texture = ExtResource("3_q6ni6")
+pressed_texture = ExtResource("4_vnm5f")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.271429
+anchor_top = 0.0873239
+anchor_right = 0.980952
+anchor_bottom = 0.326761
+grow_horizontal = 2
+text = "Title"
+label_settings = SubResource("LabelSettings_ipfhs")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Time" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.809524
+anchor_top = 0.64507
+anchor_right = 0.971429
+anchor_bottom = 0.884507
+text = "00:00"
+label_settings = SubResource("LabelSettings_vnm5f")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" type="Control" parent="."]
+anchors_preset = 0
+anchor_left = 0.0190476
+anchor_top = 0.028169
+anchor_right = 0.309524
+anchor_bottom = 0.957747
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Body" type="TextureRect" parent="Player"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_uk4nl")
+stretch_mode = 5
+
+[node name="Eyes_Lens" type="TextureRect" parent="Player"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_136wl")
+stretch_mode = 5
+
+[node name="Eyes_White" type="TextureRect" parent="Player"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_q1lun")
+stretch_mode = 5
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

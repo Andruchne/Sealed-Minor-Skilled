@@ -17,6 +17,8 @@ var eyes_hidden : bool = false
 var last_anim : String = ""
 var is_mirrored : bool = false
 
+@onready var interact_area : Area2D = $InteractArea
+
 # For blinking animation
 @onready var timer_blink_interval = $BlinkInterval
 @onready var timer_blink_progression = $BlinkProgression
@@ -51,10 +53,14 @@ var interactable_list : Array = []
 
 func _ready() -> void:
 	setup()
-	tilemap = get_tree().get_first_node_in_group("Ground")
 
 
 func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("One"):
+		GameManager.SAVE_GAME()
+	elif Input.is_action_just_pressed("Two"):
+		GameManager.LOAD_GAME()
+	
 	check_step()
 	interact()
 
@@ -70,6 +76,8 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func setup() -> void:
+	tilemap = get_tree().get_first_node_in_group("Ground")
+	
 	# Add animations to the array
 	animations.append(anim_body)
 	animations.append(anim_eyes_lens)
@@ -86,9 +94,24 @@ func setup() -> void:
 	
 	# Start with covered screen
 	transition_in()
-	transitioner.transition_finished.connect(on_transition_finished)
 	
-	GameManager.minigame_finished.connect(on_minigame_finished)
+	if !transitioner.transition_finished.is_connected(on_transition_finished):
+		transitioner.transition_finished.connect(on_transition_finished)
+	
+	if !GameManager.minigame_finished.is_connected(on_minigame_finished):
+		GameManager.minigame_finished.connect(on_minigame_finished)
+	
+	if !interact_area.area_entered.is_connected(_on_interact_area_entered):
+		interact_area.area_entered.connect(_on_interact_area_entered)
+	
+	if !interact_area.area_exited.is_connected(_on_interact_area_area_exited):
+		interact_area.area_exited.connect(_on_interact_area_area_exited)
+	
+	if !timer_blink_interval.timeout.is_connected(_on_blink_interval_timeout):
+		timer_blink_interval.timeout.connect(_on_blink_interval_timeout)
+	
+	if !timer_blink_progression.timeout.is_connected(_on_blink_progression_timeout):
+		timer_blink_progression.timeout.connect(_on_blink_progression_timeout)
 
 
 func move() -> Vector2:
@@ -367,3 +390,36 @@ func on_transition_finished() -> void:
 	if execute_after_trans.is_valid():
 		execute_after_trans.call()
 		execute_after_trans = Callable()
+
+
+func get_save_state() -> Dictionary:
+	return {
+		"current_direction" : current_direction,
+		"last_direction" : last_direction,
+		"last_anim_frame" : last_anim_frame,
+		"is_mirrored" : is_mirrored,
+		"eyes_hidden" : eyes_hidden
+	}
+
+
+func apply_save_state(state : Dictionary) -> void:
+	current_direction = state.get("current_direction")
+	last_direction = state.get("last_direction")
+	last_anim_frame = state.get("last_anim_frame")
+	is_mirrored = state.get("is_mirrored")
+	
+	toggle_eyes_state(state.get("eyes_hidden"))
+	handle_animation(last_direction)
+
+
+func after_load_init() -> void:
+	camera.make_current()
+	await get_tree().process_frame
+	tilemap = get_tree().get_first_node_in_group("Ground")
+
+
+func get_player_info() -> PlayerInfo:
+	var info = PlayerInfo.new()
+	info.body_color = anim_body.modulate
+	info.lens_color = anim_eyes_lens.modulate
+	return info

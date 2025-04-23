@@ -189,7 +189,7 @@ options = Dictionary[String, ExtResource("5_btq82")]({
 "dirr_01_choice_me": SubResource("Resource_f6bep"),
 "dirr_01_choice_nothing": SubResource("Resource_oogld")
 })
-finish_id = null
+finish_id = ""
 metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
 
 [sub_resource type="Resource" id="Resource_kn3ak"]

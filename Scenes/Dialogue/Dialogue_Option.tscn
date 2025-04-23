@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://mqi2buaixd6x"]
 
-[ext_resource type="Texture2D" uid="uid://dor3ucjxkg84l" path="res://Assets/Sprites/Dialogue/OptionBox.png" id="1_nfui5"]
+[ext_resource type="Texture2D" uid="uid://dor3ucjxkg84l" path="res://Assets/UI/Dialogue/OptionBox.png" id="1_nfui5"]
 [ext_resource type="Script" uid="uid://b8gxhv02asymf" path="res://Scripts/Dialogue/DialogueOption.gd" id="2_jug3r"]
 [ext_resource type="FontFile" uid="uid://c4vkhox6clp7l" path="res://Assets/Fonts/FiveFontsatFreddy's-Regular.ttf" id="2_uv6dy"]
-[ext_resource type="Texture2D" uid="uid://bp8p87hugc10r" path="res://Assets/Sprites/Dialogue/OptionBoxPicked.png" id="3_ichlw"]
+[ext_resource type="Texture2D" uid="uid://bp8p87hugc10r" path="res://Assets/UI/Dialogue/OptionBoxPicked.png" id="3_ichlw"]
 
 [node name="Dialogue_Option" type="NinePatchRect"]
 custom_minimum_size = Vector2(900, 60)

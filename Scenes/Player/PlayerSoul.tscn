@@ -425,10 +425,10 @@ shape = SubResource("RectangleShape2D_ejx5i")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_fmd76")
-animation = &"Despawn"
+animation = &"Check_Idle"
 autoplay = "Idle"
 
-[node name="Area2D" type="Area2D" parent="." groups=["Draw_Check"]]
+[node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, 8)
 
 [node name="CheckerCircle" type="CollisionShape2D" parent="Area2D"]

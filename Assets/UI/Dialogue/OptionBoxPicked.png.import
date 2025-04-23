@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bp8p87hugc10r"
-path="res://.godot/imported/OptionBoxPicked.png-34dc76e1343bf9acbfeb5622cfc262c8.ctex"
+path="res://.godot/imported/OptionBoxPicked.png-a299ebe6e0c012bcb8acb042925f40a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Dialogue/OptionBoxPicked.png"
-dest_files=["res://.godot/imported/OptionBoxPicked.png-34dc76e1343bf9acbfeb5622cfc262c8.ctex"]
+source_file="res://Assets/UI/Dialogue/OptionBoxPicked.png"
+dest_files=["res://.godot/imported/OptionBoxPicked.png-a299ebe6e0c012bcb8acb042925f40a6.ctex"]
 
 [params]
 

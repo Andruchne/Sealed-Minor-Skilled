@@ -33,6 +33,7 @@ script = ExtResource("1_2wwns")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 5)
 zoom = Vector2(4, 4)
+process_callback = 0
 
 [node name="UI" type="Control" parent="Camera2D"]
 layout_mode = 3

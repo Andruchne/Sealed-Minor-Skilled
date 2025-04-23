@@ -140,8 +140,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			is_checked = true
 			anim_sprite.frame = 0
 			anim_sprite.frame_progress = 0
-			# Not the prettiest way, but due to execution order, the proper way of managing states
-			checkpoint.set_active(false)
+		checkpoint.interacted()
 
 
 func _on_animated_sprite_2d_animation_looped() -> void:

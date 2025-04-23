@@ -5,7 +5,7 @@
 [sub_resource type="Gradient" id="Gradient_bod2r"]
 colors = PackedColorArray(0.3128, 0.374, 0.68, 1, 1, 1, 1, 0)
 
-[node name="WaterStepParticle" type="CPUParticles2D"]
+[node name="WaterStepParticle" type="CPUParticles2D" groups=["GameObject"]]
 z_index = -1
 y_sort_enabled = true
 emitting = false

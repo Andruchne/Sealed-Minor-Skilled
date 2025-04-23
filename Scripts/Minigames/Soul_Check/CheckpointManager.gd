@@ -9,9 +9,9 @@ var current_active_checkpoints : Array
 
 signal checkpoints_cleared()
 
+
 func _ready() -> void:
 	checkpoints = get_tree().get_nodes_in_group("Checkpoint")
-	
 	# Hide all checkpoints
 	for cp in checkpoints:
 		cp.visible = false

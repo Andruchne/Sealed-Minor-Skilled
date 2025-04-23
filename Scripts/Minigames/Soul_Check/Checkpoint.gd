@@ -5,16 +5,20 @@ extends AnimatedSprite2D
 
 var checked : bool = false
 var active : bool = false
+# Second bool, because we're listening to two area entered signals
+# As both checked for one and the same bool, toggling it as well, I implemented a second one
+var private_active : bool = false
 
 signal checkpoint_checked()
 
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if active && !checked && area.is_in_group("Draw_Check"):
+func interacted() -> void:
+	if active && !checked:
 		play("Transition")
 		transition_color()
 		checked = true
 		emit_signal("checkpoint_checked")
+		set_active(false)
 	elif !active && !checked && !is_playing():
 		play("InvalidCheck")
 
