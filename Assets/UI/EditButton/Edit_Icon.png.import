@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4ea8wialgksj"
-path="res://.godot/imported/Option_Hovered.png-bf7e7f6996c4957576d2ade6a599698b.ctex"
+uid="uid://bqp6tqma2x3aw"
+path="res://.godot/imported/Edit_Icon.png-7688fd864d83ccccf6d00372cbea91ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/UI_Button/Option_Hovered.png"
-dest_files=["res://.godot/imported/Option_Hovered.png-bf7e7f6996c4957576d2ade6a599698b.ctex"]
+source_file="res://Assets/UI/EditButton/Edit_Icon.png"
+dest_files=["res://.godot/imported/Edit_Icon.png-7688fd864d83ccccf6d00372cbea91ff.ctex"]
 
 [params]
 

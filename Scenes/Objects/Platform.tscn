@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_sqnm0"]
 radius = 16.0
 
-[node name="Platform" type="Node2D" groups=["GameObject"]]
+[node name="Platform" type="Node2D" groups=["Activator", "GameObject"]]
 script = ExtResource("1_x8n5u")
 activeness_color = Color(0.435294, 0.929412, 0.698039, 1)
 

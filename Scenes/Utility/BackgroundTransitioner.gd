@@ -13,11 +13,9 @@ func uncover_screen() -> void:
 func cover_screen() -> void:
 	set_background(1)
 
-
 # Getting in
 func transition_in() -> void:
 	transition_background(0)
-
 
 # Getting out
 func transition_out() -> void:

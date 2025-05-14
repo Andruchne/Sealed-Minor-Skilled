@@ -1,0 +1,155 @@
+[gd_scene load_steps=21 format=3 uid="uid://k75lcewr1yuu"]
+
+[ext_resource type="Texture2D" uid="uid://t3tug4fs0fmd" path="res://Assets/UI/Dialogue/DialogueBox.png" id="1_nagfs"]
+[ext_resource type="Script" uid="uid://c1tpjxl3ik5lk" path="res://LoadSlot.gd" id="2_0mghx"]
+[ext_resource type="Texture2D" uid="uid://0kjqrt063kkw" path="res://Assets/UI/Dialogue/DialogueBox_Hovered.png" id="3_nq3f5"]
+[ext_resource type="Texture2D" uid="uid://dgkibj2vibflf" path="res://Assets/UI/Dialogue/DialogueBox_Pressed.png" id="4_1qie1"]
+[ext_resource type="FontFile" uid="uid://c4vkhox6clp7l" path="res://Assets/Fonts/FiveFontsatFreddy's-Regular.ttf" id="7_mcjf0"]
+[ext_resource type="Texture2D" uid="uid://cplucyioefl0q" path="res://Assets/Sprites/Player/Body/Player_Body.png" id="8_5vued"]
+[ext_resource type="Texture2D" uid="uid://d06s8nrvdxsui" path="res://Assets/Sprites/Player/Eyes/Eyes_Lens.png" id="9_cwm08"]
+[ext_resource type="Texture2D" uid="uid://cwe38lqct7mm1" path="res://Assets/Sprites/Player/Clothes/Shirt/Player_Casual_Shirt.png" id="9_nagfs"]
+[ext_resource type="Texture2D" uid="uid://be5yoo7j3b31k" path="res://Assets/Sprites/Player/Clothes/Pants/Player_Casual_Pants.png" id="10_gp87s"]
+[ext_resource type="Texture2D" uid="uid://dg2027tgat8e1" path="res://Assets/Sprites/Player/Eyes/Eyes_White.png" id="10_kus51"]
+
+[sub_resource type="Theme" id="Theme_q1lun"]
+default_font = ExtResource("7_mcjf0")
+default_font_size = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q1lun"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jf6pf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_itwew"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vnm5f"]
+font = ExtResource("7_mcjf0")
+font_size = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk4nl"]
+atlas = ExtResource("8_5vued")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_136wl"]
+atlas = ExtResource("9_cwm08")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1lun"]
+atlas = ExtResource("10_kus51")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5mbf"]
+atlas = ExtResource("9_nagfs")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5x3av"]
+atlas = ExtResource("10_gp87s")
+region = Rect2(0, 0, 16, 24)
+
+[node name="LoadSlot" type="NinePatchRect"]
+offset_right = 210.0
+offset_bottom = 71.0
+scale = Vector2(5, 5)
+mouse_filter = 0
+texture = ExtResource("1_nagfs")
+patch_margin_left = 4
+patch_margin_top = 3
+patch_margin_right = 4
+patch_margin_bottom = 3
+script = ExtResource("2_0mghx")
+default_button_img = ExtResource("1_nagfs")
+hovered_button_img = ExtResource("3_nq3f5")
+pressed_button_img = ExtResource("4_1qie1")
+
+[node name="EditPlaceholder" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.271429
+anchor_top = 0.084507
+anchor_right = 0.866667
+anchor_bottom = 0.323944
+mouse_filter = 2
+theme = SubResource("Theme_q1lun")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q1lun")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_jf6pf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_itwew")
+text = "Title"
+alignment = 1
+max_length = 20
+caret_blink = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Time" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.809524
+anchor_top = 0.64507
+anchor_right = 0.971429
+anchor_bottom = 0.884507
+text = "00:00"
+label_settings = SubResource("LabelSettings_vnm5f")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" type="Control" parent="."]
+anchors_preset = 0
+anchor_left = 0.0190476
+anchor_top = 0.028169
+anchor_right = 0.309524
+anchor_bottom = 0.957747
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Body" type="TextureRect" parent="Player"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_uk4nl")
+stretch_mode = 5
+
+[node name="Eyes_Lens" type="TextureRect" parent="Player"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_136wl")
+stretch_mode = 5
+
+[node name="Eyes_White" type="TextureRect" parent="Player"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_q1lun")
+stretch_mode = 5
+
+[node name="Shirt" type="TextureRect" parent="Player"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("AtlasTexture_t5mbf")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Pants" type="TextureRect" parent="Player"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("AtlasTexture_5x3av")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="focus_exited" from="EditPlaceholder" to="." method="_on_edit_placeholder_focus_exited"]
+[connection signal="text_submitted" from="EditPlaceholder" to="." method="_on_edit_placeholder_text_submitted"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://1q1wwvye1135"]
+[gd_scene load_steps=23 format=4 uid="uid://1q1wwvye1135"]
 
 [ext_resource type="Shader" uid="uid://bo2yk1ic0vnp8" path="res://Scripts/Shaders/CaveEntrance.gdshader" id="1_1um16"]
 [ext_resource type="PackedScene" uid="uid://b7e1s3cp2l1b8" path="res://Scenes/Player/Player.tscn" id="1_i7tye"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cai8sn07yrd5w" path="res://Assets/Tiles/BeginningCave/Wall/WallTexture.png" id="7_lkbxk"]
 [ext_resource type="Texture2D" uid="uid://ybyfousoli3l" path="res://Assets/Tiles/BeginningCave/Deco/Stone_Ground_Deco.png" id="9_83ofd"]
 [ext_resource type="PackedScene" uid="uid://dp0lg3ljd68hc" path="res://Scenes/Objects/Interactable/Forbidden_Door.tscn" id="13_h0b32"]
+[ext_resource type="PackedScene" uid="uid://crf2qavhveqf3" path="res://Scenes/Objects/Interactable/Cobweb_Stone.tscn" id="13_xaaj0"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3e4s4"]
 light_mode = 2
@@ -356,7 +357,7 @@ tile_set = SubResource("TileSet_wpik1")
 
 [node name="Tilemap_Deco" type="TileMapLayer" parent="."]
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAD8////AAAEAAAAAAD8/wAAAAAEAAEAAAD8/wEAAAAEAAIAAAD8/wIAAAAEAAMAAAAFAP//AAACAAAAAAAFAAAAAAACAAEAAAAFAAEAAAACAAIAAAD7//r/AAABAAAAAAD7//v/AAABAAEAAAD7//z/AAABAAIAAAAIAP7/AAAAAAEAAAAIAP//AAAAAAIAAAACAAMAAAACAAMAAAD//wQAAAAAAAMAAAD5////AAABAAMAAAADAPj/AAADAAAAAAADAPn/AAADAAEAAAADAPr/AAADAAIAAAADAPv/AAADAAMAAAD///X/AAACAAAAAAD///b/AAACAAEAAAD///f/AAACAAIAAAACAPX/AAAAAAEAAAACAPb/AAAAAAIAAAACAPf/AAAAAAMAAAA=")
+tile_map_data = PackedByteArray("AAD8////AAAEAAAAAAD8/wAAAAAEAAEAAAD8/wEAAAAEAAIAAAD8/wIAAAAEAAMAAAAFAP//AAACAAAAAAAFAAAAAAACAAEAAAAFAAEAAAACAAIAAAD7//r/AAABAAAAAAD7//v/AAABAAEAAAD7//z/AAABAAIAAAAIAP7/AAAAAAEAAAAIAP//AAAAAAIAAAD//wQAAAAAAAMAAAD5////AAABAAMAAAADAPj/AAADAAAAAAADAPn/AAADAAEAAAADAPr/AAADAAIAAAADAPv/AAADAAMAAAD///X/AAACAAAAAAD///b/AAACAAEAAAD///f/AAACAAIAAAACAPX/AAAAAAEAAAACAPb/AAAAAAIAAAACAPf/AAAAAAMAAAA=")
 tile_set = SubResource("TileSet_6urgd")
 
 [node name="Player" parent="." instance=ExtResource("1_i7tye")]
@@ -365,16 +366,19 @@ speed = 75.0
 [node name="BodyAnimSprite" parent="Player" index="6"]
 modulate = Color(1, 0.879167, 0.75, 1)
 
-[node name="LensAnimSprite" parent="Player" index="7"]
+[node name="LensAnimSprite" parent="Player" index="9"]
 modulate = Color(0.6, 0.766667, 1, 1)
 
-[node name="LensHalfAnimSprite" parent="Player" index="8"]
+[node name="LensHalfAnimSprite" parent="Player" index="10"]
 modulate = Color(0.6, 0.766667, 1, 1)
 
 [node name="Forbidden_Door" parent="." instance=ExtResource("13_h0b32")]
 position = Vector2(16, -183)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." groups=["Canvas"]]
+
+[node name="Cobweb_Stone" parent="." instance=ExtResource("13_xaaj0")]
+position = Vector2(40, 56)
 
 [editable path="Player"]
 [editable path="Player/StepHandler"]

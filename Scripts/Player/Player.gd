@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 @export var speed : float = 80.0
 
 @export var blink_duration : float = 0.25
@@ -8,11 +7,15 @@ extends CharacterBody2D
 @export var blink_max_interval : float = 10
 
 # For Animation handling
-@onready var anim_body = $BodyAnimSprite
-@onready var anim_eyes_lens = $LensAnimSprite
-@onready var anim_eyes_lens_half = $LensHalfAnimSprite
-@onready var anim_eyes_white = $WhiteAnimSprite
-@onready var anim_eyes_white_half = $WhiteHalfAnimSprite
+@onready var anim_body : AnimatedSprite2D = $BodyAnimSprite
+@onready var anim_shirt : AnimatedSprite2D = $ShirtAnimSprite
+@onready var anim_pants : AnimatedSprite2D = $PantsAnimSprite
+
+@onready var anim_eyes_lens : AnimatedSprite2D = $LensAnimSprite
+@onready var anim_eyes_lens_half : AnimatedSprite2D = $LensHalfAnimSprite
+@onready var anim_eyes_white : AnimatedSprite2D = $WhiteAnimSprite
+@onready var anim_eyes_white_half : AnimatedSprite2D = $WhiteHalfAnimSprite
+
 var eyes_hidden : bool = false
 var last_anim : String = ""
 var is_mirrored : bool = false
@@ -56,11 +59,6 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("One"):
-		GameManager.SAVE_GAME()
-	elif Input.is_action_just_pressed("Two"):
-		GameManager.LOAD_GAME()
-	
 	check_step()
 	interact()
 
@@ -80,6 +78,8 @@ func setup() -> void:
 	
 	# Add animations to the array
 	animations.append(anim_body)
+	animations.append(anim_pants)
+	animations.append(anim_shirt)
 	animations.append(anim_eyes_lens)
 	animations.append(anim_eyes_lens_half)
 	animations.append(anim_eyes_white)
@@ -422,4 +422,6 @@ func get_player_info() -> PlayerInfo:
 	var info = PlayerInfo.new()
 	info.body_color = anim_body.modulate
 	info.lens_color = anim_eyes_lens.modulate
+	info.shirt_color = anim_shirt.modulate
+	info.pants_color = anim_pants.modulate
 	return info

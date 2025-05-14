@@ -202,7 +202,7 @@ options = Dictionary[String, ExtResource("5_btq82")]({})
 finish_id = ""
 metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
 
-[node name="Dirr" type="CharacterBody2D"]
+[node name="Dirr" type="CharacterBody2D" groups=["GameObject"]]
 script = ExtResource("1_cjx07")
 dialogue_actions = Dictionary[String, String]({
 "dirr_01_you_ugly": "dialogue_01_you_ugly"

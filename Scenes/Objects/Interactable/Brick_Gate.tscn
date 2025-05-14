@@ -1,0 +1,158 @@
+[gd_scene load_steps=20 format=3 uid="uid://dtoy0xoadnplx"]
+
+[ext_resource type="Script" uid="uid://cetj14lxbqoda" path="res://BrickGate.gd" id="1_gvtka"]
+[ext_resource type="Texture2D" uid="uid://cvn7e1mpf863w" path="res://Assets/Sprites/Objects/Interactable/Doors/BrickGate/Brick_Gate.png" id="2_kgq0p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m73fv"]
+atlas = ExtResource("2_kgq0p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd7dd"]
+atlas = ExtResource("2_kgq0p")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1swsm"]
+atlas = ExtResource("2_kgq0p")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dqlt"]
+atlas = ExtResource("2_kgq0p")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xslfj"]
+atlas = ExtResource("2_kgq0p")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_614m0"]
+atlas = ExtResource("2_kgq0p")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akikx"]
+atlas = ExtResource("2_kgq0p")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5g25"]
+atlas = ExtResource("2_kgq0p")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdllp"]
+atlas = ExtResource("2_kgq0p")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg0fp"]
+atlas = ExtResource("2_kgq0p")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sa5n2"]
+atlas = ExtResource("2_kgq0p")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fojqu"]
+atlas = ExtResource("2_kgq0p")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1jdq"]
+atlas = ExtResource("2_kgq0p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlb1x"]
+atlas = ExtResource("2_kgq0p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_31ucs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m73fv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd7dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1swsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dqlt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xslfj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_614m0")
+}],
+"loop": false,
+"name": &"Close",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akikx")
+}],
+"loop": false,
+"name": &"Closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5g25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdllp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg0fp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sa5n2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fojqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1jdq")
+}],
+"loop": false,
+"name": &"Open",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlb1x")
+}],
+"loop": false,
+"name": &"Opened",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fg4xw"]
+size = Vector2(10, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvtka"]
+size = Vector2(32, 4)
+
+[node name="Brick_Gate" type="Node2D" groups=["GameObject"]]
+script = ExtResource("1_gvtka")
+
+[node name="Gate" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_31ucs")
+animation = &"Open"
+autoplay = "Closed"
+
+[node name="Area2D" type="Area2D" parent="." groups=["Interactable"]]
+position = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(10, 14)
+shape = SubResource("RectangleShape2D_fg4xw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_gvtka")
+debug_color = Color(0.644497, 0.426387, 0.785679, 0.42)
+
+[connection signal="animation_changed" from="Gate" to="." method="_on_gate_animation_changed"]
+[connection signal="animation_finished" from="Gate" to="." method="_on_gate_animation_finished"]

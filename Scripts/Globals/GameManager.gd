@@ -2,12 +2,16 @@ extends Node2D
 
 var canvas_layer : CanvasLayer
 
-const SAVE_GAME_PATH = "user://saves/savegame.tres"
+#savegame.tres
+const SAVE_GAME_PATH = "user://saves/"
 
 var soulcheck : String = "res://Scenes/Levels/Minigame_Soulcheck.tscn"
 
 var popup_label : String = "res://Scenes/UI/Popup_Label.tscn"
 var current_label : Popup_Label 
+
+var game_menu : String = "res://Scenes/UI/Game_Menu.tscn"
+var current_game_menu : Control
 
 # To cap fps
 var FPS_MAX : int = 60
@@ -59,11 +63,15 @@ func get_canvas_layer() -> void:
 		print("GameManager: No CanvasLayer found in current scene.")
 
 
-func SAVE_GAME() -> void:
-	if !MAIN_ACTIVE:
+func SAVE_GAME(save_name : String, save_index : int = 0, is_quicksave : bool = false) -> void:
+	if is_quicksave && !MAIN_ACTIVE:
 		return
 	
+	delete_existing_save_files(str(save_index))
 	var save_data := GameSaveData.new()
+	
+	save_data.save_index = save_index
+	save_data.save_name = save_name
 	
 	var player = get_tree().get_first_node_in_group("Player")
 	save_data.player_info = player.get_player_info()
@@ -86,13 +94,16 @@ func SAVE_GAME() -> void:
 			save_data.game_object_states.append(obj.get_save_state())
 		else:
 			save_data.game_object_states.append(null)
-
-	ResourceSaver.save(save_data, SAVE_GAME_PATH)
+	
+	ResourceSaver.save(save_data, create_save_path(save_name, save_index))
+	
 	show_label("Saved", Popup_Label.Save_Text_Type.Exclamation)
 
 
-func LOAD_GAME() -> void:
-	var save_data = ResourceLoader.load(SAVE_GAME_PATH)
+func LOAD_GAME(load_index : int) -> void:
+	var save_data = ResourceLoader.load(get_save_file(str(load_index)))
+	var instances : Array = []
+	
 	if save_data is GameSaveData:
 		# Free current root scene
 		var old_root := get_tree().current_scene
@@ -109,20 +120,25 @@ func LOAD_GAME() -> void:
 			var game_objects : Array = new_root.get_tree().get_nodes_in_group("GameObject")
 			for obj in game_objects:
 				obj.queue_free()
-
+			
+			await get_tree().process_frame
+			
 			for i in save_data.game_object_scenes.size():
 				var packed_scene = save_data.game_object_scenes[i]
 				if packed_scene && packed_scene is PackedScene:
 					var instance = packed_scene.instantiate()
+					instances.append(instance)
 					new_root.add_child(instance)
 
 					if i < save_data.game_object_states.size():
 						var state = save_data.game_object_states[i]
 						if instance.has_method("apply_save_state"):
 							instance.apply_save_state(state)
-
-					if instance.has_method("after_load_init"):
-						instance.call_deferred("after_load_init")
+			
+			for instance in instances:
+				if instance.has_method("after_load_init"):
+					instance.call_deferred("after_load_init")
+		
 		get_canvas_layer()
 		MAIN_ACTIVE = true
 		await get_tree().process_frame
@@ -136,3 +152,54 @@ func show_label(text : String, type : Popup_Label.Save_Text_Type) -> void:
 	current_label = load(popup_label).instantiate()
 	canvas_layer.add_child(current_label)
 	current_label.popup_text(text, type)
+
+
+func TOGGLE_GAME_MENU() -> void:
+	if current_game_menu == null:
+		current_game_menu = load(game_menu).instantiate()
+		canvas_layer.add_child(current_game_menu)
+		GameManager.MAIN_ACTIVE = false
+	else:
+		current_game_menu.queue_free()
+		GameManager.MAIN_ACTIVE = true
+
+
+func get_save_file(search_number: String) -> String:
+	var dir = DirAccess.open(SAVE_GAME_PATH)
+	if dir == null:
+		return ""
+	
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		if not dir.current_is_dir():
+			if file_name.begins_with(search_number):
+				dir.list_dir_end()
+				return SAVE_GAME_PATH.path_join(file_name)
+		file_name = dir.get_next()
+	
+	dir.list_dir_end()
+	return ""
+
+
+func create_save_path(save_name : String, save_index : int) -> String:
+	var save_file : String = "%d_%s.tres" % [save_index, save_name]
+	var path : String = SAVE_GAME_PATH + save_file
+	return path
+
+
+func delete_existing_save_files(search_number: String) -> void:
+	var dir = DirAccess.open(SAVE_GAME_PATH)
+	if dir == null:
+		return
+	
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		if not dir.current_is_dir():
+			if file_name.begins_with(search_number):
+				var full_path = SAVE_GAME_PATH.path_join(file_name)
+				DirAccess.remove_absolute(full_path)
+		file_name = dir.get_next()
+	
+	dir.list_dir_end()

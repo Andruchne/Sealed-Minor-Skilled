@@ -9,6 +9,7 @@ enum Mood {
 }
 
 var dialogue_box : String = "res://Scenes/Dialogue/Dialogue_Box_Holder.tscn"
+var clear_dialogue_box : String = "res://Scenes/Dialogue/Clear_Dialogue_Box_Holder.tscn"
 var option_box : String = "res://Scenes/Dialogue/Dialogue_Option_Holder.tscn"
 
 var canvas_layer : CanvasLayer
@@ -25,6 +26,8 @@ var is_text_displayed : bool
 var is_text_finished : bool
 
 var saved_finish_id : String
+
+var clear_box : bool
 
 signal character_talk()
 signal character_stop_talk()
@@ -56,11 +59,15 @@ func get_canvas_layer() -> void:
 		queue_free()
 
 
-func POPUP_DIALOGUE(dialogue : Dialogue) -> void:
+func POPUP_DIALOGUE(dialogue : Dialogue, clear : bool = false) -> void:
 	GameManager.MAIN_ACTIVE = false
 	
 	# Add dialogue box
-	current_box = load(dialogue_box).instantiate()
+	if clear:
+		current_box = load(clear_dialogue_box).instantiate()
+		clear_box = true
+	else:
+		current_box = load(dialogue_box).instantiate()
 	canvas_layer.add_child(current_box)
 	current_dialogue = dialogue
 	
@@ -121,7 +128,7 @@ func on_option_picked(option_picked : String) -> void:
 	
 	
 	current_box.queue_free()
-	POPUP_DIALOGUE(current_dialogue)
+	POPUP_DIALOGUE(current_dialogue, clear_box)
 
 
 func on_dialogue_finished() -> void:
@@ -129,6 +136,8 @@ func on_dialogue_finished() -> void:
 	
 	current_box.text_finished.disconnect(on_text_finished)
 	current_box.queue_free()
+	
+	clear_box = false
 	
 	current_progress_index = 0
 	current_texts = []

@@ -5,8 +5,6 @@ extends CharacterBody2D
 @onready var dirr_dialogues : DialogueHolder = $DialogueHolder
 @onready var char_anim : AnimatedSprite2D = $AnimatedSprite2D
 
-@onready var temp_platform : Node2D = $"../Platform"
-
 var temp_intro : bool
 var temp_reaction : bool
 
@@ -14,24 +12,20 @@ var current_target_position : Vector2
 var speed : float = 30
 
 
-func _ready() -> void:
-	if temp_platform:
-		temp_platform.activated.connect(platform_activated)
-
-
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	velocity = move()
 	move_and_slide()
 
 
 func move() -> Vector2:
-	var set_velocity : Vector2 = Vector2.ZERO
+	var new_velocity : Vector2 = Vector2.ZERO
 	
 	if current_target_position && global_position.distance_to(current_target_position) > 5:
 		var direction = (current_target_position - global_position).normalized()
-		set_velocity = direction * speed
+		new_velocity = direction * speed
 	
-	return set_velocity
+	return new_velocity
+
 
 func on_interact(_player : Node2D) -> void:
 	if !temp_intro:
@@ -80,9 +74,3 @@ func do_action_after_dialogue(finish_id : String) -> void:
 func dialogue_01_you_ugly() -> void:
 	current_target_position = global_position + Vector2(0, -40)
 	char_anim.play("Idle_Top")
-
-
-func platform_activated() -> void:
-	if !temp_reaction:
-		start_dialogue("don't_touch")
-		temp_reaction = true

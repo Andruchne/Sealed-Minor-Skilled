@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwyjirjpfvnov"
-path="res://.godot/imported/Option_Default.png-2ce475465025cedff9cf2087ac045d2d.ctex"
+uid="uid://16ar774cjtre"
+path="res://.godot/imported/Brick_Decoration.png-456da29c1123733dbdffafd0d78c7045.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/UI_Button/Option_Default.png"
-dest_files=["res://.godot/imported/Option_Default.png-2ce475465025cedff9cf2087ac045d2d.ctex"]
+source_file="res://Assets/Tiles/BrickyPassages/Decoration/Brick_Decoration.png"
+dest_files=["res://.godot/imported/Brick_Decoration.png-456da29c1123733dbdffafd0d78c7045.ctex"]
 
 [params]
 

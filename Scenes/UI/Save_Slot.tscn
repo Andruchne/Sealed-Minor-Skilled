@@ -1,17 +1,29 @@
-[gd_scene load_steps=14 format=3 uid="uid://cjtu2m2m61c1h"]
+[gd_scene load_steps=26 format=3 uid="uid://cjtu2m2m61c1h"]
 
 [ext_resource type="Texture2D" uid="uid://t3tug4fs0fmd" path="res://Assets/UI/Dialogue/DialogueBox.png" id="1_2d5rm"]
 [ext_resource type="Script" uid="uid://c35sm6jxywwns" path="res://SaveSlot.gd" id="2_uk4nl"]
 [ext_resource type="FontFile" uid="uid://c4vkhox6clp7l" path="res://Assets/Fonts/FiveFontsatFreddy's-Regular.ttf" id="3_2s5kx"]
-[ext_resource type="Texture2D" uid="uid://0kjqrt063kkw" path="res://Assets/UI/Dialogue/DialogueBox_Hovered.png" id="3_q6ni6"]
+[ext_resource type="Texture2D" uid="uid://0kjqrt063kkw" path="res://Assets/UI/Dialogue/DialogueBox_Hovered.png" id="3_itwew"]
+[ext_resource type="Texture2D" uid="uid://dgkibj2vibflf" path="res://Assets/UI/Dialogue/DialogueBox_Pressed.png" id="4_5uvxy"]
 [ext_resource type="Texture2D" uid="uid://cplucyioefl0q" path="res://Assets/Sprites/Player/Body/Player_Body.png" id="4_uk4nl"]
-[ext_resource type="Texture2D" uid="uid://dgkibj2vibflf" path="res://Assets/UI/Dialogue/DialogueBox_Pressed.png" id="4_vnm5f"]
 [ext_resource type="Texture2D" uid="uid://d06s8nrvdxsui" path="res://Assets/Sprites/Player/Eyes/Eyes_Lens.png" id="5_ipfhs"]
 [ext_resource type="Texture2D" uid="uid://dg2027tgat8e1" path="res://Assets/Sprites/Player/Eyes/Eyes_White.png" id="6_q6ni6"]
+[ext_resource type="Texture2D" uid="uid://bqp6tqma2x3aw" path="res://Assets/UI/EditButton/Edit_Icon.png" id="7_q1lun"]
+[ext_resource type="Script" uid="uid://bwjrlyjkk1480" path="res://CustomBaseButton.gd" id="8_jf6pf"]
+[ext_resource type="Texture2D" uid="uid://bajjr6kpxl3ka" path="res://Assets/UI/EditButton/Edit_Icon_Hovered.png" id="9_itwew"]
+[ext_resource type="Texture2D" uid="uid://dssa0gp6r641e" path="res://Assets/UI/EditButton/Edit_Icon_Pressed.png" id="10_5uvxy"]
+[ext_resource type="Texture2D" uid="uid://cwe38lqct7mm1" path="res://Assets/Sprites/Player/Clothes/Shirt/Player_Casual_Shirt.png" id="13_x1082"]
+[ext_resource type="Texture2D" uid="uid://be5yoo7j3b31k" path="res://Assets/Sprites/Player/Clothes/Pants/Player_Casual_Pants.png" id="14_i5lur"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ipfhs"]
-font = ExtResource("3_2s5kx")
-font_size = 8
+[sub_resource type="Theme" id="Theme_q1lun"]
+default_font = ExtResource("3_2s5kx")
+default_font_size = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q1lun"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jf6pf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_itwew"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vnm5f"]
 font = ExtResource("3_2s5kx")
@@ -29,6 +41,19 @@ region = Rect2(0, 0, 16, 24)
 atlas = ExtResource("6_q6ni6")
 region = Rect2(0, 0, 16, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvepq"]
+atlas = ExtResource("13_x1082")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo7db"]
+atlas = ExtResource("14_i5lur")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="LabelSettings" id="LabelSettings_itwew"]
+font = ExtResource("3_2s5kx")
+font_size = 8
+font_color = Color(1, 0.975, 0.5, 1)
+
 [node name="SaveSlot" type="NinePatchRect"]
 offset_right = 210.0
 offset_bottom = 71.0
@@ -40,21 +65,43 @@ patch_margin_top = 3
 patch_margin_right = 4
 patch_margin_bottom = 3
 script = ExtResource("2_uk4nl")
-default_texture = ExtResource("1_2d5rm")
-hovered_texture = ExtResource("3_q6ni6")
-pressed_texture = ExtResource("4_vnm5f")
+default_button_img = ExtResource("1_2d5rm")
+hovered_button_img = ExtResource("3_itwew")
+pressed_button_img = ExtResource("4_5uvxy")
 
-[node name="Title" type="Label" parent="."]
+[node name="TitleEditButton" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.892381
+anchor_top = 0.101408
+anchor_right = 0.963809
+anchor_bottom = 0.312676
+mouse_filter = 0
+texture = ExtResource("7_q1lun")
+script = ExtResource("8_jf6pf")
+default_button_img = ExtResource("7_q1lun")
+hovered_button_img = ExtResource("9_itwew")
+pressed_button_img = ExtResource("10_5uvxy")
+metadata/_edit_use_anchors_ = true
+
+[node name="EditPlaceholder" type="LineEdit" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.271429
-anchor_top = 0.0873239
-anchor_right = 0.980952
-anchor_bottom = 0.326761
-grow_horizontal = 2
+anchor_top = 0.084507
+anchor_right = 0.866667
+anchor_bottom = 0.323944
+mouse_filter = 2
+theme = SubResource("Theme_q1lun")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q1lun")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_jf6pf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_itwew")
 text = "Title"
-label_settings = SubResource("LabelSettings_ipfhs")
-horizontal_alignment = 1
+alignment = 1
+max_length = 20
+caret_blink = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Time" type="Label" parent="."]
@@ -109,5 +156,36 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_q1lun")
 stretch_mode = 5
 
+[node name="Shirt" type="TextureRect" parent="Player"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("AtlasTexture_xvepq")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Pants" type="TextureRect" parent="Player"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("AtlasTexture_fo7db")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="UnsavedToken" type="Label" parent="."]
+visible = false
+layout_mode = 0
+anchor_left = 0.952381
+anchor_top = 0.0535211
+anchor_right = 0.97619
+anchor_bottom = 0.292958
+text = "*"
+label_settings = SubResource("LabelSettings_itwew")
+metadata/_edit_use_anchors_ = true
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="TitleEditButton" to="TitleEditButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="TitleEditButton" to="TitleEditButton" method="_on_mouse_exited"]
+[connection signal="focus_exited" from="EditPlaceholder" to="." method="_on_edit_placeholder_focus_exited"]
+[connection signal="text_submitted" from="EditPlaceholder" to="." method="_on_edit_placeholder_text_submitted"]

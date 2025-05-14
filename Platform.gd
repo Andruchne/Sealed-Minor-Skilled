@@ -1,4 +1,5 @@
-extends Node2D
+extends Activator
+class_name TreePlatform
 
 @onready var activeness_sprite : Sprite2D = $Activeness
 
@@ -6,12 +7,9 @@ extends Node2D
 @export var fade_duration : float = 1
 
 var entered_count : int = 0
-var active : bool = false
 
-var was_activated : bool = false
-
-signal activated()
-signal deactivated()
+# Indicates, to which access it belongs to
+var access_index : int = 0
 
 
 func _ready() -> void:
@@ -53,3 +51,15 @@ func check_state() -> void:
 		active = true
 	else:
 		active = false
+
+
+func get_save_state() -> Dictionary:
+	var dict = super()
+	dict["alpha"] = activeness_sprite.modulate.a
+	
+	return dict
+
+
+func apply_save_state(state : Dictionary) -> void:
+	super(state)
+	activeness_sprite.modulate.a = state.get("alpha")
