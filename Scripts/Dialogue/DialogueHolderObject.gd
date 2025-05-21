@@ -15,6 +15,8 @@ var mouth_mood_size : int = 0
 
 @export var options : Dictionary[String, DialogueHolderObject] = {}
 
+@export var add_condition : String
+
 @export var finish_id : String = ""
 
 

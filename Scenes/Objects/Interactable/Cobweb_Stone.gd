@@ -10,6 +10,7 @@ func on_interact(_player : Node2D) -> void:
 	if !is_cleared:
 		anim_stone.play("Normal")
 		start_dialogue("cobweb_take")
+		MemoryManager.set_memory("cobweb", true)
 		is_cleared = true
 
 

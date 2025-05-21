@@ -15,6 +15,9 @@ var speed : float = 30
 func _physics_process(_delta: float) -> void:
 	velocity = move()
 	move_and_slide()
+	
+	
+	print(MemoryManager.remembers("cobweb"))
 
 
 func move() -> Vector2:

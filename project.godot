@@ -21,6 +21,7 @@ GameManager="*res://Scripts/Globals/GameManager.gd"
 DialogueManager="*res://Scripts/Globals/DialogueManager.gd"
 Useful="*res://Useful.gd"
 InputManager="*res://InputManager.gd"
+MemoryManager="*res://MemoryManager.gd"
 
 [dialogic]
 

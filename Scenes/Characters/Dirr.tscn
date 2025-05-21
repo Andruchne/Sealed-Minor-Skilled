@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dgp2gohgsbany"]
+[gd_scene load_steps=35 format=3 uid="uid://dgp2gohgsbany"]
 
 [ext_resource type="Script" uid="uid://b2d60okgxvxqm" path="res://Scripts/Characters/Dirr/Dirr.gd" id="1_cjx07"]
 [ext_resource type="Texture2D" uid="uid://cclu3a3t61dj3" path="res://Assets/Characters/Dirr/Dirr.png" id="2_3vps4"]
@@ -114,6 +114,42 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Resource" id="Resource_cwhwr"]
+script = ExtResource("5_btq82")
+order = 0
+dialogues = Array[String](["dirr_01_best_snack", "dirr_01_come"])
+eyes_mood = Array[int]([1, 1])
+mouth_mood = Array[int]([1, 1])
+options = Dictionary[String, ExtResource("5_btq82")]({})
+add_condition = ""
+finish_id = "dirr_01_snack_given"
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
+[sub_resource type="Resource" id="Resource_pei4a"]
+script = ExtResource("5_btq82")
+order = 1
+dialogues = Array[String](["dirr_01_dot", "dirr_01_mean_creature", "dirr_01_want_own_snacks", "dirr_01_look_better"])
+eyes_mood = Array[int]([0, 3, 2, 3])
+mouth_mood = Array[int]([0, 0, 0, 0])
+options = Dictionary[String, ExtResource("5_btq82")]({})
+add_condition = ""
+finish_id = "dirr_01_snack_creature"
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
+[sub_resource type="Resource" id="Resource_kn3ak"]
+script = ExtResource("5_btq82")
+order = 3
+dialogues = Array[String](["dirr_01_cobweb_huo", "dirr_01_cobweb_treasure"])
+eyes_mood = Array[int]([2, 1])
+mouth_mood = Array[int]([1, 1])
+options = Dictionary[String, ExtResource("5_btq82")]({
+"dirr_01_choice_here": SubResource("Resource_cwhwr"),
+"dirr_01_choice_no": SubResource("Resource_pei4a")
+})
+add_condition = "cobweb"
+finish_id = ""
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
 [sub_resource type="Resource" id="Resource_823kj"]
 script = ExtResource("5_btq82")
 order = 2
@@ -121,6 +157,7 @@ dialogues = Array[String](["dirr_01_wait_come_too"])
 eyes_mood = Array[int]([0])
 mouth_mood = Array[int]([0])
 options = Dictionary[String, ExtResource("5_btq82")]({})
+add_condition = ""
 finish_id = "dirr_01_look_again"
 metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
 
@@ -131,6 +168,7 @@ dialogues = Array[String](["dirr_01_oh_you", "dirr_01_wait_you", "dirr_01_come"]
 eyes_mood = Array[int]([0, 2, 1])
 mouth_mood = Array[int]([0, 0, 1])
 options = Dictionary[String, ExtResource("5_btq82")]({})
+add_condition = ""
 finish_id = "dirr_01_point_important"
 metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
 
@@ -141,6 +179,7 @@ dialogues = Array[String](["dirr_01_wait_come_too"])
 eyes_mood = Array[int]([0])
 mouth_mood = Array[int]([0])
 options = Dictionary[String, ExtResource("5_btq82")]({})
+add_condition = ""
 finish_id = "dirr_01_look_again"
 metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
 
@@ -151,6 +190,7 @@ dialogues = Array[String](["dirr_01_offended"])
 eyes_mood = Array[int]([3])
 mouth_mood = Array[int]([0])
 options = Dictionary[String, ExtResource("5_btq82")]({})
+add_condition = ""
 finish_id = "dirr_01_you_ugly"
 metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
 
@@ -165,6 +205,7 @@ options = Dictionary[String, ExtResource("5_btq82")]({
 "dirr_01_choice_true_look_again": SubResource("Resource_68ys5"),
 "dirr_01_choice_you_ugly": SubResource("Resource_kbx1w")
 })
+add_condition = ""
 finish_id = ""
 metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
 
@@ -175,6 +216,7 @@ dialogues = Array[String](["dirr_01_nothing_gyoho", "dirr_01_long_wait", "dirr_0
 eyes_mood = Array[int]([1, 3, 0])
 mouth_mood = Array[int]([0, 0, 0])
 options = Dictionary[String, ExtResource("5_btq82")]({})
+add_condition = ""
 finish_id = "dirr_nothing_look"
 metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
 
@@ -185,20 +227,58 @@ dialogues = Array[String](["dirr_01_start", "dirr_01_whats_inside", "dirr_01_wha
 eyes_mood = Array[int]([1, 0, 1])
 mouth_mood = Array[int]([1, 0, 1])
 options = Dictionary[String, ExtResource("5_btq82")]({
+"dirr_01_choice_cobweb": SubResource("Resource_kn3ak"),
 "dirr_01_choice_look_again": SubResource("Resource_823kj"),
 "dirr_01_choice_me": SubResource("Resource_f6bep"),
 "dirr_01_choice_nothing": SubResource("Resource_oogld")
 })
+add_condition = ""
 finish_id = ""
 metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
 
-[sub_resource type="Resource" id="Resource_kn3ak"]
+[sub_resource type="Resource" id="Resource_hfndt"]
 script = ExtResource("5_btq82")
 order = 0
-dialogues = Array[String](["dirr_02_don't_touch"])
-eyes_mood = Array[int]([3])
-mouth_mood = Array[int]([0])
+dialogues = Array[String](["dirr_01_find_nothing", "dirr_01_stinks", "dirr_01_my_place", "dirr_01_come", "dirr_01_window_look"])
+eyes_mood = Array[int]([0, 2, 0, 0, 1])
+mouth_mood = Array[int]([0, 0, 0, 0, 1])
 options = Dictionary[String, ExtResource("5_btq82")]({})
+add_condition = ""
+finish_id = "dirr_01_window_rush"
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
+[sub_resource type="Resource" id="Resource_rqavw"]
+script = ExtResource("5_btq82")
+order = 0
+dialogues = Array[String](["dirr_01_really_nothing", "dirr_01_stinks", "dirr_01_my_place", "dirr_01_come", "dirr_01_window_look"])
+eyes_mood = Array[int]([0, 2, 0, 0, 1])
+mouth_mood = Array[int]([0, 0, 0, 0, 1])
+options = Dictionary[String, ExtResource("5_btq82")]({})
+add_condition = ""
+finish_id = "dirr_01_window_rush"
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
+[sub_resource type="Resource" id="Resource_re414"]
+script = ExtResource("5_btq82")
+order = 0
+dialogues = Array[String](["dirr_01_ok", "dirr_01_trust"])
+eyes_mood = Array[int]([0, 0])
+mouth_mood = Array[int]([0, 1])
+options = Dictionary[String, ExtResource("5_btq82")]({})
+add_condition = ""
+finish_id = "dirr_01_trust"
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
+[sub_resource type="Resource" id="Resource_vj4od"]
+script = ExtResource("5_btq82")
+order = 0
+dialogues = Array[String](["dirr_01_right_direction"])
+eyes_mood = Array[int]([2])
+mouth_mood = Array[int]([0])
+options = Dictionary[String, ExtResource("5_btq82")]({
+"dirr_01_choice_yes": SubResource("Resource_re414")
+})
+add_condition = ""
 finish_id = ""
 metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
 
@@ -231,5 +311,7 @@ script = ExtResource("3_igrg0")
 [node name="DialogueHolder" parent="." groups=["GameObject"] instance=ExtResource("4_q8ecq")]
 dialogues = Dictionary[String, ExtResource("5_btq82")]({
 "beginning_dialogue": SubResource("Resource_elbl2"),
-"don't_touch": SubResource("Resource_kn3ak")
+"found_nothing_dialogue": SubResource("Resource_hfndt"),
+"really_nothing_dialogue": SubResource("Resource_rqavw"),
+"right_direction_dialogue": SubResource("Resource_vj4od")
 })

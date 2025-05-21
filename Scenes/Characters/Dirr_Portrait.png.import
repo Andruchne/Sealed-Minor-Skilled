@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmuc5gfcf8aws"
-path="res://.godot/imported/stone_ground.png-9ca0b1d4cded73674d02fddcfc8843d5.ctex"
+uid="uid://c13d6x1ivy7wd"
+path="res://.godot/imported/Dirr_Portrait.png-6cbf2c09bf76aae14cd139cc5884e235.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/BeginningCave/Ground/stone_ground.png"
-dest_files=["res://.godot/imported/stone_ground.png-9ca0b1d4cded73674d02fddcfc8843d5.ctex"]
+source_file="res://Scenes/Characters/Dirr_Portrait.png"
+dest_files=["res://.godot/imported/Dirr_Portrait.png-6cbf2c09bf76aae14cd139cc5884e235.ctex"]
 
 [params]
 

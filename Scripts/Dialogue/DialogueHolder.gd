@@ -29,17 +29,18 @@ func setup_dialogues(dialogueHolderObject : DialogueHolderObject) -> Dialogue:
 		
 		var current_row : int = 0
 		
+		var options_count : int = dialogueHolderObject.options.size()
+		
 		# Dictionary is aquired unsorted. Having an order and using this logic, makes it sorted again
-		while ordered_keys.size() != dialogueHolderObject.options.size():
+		while ordered_keys.size() != options_count:
 			for i in range(dialogueHolderObject.options.size()):
 				if current_row == dialogueHolderObject.options.values()[i].order:
-					ordered_keys.append(dialogueHolderObject.options.keys()[i])
-					ordered_values.append(dialogueHolderObject.options.values()[i])
+					if dialogueHolderObject.options.values()[i].add_condition == "" || MemoryManager.remembers(dialogueHolderObject.options.values()[i].add_condition):
+						ordered_keys.append(dialogueHolderObject.options.keys()[i])
+						ordered_values.append(dialogueHolderObject.options.values()[i])
+					else:
+						options_count -= 1
 			current_row += 1
-		
-		for test in ordered_keys:
-			pass
-			#print(test)
 		
 		var options : Array[String]
 		for option_texts in ordered_keys:

@@ -54,10 +54,7 @@ func show_existing_saves() -> void:
 					save_slots[i].set_info(save_data)
 					success = true
 			
-			var save_data = ResourceLoader.load(GameManager.get_save_file(str(i)))
-			if save_data is GameSaveData:
-				save_slots[i].set_info(save_data)
-				
+		
 		if !success:
 			save_slots[i].clear_spot()
 

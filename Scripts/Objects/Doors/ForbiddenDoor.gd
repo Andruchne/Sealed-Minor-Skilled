@@ -22,6 +22,7 @@ func on_interact(player : Node2D) -> void:
 
 
 func on_minigame_finished(has_won : bool) -> void:
+	GameManager.minigame_finished.disconnect(on_minigame_finished)
 	if has_won:
 		flame.play("Off")
 		is_completed = true

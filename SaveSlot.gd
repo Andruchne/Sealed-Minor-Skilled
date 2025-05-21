@@ -83,7 +83,7 @@ func finish_title_edit() -> void:
 		unsaved_token.visible = false
 
 
-func _on_edit_placeholder_text_submitted(new_text: String) -> void:
+func _on_edit_placeholder_text_submitted(_new_text: String) -> void:
 	finish_title_edit()
 
 
