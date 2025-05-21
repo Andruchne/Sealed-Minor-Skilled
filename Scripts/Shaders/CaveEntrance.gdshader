@@ -39,13 +39,9 @@ void fragment() {
         vec2 distortion = vec2(sin(world_position.y * distortion_frequency + TIME * time_speed),
                                cos(world_position.x * distortion_frequency + TIME * time_speed));
         distorted_uv += distortion * distortion_strength;
-        
-        vec4 overlay_color_water_ground = texture(overlay_tex_water_ground, distorted_uv);
-        // Replace the ground color with the dynamically distorted version.
-        COLOR = mix(COLOR, overlay_color_water_ground, 1.0);
 
-        vec4 overlay_color_water = texture(overlay_tex_water, world_position * scale_water);
+        vec4 overlay_color_water = texture(overlay_tex_water, world_position * scale_water + distorted_uv);
         // Blend in the water overlay with the specified opacity.
-        COLOR = mix(COLOR, overlay_color_water, water_opacity);
+        COLOR = mix(COLOR, overlay_color_water, 1.0);
     }
 }

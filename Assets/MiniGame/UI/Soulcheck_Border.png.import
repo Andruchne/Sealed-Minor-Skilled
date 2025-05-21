@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmuc5gfcf8aws"
-path="res://.godot/imported/Stone_Ground.png-e8b14f13118dd44478840dad34e2fc76.ctex"
+uid="uid://cjcla5o6jx5hb"
+path="res://.godot/imported/Soulcheck_Border.png-d9edd234a2a45a15c199f73dcc4be836.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/BeginningCave/Ground/Stone_Ground.png"
-dest_files=["res://.godot/imported/Stone_Ground.png-e8b14f13118dd44478840dad34e2fc76.ctex"]
+source_file="res://Assets/MiniGame/UI/Soulcheck_Border.png"
+dest_files=["res://.godot/imported/Soulcheck_Border.png-d9edd234a2a45a15c199f73dcc4be836.ctex"]
 
 [params]
 

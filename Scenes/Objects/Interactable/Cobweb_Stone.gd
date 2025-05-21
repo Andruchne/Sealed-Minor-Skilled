@@ -18,7 +18,7 @@ func start_dialogue(dialogue : String) -> void:
 	DialogueManager.POPUP_DIALOGUE(stone_dialogue.get_dialogue(dialogue), true)
 
 
-func on_dialogue_finished(finish_id : String) -> void:
+func on_dialogue_finished(_finish_id : String) -> void:
 	DialogueManager.dialogue_finished.disconnect(on_dialogue_finished)
 
 

@@ -31,8 +31,8 @@ func format_text() -> void:
 					current_index += 1
 
 
-func adjust_timer(sign : String) -> void:
-	match sign:
+func adjust_timer(sign_token : String) -> void:
+	match sign_token:
 		"!", ".", ",", "?":
 			char_timer.wait_time = punctuation_time
 			emit_signal("text_empty")

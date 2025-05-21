@@ -6,7 +6,7 @@ var points : Array = []
 var is_drawing : bool = false
 
 # All line segments to check against for intersections
-var line_segments : Array = [] # Stores line segment pairs (Vector2, Vector2)
+var line_segments : Array = [] 
 # Current line to check with
 var current_line_start : Vector2
 
@@ -68,7 +68,6 @@ func check_intersection(c_point : Vector2) -> bool:
 	return false
 
 
-# To check whether the line segments intersect
 func line_segments_intersect(p1: Vector2, p2: Vector2, p3: Vector2, p4: Vector2) -> bool:
 	var denominator: float = (p4.y - p3.y) * (p2.x - p1.x) - (p4.x - p3.x) * (p2.y - p1.y)
 	if denominator == 0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsywphos50nvj"]
+[gd_scene load_steps=14 format=3 uid="uid://bsywphos50nvj"]
 
 [ext_resource type="Script" uid="uid://dqxqj61mmxqd6" path="res://Scripts/Minigames/MinigameManager.gd" id="1_2wwns"]
 [ext_resource type="Script" uid="uid://dah0h0t3keebb" path="res://Scripts/Minigames/Soul_Check/BrushDrawer.gd" id="1_288dj"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bc2gj2qwoep4v" path="res://Scenes/Objects/CheckpointManager.tscn" id="3_34xqh"]
 [ext_resource type="PackedScene" uid="uid://h56q6uhqsooe" path="res://Scenes/Objects/Checkpoint.tscn" id="4_it4bf"]
 [ext_resource type="PackedScene" uid="uid://bbcmh5nkjdc4m" path="res://Scenes/Player/PlayerSoul.tscn" id="5_akql0"]
+[ext_resource type="Texture2D" uid="uid://cjcla5o6jx5hb" path="res://Assets/MiniGame/UI/Soulcheck_Border.png" id="8_urs5v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm0wi"]
 
@@ -15,16 +16,16 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqlxp"]
 bg_color = Color(0.121569, 0.121569, 0.121569, 1)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3st1b"]
-normal = Vector2(3.61353e-06, -1)
-distance = 2.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_feac2"]
 shader = ExtResource("1_rlubf")
 shader_parameter/time_scale = 1.5
 shader_parameter/distortion_strength = 2.0
 shader_parameter/flicker_speed = 2.0
 shader_parameter/flicker_intensity = 0.5
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3st1b"]
+normal = Vector2(3.61353e-06, -1)
+distance = 6.0
 
 [node name="Minigame_Soulcheck" type="Node2D"]
 z_index = 5
@@ -55,6 +56,7 @@ offset_right = 240.0
 offset_bottom = 140.0
 
 [node name="Left" type="Panel" parent="Camera2D/UI/WindowSize"]
+modulate = Color(0.08, 0.08, 0.08, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.15
@@ -62,6 +64,7 @@ anchor_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_bm0wi")
 
 [node name="Right" type="Panel" parent="Camera2D/UI/WindowSize"]
+modulate = Color(0.08, 0.08, 0.08, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.85
@@ -79,39 +82,54 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_uqlxp")
 
+[node name="Drawer" type="Node2D" parent="Camera2D/UI"]
+modulate = Color(0.580392, 0.854902, 1, 1)
+material = SubResource("ShaderMaterial_feac2")
+script = ExtResource("1_288dj")
+brush_texture = ExtResource("2_hld81")
+
+[node name="Border" type="NinePatchRect" parent="Camera2D/UI"]
+layout_mode = 0
+offset_left = -170.0
+offset_top = -130.0
+offset_right = 1.0
+offset_bottom = 5.0
+scale = Vector2(2, 2)
+texture = ExtResource("8_urs5v")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+axis_stretch_horizontal = 1
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-4, 141)
+position = Vector2(-1, 141)
 collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-166, -141)
+position = Vector2(-173, -141)
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_3st1b")
 debug_color = Color(0, 0.595, 0.7, 1)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 1)
+position = Vector2(0, 2)
 shape = SubResource("WorldBoundaryShape2D_3st1b")
 debug_color = Color(0, 0.595, 0.7, 1)
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(174, -141)
+position = Vector2(177, -141)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_3st1b")
 debug_color = Color(0, 0.595, 0.7, 1)
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, -273)
+position = Vector2(0, -275)
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_3st1b")
 debug_color = Color(0, 0.595, 0.7, 1)
-
-[node name="Drawer" type="Node2D" parent="."]
-modulate = Color(0.580392, 0.854902, 1, 1)
-material = SubResource("ShaderMaterial_feac2")
-script = ExtResource("1_288dj")
-brush_texture = ExtResource("2_hld81")
 
 [node name="CheckpointManager" parent="." groups=["Checkpoint_Manager"] instance=ExtResource("3_34xqh")]
 
@@ -143,4 +161,4 @@ position = Vector2(-87, 0)
 collision_layer = 8
 collision_mask = 8
 speed = 100.0
-drawer = NodePath("../Drawer")
+drawer = NodePath("../Camera2D/UI/Drawer")
