@@ -1,4 +1,5 @@
 extends Panel
+class_name TextShower
 
 @onready var marking_field : RichTextLabel = $HBoxContainer/Marking
 @onready var text_field : RichTextLabel = $HBoxContainer/Text
@@ -8,9 +9,11 @@ var goal_string : String
 var current_string : String
 var current_index : int
 
-var letter_time : float = 0.04
-var space_time : float = 0.04
-var punctuation_time = 0.1
+var is_finished : bool
+
+@export var letter_time : float = 0.04
+@export var space_time : float = 0.04
+@export var punctuation_time : float = 0.1
 
 signal text_finished()
 signal text_empty()
@@ -49,6 +52,7 @@ func show_dialogue(text : String) -> void:
 	goal_string = text
 	
 	if text.length() > 0:
+		is_finished = false
 		adjust_timer(text[0])
 		char_timer.start()
 	else:
@@ -77,4 +81,5 @@ func _on_timer_timeout() -> void:
 		current_string = ""
 		current_index = 0
 		char_timer.stop()
+		is_finished = true
 		emit_signal("text_finished")

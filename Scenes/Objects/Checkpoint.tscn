@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://h56q6uhqsooe"]
+[gd_scene load_steps=25 format=3 uid="uid://h56q6uhqsooe"]
 
 [ext_resource type="Texture2D" uid="uid://sqi8pc84qvs7" path="res://Assets/MiniGame/Objects/Checkpoint/Checkpoint.png" id="1_1wcq2"]
 [ext_resource type="Script" uid="uid://8uafgyi6vbrs" path="res://Scripts/Minigames/Soul_Check/Checkpoint.gd" id="2_jgtc5"]
@@ -18,6 +18,26 @@ region = Rect2(16, 16, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_sm8ik"]
 atlas = ExtResource("1_1wcq2")
 region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awlgn"]
+atlas = ExtResource("1_1wcq2")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vnxx"]
+atlas = ExtResource("1_1wcq2")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lo3y2"]
+atlas = ExtResource("1_1wcq2")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l8ev"]
+atlas = ExtResource("1_1wcq2")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7ia4"]
+atlas = ExtResource("1_1wcq2")
+region = Rect2(64, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v4t60"]
 atlas = ExtResource("1_1wcq2")
@@ -89,6 +109,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_awlgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vnxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lo3y2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l8ev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7ia4")
+}],
+"loop": false,
+"name": &"Spawn",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_v4t60")
 }, {
 "duration": 1.0,
@@ -141,3 +181,5 @@ checked_color = Color(1, 1, 1, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
 shape = SubResource("CircleShape2D_6xgtt")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

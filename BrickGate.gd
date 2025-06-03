@@ -10,6 +10,7 @@ var activators : Array[Activator] = []
 
 
 func _ready() -> void:
+	await get_tree().process_frame
 	connect_activators()
 
 
@@ -45,8 +46,7 @@ func _on_gate_animation_changed() -> void:
 
 func get_save_state() -> Dictionary:
 	var dict : Dictionary = {
-		"is_open" : is_open,
-		"current_active" : current_active
+		"is_open" : is_open
 	}
 	var gate_state : Dictionary = Useful.GET_ANIMATION_STATES(gate)
 	
@@ -58,7 +58,6 @@ func get_save_state() -> Dictionary:
 
 func apply_save_state(state : Dictionary) -> void:
 	is_open = state.get("is_open")
-	current_active = state.get("current_active")
 	
 	Useful.APPLY_ANIMATION_STATES(gate, state)
 

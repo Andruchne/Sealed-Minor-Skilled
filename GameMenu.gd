@@ -68,7 +68,7 @@ func on_option_button_pressed() -> void:
 
 
 func on_exit_button_pressed() -> void:
-	pass
+	get_tree().quit()
 
 
 func on_return_button_pressed() -> void:

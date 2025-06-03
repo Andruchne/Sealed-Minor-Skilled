@@ -23,8 +23,8 @@ var is_mirrored : bool = false
 @onready var interact_area : Area2D = $InteractArea
 
 # For blinking animation
-@onready var timer_blink_interval = $BlinkInterval
-@onready var timer_blink_progression = $BlinkProgression
+@onready var timer_blink_interval : Timer = $BlinkInterval
+@onready var timer_blink_progression : Timer = $BlinkProgression
 var blink_stage : int = 0
 
 var animations : Array = []
@@ -44,7 +44,7 @@ var foot_dictionary = {
 }
 
 # To check terrain type
-var tilemap : TileMapDual
+var tilemap : TileMapLayer
 
 # To transition screen
 @onready var transitioner : Control = $Camera2D/Transitioner
@@ -54,7 +54,10 @@ var execute_after_trans : Callable
 
 var interactable_list : Array = []
 
+var sit_up : bool
+
 func _ready() -> void:
+	await get_tree().process_frame
 	setup()
 
 
@@ -73,8 +76,23 @@ func _physics_process(_delta: float) -> void:
 	
 	move_and_slide()
 
+
+func first_level_action() -> void:
+	await get_tree().process_frame
+	await get_tree().process_frame
+	if get_tree().current_scene.name == "SealedCave_0" && !sit_up:
+		if !anim_body.animation_finished.is_connected(_on_body_anim_sprite_animation_finished):
+			anim_body.animation_finished.connect(_on_body_anim_sprite_animation_finished)
+		GameManager.MAIN_ACTIVE = false
+		play_animation("Sit_Up")
+		sit_up = true
+
+
 func setup() -> void:
 	tilemap = get_tree().get_first_node_in_group("Ground")
+	
+	# To fix animation bug, when loading level
+	last_anim = ""
 	
 	# Add animations to the array
 	animations.append(anim_body)
@@ -89,8 +107,11 @@ func setup() -> void:
 	timer_blink_interval.wait_time = randf_range(blink_min_interval, blink_max_interval)
 	# We divide by four, because we have to go through four blinking stages 
 	timer_blink_progression.wait_time = blink_duration / 4
+	
+	first_level_action()
 	# Start blinking timer
-	timer_blink_interval.start()
+	if anim_body.animation != "Sit" && anim_body.animation != "Sit_Up":
+		timer_blink_interval.start()
 	
 	# Start with covered screen
 	transition_in()
@@ -148,6 +169,9 @@ func physics_push() -> void:
 #
 
 func handle_animation(direction : Vector2) -> void:
+	if anim_body.animation == "Sit_Up" || anim_body.animation == "Sit":
+		return
+	
 	# Mirror Sprite
 	if direction.x > 0:
 		flip_horizontal(false)
@@ -198,9 +222,10 @@ func handle_animation(direction : Vector2) -> void:
 # Keep all Animations synced
 func play_animation(anim_name : String) -> void:
 	if (anim_name != last_anim):
-		for anim in animations:
-			anim.play(anim_name)
-			anim.frame = 0
+		for anim : AnimatedSprite2D in animations:
+			if anim.sprite_frames.has_animation(anim_name):
+				anim.play(anim_name)
+				anim.frame = 0
 	
 	last_anim = anim_name
 
@@ -342,7 +367,8 @@ func _on_interact_area_area_exited(area: Area2D) -> void:
 func is_looking_towards_target(target_position : Vector2) -> bool:
 	var to_target: Vector2 = (target_position - global_position).normalized()
 	var dot_product: float = last_direction.dot(to_target)
-	var threshold: float = 0.8
+	var threshold: float = 0.001
+	print(dot_product)
 	return dot_product > threshold
 
 
@@ -357,6 +383,7 @@ func interact() -> void:
 		# Check if any interactable is valid
 		var valid_inter : Array = []
 		for interactable in interactable_list:
+			print(is_looking_towards_target(interactable.global_position))
 			if is_looking_towards_target(interactable.global_position):
 				valid_inter.append(interactable)
 		if valid_inter.size() > 0:
@@ -398,7 +425,8 @@ func get_save_state() -> Dictionary:
 		"last_direction" : last_direction,
 		"last_anim_frame" : last_anim_frame,
 		"is_mirrored" : is_mirrored,
-		"eyes_hidden" : eyes_hidden
+		"eyes_hidden" : eyes_hidden,
+		"sit_up" : sit_up,
 	}
 
 
@@ -407,7 +435,9 @@ func apply_save_state(state : Dictionary) -> void:
 	last_direction = state.get("last_direction")
 	last_anim_frame = state.get("last_anim_frame")
 	is_mirrored = state.get("is_mirrored")
+	sit_up = state.get("sit_up")
 	
+	await get_tree().process_frame
 	toggle_eyes_state(state.get("eyes_hidden"))
 	handle_animation(last_direction)
 
@@ -416,6 +446,7 @@ func after_load_init() -> void:
 	camera.make_current()
 	await get_tree().process_frame
 	tilemap = get_tree().get_first_node_in_group("Ground")
+	
 
 
 func get_player_info() -> PlayerInfo:
@@ -425,3 +456,10 @@ func get_player_info() -> PlayerInfo:
 	info.shirt_color = anim_shirt.modulate
 	info.pants_color = anim_pants.modulate
 	return info
+
+
+func _on_body_anim_sprite_animation_finished() -> void:
+	if anim_body.animation == "Sit_Up":
+		play_animation("Idle_Bottom_Right")
+		handle_animation(Vector2(0, 1))
+		GameManager.MAIN_ACTIVE = true

@@ -9,6 +9,7 @@ var active : bool = false
 # As both checked for one and the same bool, toggling it as well, I implemented a second one
 var private_active : bool = false
 
+
 signal checkpoint_checked()
 
 
@@ -30,3 +31,8 @@ func transition_color() -> void:
 
 func set_active(state : bool) -> void:
 	active = state
+
+
+func _on_visibility_changed() -> void:
+	if visible:
+		play("Spawn")

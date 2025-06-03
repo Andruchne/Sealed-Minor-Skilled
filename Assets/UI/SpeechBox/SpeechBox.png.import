@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmuc5gfcf8aws"
-path="res://.godot/imported/Stone_Ground.png-e8b14f13118dd44478840dad34e2fc76.ctex"
+uid="uid://bpuwmsyc13jkm"
+path="res://.godot/imported/SpeechBox.png-792c1a170dd707e5bb6749cb71bec103.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/BeginningCave/Ground/Stone_Ground.png"
-dest_files=["res://.godot/imported/Stone_Ground.png-e8b14f13118dd44478840dad34e2fc76.ctex"]
+source_file="res://Assets/UI/SpeechBox/SpeechBox.png"
+dest_files=["res://.godot/imported/SpeechBox.png-792c1a170dd707e5bb6749cb71bec103.ctex"]
 
 [params]
 

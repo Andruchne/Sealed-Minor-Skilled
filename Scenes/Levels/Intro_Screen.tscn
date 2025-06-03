@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=3 uid="uid://cklfgfl3vlnmv"]
+
+[ext_resource type="Script" uid="uid://mnadqo14hebr" path="res://Scenes/UI/IntroScreenHandler.gd" id="1_1frrd"]
+[ext_resource type="Texture2D" uid="uid://cbvnf2ybi5f1q" path="res://Assets/Sprites/Screens/IntroPortrait.png" id="1_km64t"]
+[ext_resource type="Texture2D" uid="uid://cjcla5o6jx5hb" path="res://Assets/MiniGame/UI/Soulcheck_Border.png" id="2_068s7"]
+[ext_resource type="PackedScene" uid="uid://b5b55y61ec1q5" path="res://Scenes/Dialogue/Dialogue_Text.tscn" id="4_1frrd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1frrd"]
+bg_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+
+[node name="IntroScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1frrd")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1frrd")
+
+[node name="IntroImage" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.250521
+anchor_top = 0.100926
+anchor_right = 0.750521
+anchor_bottom = 0.600926
+texture = ExtResource("1_km64t")
+region_rect = Rect2(0, 0, 192, 108)
+metadata/_edit_use_anchors_ = true
+
+[node name="IntroBorder" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.245312
+anchor_top = 0.0916667
+anchor_right = 0.755729
+anchor_bottom = 0.610185
+offset_right = -784.0
+offset_bottom = -448.0
+scale = Vector2(5, 5)
+texture = ExtResource("2_068s7")
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+metadata/_edit_use_anchors_ = true
+
+[node name="DialogueText" parent="." instance=ExtResource("4_1frrd")]
+layout_mode = 0
+offset_left = 771.0
+offset_top = 752.0
+offset_right = 889.0
+offset_bottom = 792.0
+
+[node name="HBoxContainer" parent="DialogueText" index="0"]
+anchors_preset = -1
+anchor_left = -2.4661
+anchor_top = -1.525
+anchor_right = 5.71186
+anchor_bottom = 6.975
+metadata/_edit_use_anchors_ = true
+
+[node name="Marking" parent="DialogueText/HBoxContainer" index="0"]
+visible = false
+
+[node name="Text" parent="DialogueText/HBoxContainer" index="1"]
+theme_override_font_sizes/normal_font_size = 42
+
+[node name="AutoImageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AnimationTimer" type="Timer" parent="."]
+wait_time = 0.15
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["Canvas"]]
+
+[connection signal="timeout" from="AutoImageTimer" to="." method="_on_auto_image_timer_timeout"]
+[connection signal="timeout" from="AnimationTimer" to="." method="_on_animation_timer_timeout"]
+
+[editable path="DialogueText"]

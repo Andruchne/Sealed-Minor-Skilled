@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bsywphos50nvj"]
+[gd_scene load_steps=14 format=3 uid="uid://bsywphos50nvj"]
 
 [ext_resource type="Script" uid="uid://dqxqj61mmxqd6" path="res://Scripts/Minigames/MinigameManager.gd" id="1_2wwns"]
 [ext_resource type="Script" uid="uid://dah0h0t3keebb" path="res://Scripts/Minigames/Soul_Check/BrushDrawer.gd" id="1_288dj"]
@@ -22,9 +22,6 @@ shader_parameter/time_scale = 1.5
 shader_parameter/distortion_strength = 2.0
 shader_parameter/flicker_speed = 2.0
 shader_parameter/flicker_intensity = 0.5
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_urs5v"]
-size = Vector2(334, 77)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3st1b"]
 normal = Vector2(3.61353e-06, -1)
@@ -105,15 +102,6 @@ patch_margin_top = 7
 patch_margin_right = 7
 patch_margin_bottom = 7
 axis_stretch_horizontal = 1
-
-[node name="Area2D" type="Area2D" parent="." groups=["Soulcheck_Top"]]
-position = Vector2(1, -116)
-collision_layer = 8
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 28.5)
-shape = SubResource("RectangleShape2D_urs5v")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-1, 141)

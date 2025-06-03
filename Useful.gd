@@ -18,3 +18,7 @@ func APPLY_ANIMATION_STATES(anim : AnimatedSprite2D, anim_states : Dictionary) -
 	anim.frame = anim_states.get(a_name + "_frame")
 	anim.flip_h = anim_states.get(a_name + "_flip_h")
 	anim.flip_v = anim_states.get(a_name + "_flip_v")
+
+
+func APPROX(value : float, aim_value : float, tolerance : float) -> bool:
+	return abs(value - aim_value) <= tolerance

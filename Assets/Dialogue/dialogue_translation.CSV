@@ -17,6 +17,41 @@ dirr_01_nothing_gyoho;Nichts!? Gyohoho!;Nothing!? Gyohoho!
 dirr_01_long_wait;Ich hab Minuten lang gewartet und es gibt nichts dafür?;I have waited for minutes and get nothing in return?
 dirr_01_least_see_inside;Dann will ich wenigstens sehen wie es von Innen aussieht;I want to see what it looks like from the inside then at least
 dirr_01_wait_come_too;Warte! Ich will mit!;Wait! I'll come too!
+dirr_01_choice_cobweb;Dieses Spinnennetz!;This cobweb!
+dirr_01_cobweb_huo;Huoooo!?;Huoooo!?
+dirr_01_cobweb_treasure;Ein waschechter Schatz... Kann ich ihn haben!?;A real treasure… Can I have it!?
+dirr_01_choice_here;Klar, hier;Sure, here you go
+dirr_01_choice_no;Nö;No
+dirr_01_best_snack;Gyooo! Damit kann ich die besten Snacks überhaupt machen!;Gyooo! I can make the best snacks ever out of this!
+dirr_01_dot;…;…
+dirr_01_mean_creature;Gyooooo!! Gemeines Stück Wesen!;Gyooooo!! You mean piece of creature!
+dirr_01_want_own_snacks;Du willst daraus Snacks machen und nur für dich behalten?!;You want to make snacks out of this and keep it all for yourself!?
+dirr_01_look_better;Schau gut hin, ich mach noch viel bessere als du!;Take a good look, mine will be way better than yours!
+dirr_01_find_nothing;Nichts... Nichts! Gyooo!!;Nothing... Nothing! Gyooo!!
+dirr_01_really_nothing;Gyooo, hier ist ja wirklich nichts!;Gyooo, there's actually nothing here!
+dirr_01_stinks;Und stinken tuts hier auch noch!;And it stinks too!
+dirr_01_my_place;Mein Platz ist viel besser, der stinkt nur ein bisschen;My place is way better, it only stinks a little
+dirr_01_window_look;Wer als erstes da ist darf durchs Fenster gucken!;Whoever's first can look out of the window!
+dirr_01_right_direction;Hmm… Ist das die richtige Richtung?;Hmm… Is this the right direction?
+dirr_01_ok;Ok;Ok
+dirr_01_trust;Ich vertrau dir;I trust you
+dirr_01_no_know;Ich auch nicht;Me neither
+dirr_01_my_god;Gyohoho!;Gyohoho!
+dirr_01_looks_house;Das sieht ja aus wie mein Haus!;It looks just like my house!
+dirr_01_smells_same;Und es riecht auch genauso;And it smells the same too
+dirr_01_wonder_if_inside;Ob ich da auch schon drinne bin?;Wonder if I'm inside already as well
+dirr_01_choice_yes;Ja;Yes
+dirr_01_choice_dunno;Weiß ich nicht;I don't know
+;;
+;;
+;;
 ;;
 cobweb_stone_01_found;Du hast ein Spinnennetz gefunden!;You found a cobweb!
 cobweb_stone_01_take;Du nimmst es… weil du es kannst!;You take it… because you can!
+cobweb_stone_01_can;Du nimmst es… weil du Snacks liebst!;You take it… because you love snacks!
+;;
+;;
+;;
+;;
+door_01_intro_touch;Trotz der Flammen, berührst du die Tür;Despite the flames, you proceed to touch the door
+door_01_intro_move;Du spürst, wie sich etwas in dir bewegt und deine Sicht ändert;You feel something move inside you, and see your vision change

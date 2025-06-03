@@ -138,6 +138,7 @@ func on_dialogue_finished() -> void:
 	current_box.queue_free()
 	
 	clear_box = false
+	is_text_displayed = false
 	
 	current_progress_index = 0
 	current_texts = []

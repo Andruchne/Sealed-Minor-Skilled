@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmuc5gfcf8aws"
-path="res://.godot/imported/Stone_Ground.png-e8b14f13118dd44478840dad34e2fc76.ctex"
+uid="uid://cbvnf2ybi5f1q"
+path="res://.godot/imported/IntroPortrait.png-cb4bb4e8f7545dfeef514ae1177107b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/BeginningCave/Ground/Stone_Ground.png"
-dest_files=["res://.godot/imported/Stone_Ground.png-e8b14f13118dd44478840dad34e2fc76.ctex"]
+source_file="res://Assets/Sprites/Screens/IntroPortrait.png"
+dest_files=["res://.godot/imported/IntroPortrait.png-cb4bb4e8f7545dfeef514ae1177107b6.ctex"]
 
 [params]
 

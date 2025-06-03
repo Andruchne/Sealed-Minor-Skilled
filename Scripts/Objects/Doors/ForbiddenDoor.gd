@@ -10,10 +10,27 @@ var is_open : bool
 
 var new_scene : String = "res://Scenes/Levels/SealedCave_1.tscn"
 
+var is_touched : bool
+
+var saved_player
+
+@onready var door_dialogue : DialogueHolder = $DialogueHolder
+
+
 func on_interact(player : Node2D) -> void:
+	if DialogueManager.is_text_displayed:
+		return
+	
 	if !is_cleared && !is_completed:
-		GameManager.minigame_finished.connect(on_minigame_finished)
-		player.begin_minigame("Soulcheck")
+		if !is_touched:
+			saved_player = player
+			DialogueManager.dialogue_finished.connect(on_dialogue_finished)
+			DialogueManager.POPUP_DIALOGUE(door_dialogue.get_dialogue("door_intro"), true)
+			is_touched = true
+		else:
+			if !GameManager.minigame_finished.is_connected(on_minigame_finished):
+				GameManager.minigame_finished.connect(on_minigame_finished)
+			player.begin_minigame("Soulcheck")
 	elif is_cleared && !is_open && !door.is_playing():
 		door.play("Open")
 		door_moss.play("Open")
@@ -65,3 +82,12 @@ func apply_save_state(state : Dictionary) -> void:
 	Useful.APPLY_ANIMATION_STATES(door, state)
 	Useful.APPLY_ANIMATION_STATES(door_moss, state)
 	Useful.APPLY_ANIMATION_STATES(flame, state)
+
+
+func on_dialogue_finished(_finish_id : String) -> void:
+	if saved_player == null:
+		return
+	
+	GameManager.minigame_finished.connect(on_minigame_finished)
+	saved_player.begin_minigame("Soulcheck")
+	DialogueManager.dialogue_finished.disconnect(on_dialogue_finished)

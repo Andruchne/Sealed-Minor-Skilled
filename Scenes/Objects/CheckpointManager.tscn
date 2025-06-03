@@ -7,3 +7,11 @@ script = ExtResource("1_r64rd")
 first_checkpoint_color = Color(0.533333, 1, 0.5, 1)
 second_checkpoint_color = Color(1, 0.825, 0.5, 1)
 third_checkpoint_color = Color(1, 0.5, 0.5, 1)
+alt_first_checkpoint_color = Color(0.438246, 0.7097, 0.948252, 1)
+alt_second_checkpoint_color = Color(0.804755, 0.535333, 0.92753, 1)
+alt_third_checkpoint_color = Color(0.934289, 0.85843, 0, 1)
+
+[node name="Interval" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="timeout" from="Interval" to="." method="_on_interval_timeout"]

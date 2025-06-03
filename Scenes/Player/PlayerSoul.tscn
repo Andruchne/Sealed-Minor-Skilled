@@ -1,7 +1,10 @@
-[gd_scene load_steps=56 format=3 uid="uid://bbcmh5nkjdc4m"]
+[gd_scene load_steps=64 format=3 uid="uid://bbcmh5nkjdc4m"]
 
 [ext_resource type="Script" uid="uid://fpldjltbxj7g" path="res://Scripts/Minigames/Player/PlayerSoul.gd" id="1_y7kw2"]
+[ext_resource type="Texture2D" uid="uid://bpuwmsyc13jkm" path="res://Assets/UI/SpeechBox/SpeechBox.png" id="2_b83y8"]
 [ext_resource type="Texture2D" uid="uid://bhjxtbuh0sorj" path="res://Assets/MiniGame/Objects/PlayerSoul/Player_Soul.png" id="2_gf236"]
+[ext_resource type="Texture2D" uid="uid://t30uecuqeeb8" path="res://Assets/UI/SpeechBox/SpeechBoxFlipped.png" id="2_oahj8"]
+[ext_resource type="PackedScene" uid="uid://b5b55y61ec1q5" path="res://Scenes/Dialogue/Dialogue_Text.tscn" id="3_qjp2v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dtr3s"]
 atlas = ExtResource("2_gf236")
@@ -142,6 +145,26 @@ region = Rect2(72, 96, 24, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_insuk"]
 atlas = ExtResource("2_gf236")
 region = Rect2(96, 96, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8mrc"]
+atlas = ExtResource("2_gf236")
+region = Rect2(0, 216, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b83y8"]
+atlas = ExtResource("2_gf236")
+region = Rect2(24, 216, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjp2v"]
+atlas = ExtResource("2_gf236")
+region = Rect2(48, 216, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oahj8"]
+atlas = ExtResource("2_gf236")
+region = Rect2(72, 216, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pnyw"]
+atlas = ExtResource("2_gf236")
+region = Rect2(96, 216, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l243m"]
 atlas = ExtResource("2_gf236")
@@ -350,6 +373,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_a8mrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b83y8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjp2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oahj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pnyw")
+}],
+"loop": true,
+"name": &"Talk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_l243m")
 }, {
 "duration": 1.0,
@@ -417,12 +460,74 @@ radius = 1.0
 
 [node name="PlayerSoul" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_y7kw2")
+bottom_box_pos = Vector2(-44, 20)
+flipped_box = ExtResource("2_oahj8")
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -44.0
+offset_top = -44.0
+offset_right = -4.0
+offset_bottom = -4.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.05
+anchor_top = -0.575
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_b83y8")
+region_rect = Rect2(0, 0, 38, 39)
+patch_margin_left = 4
+patch_margin_top = 3
+patch_margin_right = 5
+patch_margin_bottom = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="DialogueText" parent="Control/NinePatchRect" instance=ExtResource("3_qjp2v")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0731707
+anchor_top = 0.0793651
+anchor_right = 0.914634
+anchor_bottom = 0.888889
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+letter_time = 0.08
+space_time = 0.1
+punctuation_time = 0.16
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" parent="Control/NinePatchRect/DialogueText" index="0"]
+anchors_preset = -1
+anchor_right = 0.999275
+anchor_bottom = 1.00288
+offset_right = 128.05
+offset_bottom = 96.85
+scale = Vector2(0.35, 0.35)
+metadata/_edit_use_anchors_ = true
+
+[node name="Marking" parent="Control/NinePatchRect/DialogueText/HBoxContainer" index="0"]
+visible = false
+
+[node name="Text" parent="Control/NinePatchRect/DialogueText/HBoxContainer" index="1"]
+theme_override_font_sizes/normal_font_size = 16
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_fmd76")
-animation = &"Check_Idle"
+animation = &"Talk"
 autoplay = "Idle"
+
+[node name="Timer2" type="Timer" parent="."]
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7.5)
@@ -430,6 +535,7 @@ shape = SubResource("RectangleShape2D_ejx5i")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, 8)
+collision_mask = 9
 
 [node name="CheckerCircle" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_54qkp")
@@ -437,3 +543,6 @@ shape = SubResource("CircleShape2D_54qkp")
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+
+[editable path="Control/NinePatchRect/DialogueText"]

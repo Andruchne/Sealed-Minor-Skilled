@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://b7s73ijfnlfw0" path="res://Assets/Characters/Dirr/Dirr_Portrait.png" id="3_nww06"]
 [ext_resource type="PackedScene" uid="uid://b5b55y61ec1q5" path="res://Scenes/Dialogue/Dialogue_Text.tscn" id="4_kd3aw"]
 
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d50on"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wt746"]

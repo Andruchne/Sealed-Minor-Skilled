@@ -25,9 +25,19 @@ signal scene_changed()
 
 
 func _ready() -> void:
+	setup_folder()
 	CAP_FPS()
 	SET_LANGUAGE("en")
 	get_canvas_layer()
+
+
+func setup_folder() -> void:
+	# Will only create this directory, if it doesn't already exist
+	var dir = DirAccess.open("user://")
+	if not dir.dir_exists(SAVE_GAME_PATH):
+		var error = dir.make_dir_recursive(SAVE_GAME_PATH)
+		if error != OK:
+			push_error("Error: Unable to create save folder")
 
 
 func CAP_FPS() -> void:
@@ -50,10 +60,14 @@ func MINIGAME_END(has_won : bool) -> void:
 	MAIN_ACTIVE = true
 
 
-func CHANGE_SCENE(new_scene : String) -> void:
-	get_tree().change_scene_to_file(new_scene)
-	get_canvas_layer()
+func CHANGE_SCENE(new_scene : String, spawn_index : int = 0) -> void:
+	MemoryManager.save_level_state()
+	MemoryManager.load_level_state(new_scene, spawn_index)
+	await get_tree().process_frame
 	emit_signal("scene_changed")
+	get_canvas_layer()
+	await get_tree().process_frame
+	spawn_player(spawn_index)
 
 
 func get_canvas_layer() -> void:
@@ -61,6 +75,16 @@ func get_canvas_layer() -> void:
 	canvas_layer = get_tree().get_first_node_in_group("Canvas")
 	if canvas_layer == null:
 		print("GameManager: No CanvasLayer found in current scene.")
+
+
+func spawn_player(spawn_index : int) -> void:
+	var spawn_positions : Array = get_tree().get_nodes_in_group("PlayerSpawn")
+	var gotten_player = get_tree().get_first_node_in_group("Player")
+	for spawn in spawn_positions:
+		if spawn.spawn_index == spawn_index:
+			gotten_player.position = spawn.position
+			gotten_player.handle_animation(spawn.look_direction)
+			gotten_player.last_direction = spawn.look_direction
 
 
 func SAVE_GAME(save_name : String, save_index : int = 0, is_quicksave : bool = false) -> void:
@@ -73,14 +97,14 @@ func SAVE_GAME(save_name : String, save_index : int = 0, is_quicksave : bool = f
 	save_data.save_index = save_index
 	save_data.save_name = save_name
 	
-	var player = get_tree().get_first_node_in_group("Player")
-	save_data.player_info = player.get_player_info()
+	var current_player = get_tree().get_first_node_in_group("Player")
+	save_data.player_info = current_player.get_player_info()
 	
 	# Save current scene root
 	var root := get_tree().current_scene
 	var root_packed := PackedScene.new()
 	root_packed.pack(root)
-	save_data.scene_root = root_packed
+	save_data.level_data.scene_root = root_packed
 
 	# Save GameObjects and their state
 	var objects := root.get_tree().get_nodes_in_group("GameObject")
@@ -88,12 +112,12 @@ func SAVE_GAME(save_name : String, save_index : int = 0, is_quicksave : bool = f
 	for obj in objects:
 		var packed := PackedScene.new()
 		packed.pack(obj)
-		save_data.game_object_scenes.append(packed)
+		save_data.level_data.game_object_scenes.append(packed)
 
 		if obj.has_method("get_save_state"):
-			save_data.game_object_states.append(obj.get_save_state())
+			save_data.level_data.game_object_states.append(obj.get_save_state())
 		else:
-			save_data.game_object_states.append(null)
+			save_data.level_data.game_object_states.append(null)
 	
 	ResourceSaver.save(save_data, create_save_path(save_name, save_index))
 	
@@ -102,17 +126,18 @@ func SAVE_GAME(save_name : String, save_index : int = 0, is_quicksave : bool = f
 
 func LOAD_GAME(load_index : int) -> void:
 	var save_data = ResourceLoader.load(get_save_file(str(load_index)))
-	var instances : Array = []
 	
 	if save_data is GameSaveData:
+		var instances : Array = []
+		
 		# Free current root scene
 		var old_root := get_tree().current_scene
 		if old_root:
 			old_root.queue_free()
 
 		# Replace root with saved scene
-		if save_data.scene_root && save_data.scene_root is PackedScene:
-			var new_root = save_data.scene_root.instantiate()
+		if save_data.level_data.scene_root && save_data.level_data.scene_root is PackedScene:
+			var new_root = save_data.level_data.scene_root.instantiate()
 			get_tree().root.add_child(new_root)
 			get_tree().current_scene = new_root
 
@@ -123,15 +148,15 @@ func LOAD_GAME(load_index : int) -> void:
 			
 			await get_tree().process_frame
 			
-			for i in save_data.game_object_scenes.size():
-				var packed_scene = save_data.game_object_scenes[i]
+			for i in save_data.level_data.game_object_scenes.size():
+				var packed_scene = save_data.level_data.game_object_scenes[i]
 				if packed_scene && packed_scene is PackedScene:
 					var instance = packed_scene.instantiate()
 					instances.append(instance)
 					new_root.add_child(instance)
 
-					if i < save_data.game_object_states.size():
-						var state = save_data.game_object_states[i]
+					if i < save_data.level_data.game_object_states.size():
+						var state = save_data.level_data.game_object_states[i]
 						if instance.has_method("apply_save_state"):
 							instance.apply_save_state(state)
 			

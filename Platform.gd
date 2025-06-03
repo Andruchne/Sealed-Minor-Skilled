@@ -13,6 +13,7 @@ var access_index : int = 0
 
 
 func _ready() -> void:
+	await get_tree().process_frame
 	activeness_sprite.modulate = activeness_color
 	activeness_sprite.modulate.a = 0
 
