@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://drtc6bekpkmus"]
+[gd_scene load_steps=19 format=3 uid="uid://drtc6bekpkmus"]
 
 [ext_resource type="Texture2D" uid="uid://t3tug4fs0fmd" path="res://Assets/UI/Dialogue/DialogueBox.png" id="1_f60yo"]
 [ext_resource type="Script" uid="uid://5b143mgi61rw" path="res://GameMenu.gd" id="1_go8lt"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cjtu2m2m61c1h" path="res://Scenes/UI/Save_Slot.tscn" id="5_wtucc"]
 [ext_resource type="PackedScene" uid="uid://k75lcewr1yuu" path="res://Scenes/UI/Load_Slot.tscn" id="7_amb2j"]
 [ext_resource type="Texture2D" uid="uid://dp8jlgw0h2lbs" path="res://Assets/UI/BackButton/Back_Button.png" id="7_tc12t"]
+[ext_resource type="PackedScene" uid="uid://fjb8lh7ob11w" path="res://Toggle_Button.tscn" id="8_dro2m"]
+[ext_resource type="Script" uid="uid://bmp6tom4c7x3l" path="res://Scenes/UI/OptionMenu.gd" id="8_ghs8l"]
 [ext_resource type="Texture2D" uid="uid://cfqe77236xewr" path="res://Assets/UI/BackButton/Back_Button_Hover.png" id="9_amb2j"]
 [ext_resource type="Texture2D" uid="uid://bd5h8t7f4emaf" path="res://Assets/UI/BackButton/Back_Button_Pressed.png" id="10_dro2m"]
 [ext_resource type="Script" uid="uid://bwjrlyjkk1480" path="res://CustomBaseButton.gd" id="10_ghs8l"]
@@ -19,6 +21,18 @@ font_size = 64
 [sub_resource type="LabelSettings" id="LabelSettings_dro2m"]
 font = ExtResource("2_phepk")
 font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_dw0hg"]
+font = ExtResource("2_phepk")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_naliy"]
+font = ExtResource("2_phepk")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ued3"]
+font = ExtResource("2_phepk")
+font_size = 8
 
 [node name="Game_Menu" type="Control"]
 layout_mode = 3
@@ -222,6 +236,80 @@ label_settings = SubResource("LabelSettings_dro2m")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="Option" type="Control" parent="." node_paths=PackedStringArray("english_toggle", "german_toggle")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_ghs8l")
+english_toggle = NodePath("English")
+german_toggle = NodePath("German")
+
+[node name="Title" type="Label" parent="Option"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4375
+anchor_top = 0.0425926
+anchor_right = 0.5625
+anchor_bottom = 0.168519
+grow_horizontal = 2
+grow_vertical = 2
+text = "Option"
+label_settings = SubResource("LabelSettings_dro2m")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Language" type="Label" parent="Option"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.360417
+anchor_top = 0.248148
+anchor_right = 0.644792
+anchor_bottom = 0.439815
+grow_horizontal = 2
+grow_vertical = 2
+text = "Dialogue Language
+"
+label_settings = SubResource("LabelSettings_dw0hg")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="English" parent="Option" node_paths=PackedStringArray("other_toggles") instance=ExtResource("8_dro2m")]
+layout_mode = 1
+anchor_left = -0.133333
+anchor_top = -0.113889
+anchor_right = -0.0984375
+anchor_bottom = -0.0953703
+offset_left = 833.0
+offset_top = 501.0
+offset_right = 833.0
+offset_bottom = 501.0
+scale = Vector2(5, 5)
+other_toggles = [NodePath("../German")]
+
+[node name="Label" parent="Option/English" index="0"]
+label_settings = SubResource("LabelSettings_naliy")
+
+[node name="German" parent="Option" node_paths=PackedStringArray("other_toggles") instance=ExtResource("8_dro2m")]
+layout_mode = 1
+anchor_left = 0.0854167
+anchor_top = -0.111111
+anchor_right = 0.120313
+anchor_bottom = -0.0925926
+offset_left = 833.0
+offset_top = 498.0
+offset_right = 833.0
+offset_bottom = 498.0
+scale = Vector2(5, 5)
+other_toggles = [NodePath("../English")]
+
+[node name="Label" parent="Option/German" index="0"]
+text = "German"
+label_settings = SubResource("LabelSettings_5ued3")
+
 [node name="Return" type="NinePatchRect" parent="."]
 visible = false
 layout_mode = 1
@@ -230,6 +318,7 @@ anchor_left = 0.171875
 anchor_top = 0.0509259
 anchor_right = 0.25
 anchor_bottom = 0.189815
+offset_bottom = 1.52588e-05
 mouse_filter = 1
 texture = ExtResource("7_tc12t")
 region_rect = Rect2(0, 0, 25, 25)
@@ -241,3 +330,6 @@ metadata/_edit_use_anchors_ = true
 
 [connection signal="mouse_entered" from="Return" to="Return" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Return" to="Return" method="_on_mouse_exited"]
+
+[editable path="Option/English"]
+[editable path="Option/German"]

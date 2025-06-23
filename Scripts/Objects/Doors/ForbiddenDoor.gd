@@ -4,6 +4,8 @@ extends Node2D
 @onready var door_moss : AnimatedSprite2D = $DoorMoss
 @onready var flame : AnimatedSprite2D = $"32x32_SoulFlame"
 
+@onready var scene_changer : Node2D = $SceneChanger
+
 var is_completed : bool
 var is_cleared : bool
 var is_open : bool
@@ -15,6 +17,10 @@ var is_touched : bool
 var saved_player
 
 @onready var door_dialogue : DialogueHolder = $DialogueHolder
+
+
+func _ready() -> void:
+	scene_changer.is_active = false
 
 
 func on_interact(player : Node2D) -> void:
@@ -34,8 +40,6 @@ func on_interact(player : Node2D) -> void:
 	elif is_cleared && !is_open && !door.is_playing():
 		door.play("Open")
 		door_moss.play("Open")
-	elif is_open:
-		GameManager.CHANGE_SCENE(new_scene)
 
 
 func on_minigame_finished(has_won : bool) -> void:
@@ -50,12 +54,14 @@ func _on_32_soul_flame_animation_finished() -> void:
 
 
 func _on_door_animation_finished() -> void:
-	if is_cleared:
+	if is_cleared && door.animation == "Open":
 		is_open = true
+		scene_changer.is_active = true
 
 
 func get_save_state() -> Dictionary:
 	var dict : Dictionary = {
+		"is_touched" : is_touched,
 		"is_completed" : is_completed,
 		"is_cleared" : is_cleared,
 		"is_open" : is_open
@@ -75,6 +81,7 @@ func get_save_state() -> Dictionary:
 
 
 func apply_save_state(state : Dictionary) -> void:
+	is_touched = state.get("is_touched")
 	is_completed = state.get("is_completed")
 	is_cleared = state.get("is_cleared")
 	is_open = state.get("is_open")

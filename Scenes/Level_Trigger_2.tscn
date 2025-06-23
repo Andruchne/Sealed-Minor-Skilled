@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjo4bt870651p"]
+
+[ext_resource type="Script" uid="uid://cxm3ddsusbn78" path="res://Scenes/Levels/LeverTrigger.gd" id="1_02v5f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahd5f"]
+size = Vector2(128, 20)
+
+[node name="Level2Trigger" type="Area2D" groups=["GameObject"]]
+script = ExtResource("1_02v5f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ahd5f")

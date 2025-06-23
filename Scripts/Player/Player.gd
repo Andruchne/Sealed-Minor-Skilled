@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var blink_min_interval : float = 2
 @export var blink_max_interval : float = 10
 
+@onready var interact_text : Label = $InteractText
+
 # For Animation handling
 @onready var anim_body : AnimatedSprite2D = $BodyAnimSprite
 @onready var anim_shirt : AnimatedSprite2D = $ShirtAnimSprite
@@ -68,6 +70,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if !GameManager.MAIN_ACTIVE:
+		velocity = Vector2.ZERO
 		handle_animation(Vector2.ZERO)
 		return
 	
@@ -133,6 +136,9 @@ func setup() -> void:
 	
 	if !timer_blink_progression.timeout.is_connected(_on_blink_progression_timeout):
 		timer_blink_progression.timeout.connect(_on_blink_progression_timeout)
+	
+	if !MemoryManager.memory.knows_interact:
+		interact_text.visible = true
 
 
 func move() -> Vector2:
@@ -273,11 +279,11 @@ func _on_blink_progression_timeout() -> void:
 
 func toggle_eyes_state(hidden_state : bool) -> void:
 	if hidden_state:
-		if !eyes_hidden:
+		if !eyes_hidden || !anim_eyes_lens.visible:
 				hide_eyes()
 				eyes_hidden = true
 	else:
-		if eyes_hidden:
+		if eyes_hidden || anim_eyes_lens:
 				unhide_eyes()
 				eyes_hidden = false
 
@@ -360,15 +366,15 @@ func _on_interact_area_entered(area: Area2D) -> void:
 
 func _on_interact_area_area_exited(area: Area2D) -> void:
 	if area.is_in_group("Interactable"):
-		var index : int = interactable_list.find(area.get_parent())
-		interactable_list.remove_at(index)
+		if interactable_list.size() > 0:
+			var index : int = interactable_list.find(area.get_parent())
+			interactable_list.remove_at(index)
 
 
 func is_looking_towards_target(target_position : Vector2) -> bool:
 	var to_target: Vector2 = (target_position - global_position).normalized()
 	var dot_product: float = last_direction.dot(to_target)
 	var threshold: float = 0.001
-	print(dot_product)
 	return dot_product > threshold
 
 
@@ -380,10 +386,14 @@ func is_less_distant(target_position : Vector2, compare_to : Vector2) -> bool:
 
 func interact() -> void:
 	if GameManager.MAIN_ACTIVE && Input.is_action_just_pressed("Interact"):
+		if !MemoryManager.memory.knows_interact:
+			MemoryManager.memory.knows_interact = true
+			interact_text.visible = false
+			MemoryManager.update_general_memory()
+		
 		# Check if any interactable is valid
 		var valid_inter : Array = []
 		for interactable in interactable_list:
-			print(is_looking_towards_target(interactable.global_position))
 			if is_looking_towards_target(interactable.global_position):
 				valid_inter.append(interactable)
 		if valid_inter.size() > 0:
@@ -425,7 +435,6 @@ func get_save_state() -> Dictionary:
 		"last_direction" : last_direction,
 		"last_anim_frame" : last_anim_frame,
 		"is_mirrored" : is_mirrored,
-		"eyes_hidden" : eyes_hidden,
 		"sit_up" : sit_up,
 	}
 
@@ -438,7 +447,6 @@ func apply_save_state(state : Dictionary) -> void:
 	sit_up = state.get("sit_up")
 	
 	await get_tree().process_frame
-	toggle_eyes_state(state.get("eyes_hidden"))
 	handle_animation(last_direction)
 
 

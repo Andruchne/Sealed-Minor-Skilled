@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b4k6h3f2tv54c" path="res://SceneChanger.gd" id="1_ritpj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d63pq"]
+size = Vector2(27, 14)
 
 [node name="SceneChanger" type="Node2D"]
 script = ExtResource("1_ritpj")
@@ -11,5 +12,3 @@ script = ExtResource("1_ritpj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_d63pq")
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

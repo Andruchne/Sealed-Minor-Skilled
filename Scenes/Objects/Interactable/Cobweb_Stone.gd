@@ -1,3 +1,4 @@
+class_name CobwebStone
 extends Node2D
 
 @onready var stone_dialogue : DialogueHolder = $DialogueHolder
@@ -9,7 +10,10 @@ var is_cleared : bool
 func on_interact(_player : Node2D) -> void:
 	if !is_cleared:
 		anim_stone.play("Normal")
-		start_dialogue("cobweb_take")
+		if MemoryManager.memory.knows_cobweb:
+			start_dialogue("cobweb_take_know")
+		else:
+			start_dialogue("cobweb_take_can")
 		MemoryManager.set_memory("cobweb", true)
 		is_cleared = true
 
@@ -39,3 +43,8 @@ func apply_save_state(state : Dictionary) -> void:
 	is_cleared = state.get("is_cleared")
 	
 	Useful.APPLY_ANIMATION_STATES(anim_stone, state)
+
+
+func clear_stone() -> void:
+	anim_stone.play("Normal")
+	is_cleared = true

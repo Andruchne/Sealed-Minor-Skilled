@@ -1,23 +1,39 @@
 extends Node2D
 
+@export var dialogue_actions : Dictionary[String, String]
+
 var level_memory : Dictionary[String, LevelData]
 var memory : MemoryObject = MemoryObject.new()
 
+
+func _ready() -> void:
+	get_general_memory()
+
+
+func get_general_memory() -> void:
+	var file = FileAccess.open("user://memory", FileAccess.READ)
+	if file:
+		memory.knows_cobweb = int(file.get_line()) == 1
+		memory.squeezed_gap = int(file.get_line()) == 1
+		memory.knows_interact = int(file.get_line()) == 1
+		
+		file.close()
+
+func update_general_memory() -> void:
+	var file = FileAccess.open("user://memory", FileAccess.WRITE)
+	if file:
+		file.store_line(str(int(memory.knows_cobweb)))
+		file.store_line(str(int(memory.squeezed_gap)))
+		file.store_line(str(int(memory.knows_interact)))
+		
+		file.close()
 
 func remembers(memory_entry : String) -> bool:
 	return memory.check_memory(memory_entry)
 
 
-func remembers_keeper(memory_entry : String) -> bool:
-	return memory.check_keeper_memory(memory_entry)
-
-
 func set_memory(memory_entry : String, state : bool) -> void:
 	memory.set_memory(memory_entry, state)
-
-
-func set_memory_keeper(memory_entry : String, state : bool) -> void:
-	memory.set_memory_keeper(memory_entry, state)
 
 
 func save_level_state() -> void:
@@ -92,3 +108,8 @@ func load_level_state(load_level : String, spawn_index) -> void:
 				instance.call_deferred("after_load_init")
 		
 	GameManager.spawn_player(spawn_index)
+
+
+func RESET() -> void:
+	memory = MemoryObject.new()
+	level_memory.clear()

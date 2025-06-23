@@ -1,7 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://dtoy0xoadnplx"]
+[gd_scene load_steps=28 format=3 uid="uid://dtoy0xoadnplx"]
 
 [ext_resource type="Script" uid="uid://cetj14lxbqoda" path="res://BrickGate.gd" id="1_gvtka"]
 [ext_resource type="Texture2D" uid="uid://cvn7e1mpf863w" path="res://Assets/Sprites/Objects/Interactable/Doors/BrickGate/Brick_Gate.png" id="2_kgq0p"]
+[ext_resource type="Script" uid="uid://xyplbx32rpcu" path="res://Scripts/Dialogue/DialogueHolder.gd" id="3_m73fv"]
+[ext_resource type="Script" uid="uid://dwsjnhqw2h1fy" path="res://Scripts/Dialogue/DialogueHolderObject.gd" id="4_wd7dd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m73fv"]
 atlas = ExtResource("2_kgq0p")
@@ -130,8 +132,83 @@ size = Vector2(10, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gvtka"]
 size = Vector2(32, 4)
 
+[sub_resource type="Resource" id="Resource_akikx"]
+script = ExtResource("4_wd7dd")
+order = 1
+dialogues = Array[String]([])
+eyes_mood = Array[int]([])
+mouth_mood = Array[int]([])
+options = Dictionary[String, ExtResource("4_wd7dd")]({})
+add_condition = ""
+finish_id = ""
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
+[sub_resource type="Resource" id="Resource_614m0"]
+script = ExtResource("4_wd7dd")
+order = 0
+dialogues = Array[String](["brick_gate_try_again"])
+eyes_mood = Array[int]([0])
+mouth_mood = Array[int]([0])
+options = Dictionary[String, ExtResource("4_wd7dd")]({})
+add_condition = ""
+finish_id = ""
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
+[sub_resource type="Resource" id="Resource_d5g25"]
+script = ExtResource("4_wd7dd")
+order = 0
+dialogues = Array[String](["brick_gate_smell"])
+eyes_mood = Array[int]([0])
+mouth_mood = Array[int]([0])
+options = Dictionary[String, ExtResource("4_wd7dd")]({
+"dirr_01_choice_no": SubResource("Resource_akikx"),
+"dirr_01_choice_yes": SubResource("Resource_614m0")
+})
+add_condition = ""
+finish_id = ""
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
+[sub_resource type="Resource" id="Resource_1dqlt"]
+script = ExtResource("4_wd7dd")
+order = 1
+dialogues = Array[String]([])
+eyes_mood = Array[int]([])
+mouth_mood = Array[int]([])
+options = Dictionary[String, ExtResource("4_wd7dd")]({})
+add_condition = ""
+finish_id = ""
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
+[sub_resource type="Resource" id="Resource_1swsm"]
+script = ExtResource("4_wd7dd")
+order = 0
+dialogues = Array[String](["brick_gate_try", "brick_gate_nice", "brick_gate_stop"])
+eyes_mood = Array[int]([0, 0, 0])
+mouth_mood = Array[int]([0, 0, 0])
+options = Dictionary[String, ExtResource("4_wd7dd")]({})
+add_condition = ""
+finish_id = "squeezed"
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
+[sub_resource type="Resource" id="Resource_xslfj"]
+script = ExtResource("4_wd7dd")
+order = 0
+dialogues = Array[String](["brick_gate_green", "brick_gate_squeeze"])
+eyes_mood = Array[int]([0, 0])
+mouth_mood = Array[int]([0, 0])
+options = Dictionary[String, ExtResource("4_wd7dd")]({
+"dirr_01_choice_no": SubResource("Resource_1dqlt"),
+"dirr_01_choice_yes": SubResource("Resource_1swsm")
+})
+add_condition = ""
+finish_id = ""
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
 [node name="Brick_Gate" type="Node2D" groups=["GameObject"]]
 script = ExtResource("1_gvtka")
+dialogue_actions = Dictionary[String, String]({
+"squeezed": "squeezed_action"
+})
 
 [node name="Gate" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)
@@ -154,5 +231,13 @@ position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_gvtka")
 debug_color = Color(0.644497, 0.426387, 0.785679, 0.42)
 
-[connection signal="animation_changed" from="Gate" to="." method="_on_gate_animation_changed"]
-[connection signal="animation_finished" from="Gate" to="." method="_on_gate_animation_finished"]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="DialogueHolder" type="Node2D" parent="."]
+script = ExtResource("3_m73fv")
+dialogues = Dictionary[String, ExtResource("4_wd7dd")]({
+"gate_smell": SubResource("Resource_d5g25"),
+"gate_squeeze": SubResource("Resource_xslfj")
+})

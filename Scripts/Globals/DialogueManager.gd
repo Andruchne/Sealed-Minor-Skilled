@@ -82,6 +82,7 @@ func POPUP_DIALOGUE(dialogue : Dialogue, clear : bool = false) -> void:
 	current_mouth_moods = current_dialogue.get_mouth_moods()
 	is_text_displayed = true
 	display_text()
+	GameManager.IN_MINIGAME = true
 
 
 func display_text() -> void:
@@ -144,9 +145,23 @@ func on_dialogue_finished() -> void:
 	current_texts = []
 	emit_signal("dialogue_finished", current_dialogue.finish_id)
 	GameManager.MAIN_ACTIVE = true
+	GameManager.IN_MINIGAME = false
 
 
 func disconnect_current_dialogue() -> void:
+	if current_dialogue == null:
+		return
+	
 	current_dialogue.reset()
-	current_dialogue.options_given.disconnect(on_options_given)
-	current_dialogue.dialogue_finished.disconnect(on_dialogue_finished)
+	if current_dialogue.options_given.is_connected(on_options_given):
+		current_dialogue.options_given.disconnect(on_options_given)
+	if current_dialogue.dialogue_finished.is_connected(on_dialogue_finished):
+		current_dialogue.dialogue_finished.disconnect(on_dialogue_finished)
+
+
+func reset() -> void:
+	disconnect_current_dialogue()
+	current_box = null
+	current_progress_index = 0
+	is_text_displayed = false
+	is_text_finished = false

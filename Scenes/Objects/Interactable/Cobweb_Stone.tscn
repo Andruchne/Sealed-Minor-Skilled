@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://crf2qavhveqf3"]
+[gd_scene load_steps=12 format=3 uid="uid://crf2qavhveqf3"]
 
 [ext_resource type="Texture2D" uid="uid://bl3qcwjkvmswm" path="res://Assets/Sprites/Objects/Interactable/Stone/Cobweb_Stone.png" id="1_7dnx8"]
 [ext_resource type="Script" uid="uid://deveeivx3hvac" path="res://Scenes/Objects/Interactable/Cobweb_Stone.gd" id="1_l20gv"]
@@ -38,7 +38,7 @@ size = Vector2(13, 5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo6o4"]
 size = Vector2(13, 7)
 
-[sub_resource type="Resource" id="Resource_jo6o4"]
+[sub_resource type="Resource" id="Resource_bumpy"]
 script = ExtResource("4_5gv2e")
 order = 0
 dialogues = Array[String](["cobweb_stone_01_found", "cobweb_stone_01_take"])
@@ -49,7 +49,18 @@ add_condition = ""
 finish_id = ""
 metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
 
-[node name="Cobweb_Stone" type="Node2D" groups=["GameObject"]]
+[sub_resource type="Resource" id="Resource_5gv2e"]
+script = ExtResource("4_5gv2e")
+order = 0
+dialogues = Array[String](["cobweb_stone_01_found", "cobweb_stone_01_can"])
+eyes_mood = Array[int]([0, 0])
+mouth_mood = Array[int]([0, 0])
+options = Dictionary[String, ExtResource("4_5gv2e")]({})
+add_condition = ""
+finish_id = ""
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
+[node name="Cobweb_Stone" type="Node2D" groups=["Cobweb", "GameObject"]]
 script = ExtResource("1_l20gv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -73,5 +84,6 @@ debug_color = Color(0.754806, 0.444609, 0.285351, 0.42)
 
 [node name="DialogueHolder" parent="." groups=["GameObject"] instance=ExtResource("3_bumpy")]
 dialogues = Dictionary[String, ExtResource("4_5gv2e")]({
-"cobweb_take": SubResource("Resource_jo6o4")
+"cobweb_take_can": SubResource("Resource_bumpy"),
+"cobweb_take_know": SubResource("Resource_5gv2e")
 })

@@ -17,6 +17,7 @@ var current_game_menu : Control
 var FPS_MAX : int = 60
 # To manage whether main game is running or not, e.g. if characters can move
 var MAIN_ACTIVE : bool = true
+var IN_MINIGAME : bool = false
 
 signal minigame_triggered()
 signal minigame_finished(has_won : bool)
@@ -67,7 +68,8 @@ func CHANGE_SCENE(new_scene : String, spawn_index : int = 0) -> void:
 	emit_signal("scene_changed")
 	get_canvas_layer()
 	await get_tree().process_frame
-	spawn_player(spawn_index)
+	if spawn_index != -1:
+		spawn_player(spawn_index)
 
 
 func get_canvas_layer() -> void:
@@ -88,7 +90,7 @@ func spawn_player(spawn_index : int) -> void:
 
 
 func SAVE_GAME(save_name : String, save_index : int = 0, is_quicksave : bool = false) -> void:
-	if is_quicksave && !MAIN_ACTIVE:
+	if is_quicksave && (!MAIN_ACTIVE || IN_MINIGAME):
 		return
 	
 	delete_existing_save_files(str(save_index))
@@ -97,8 +99,13 @@ func SAVE_GAME(save_name : String, save_index : int = 0, is_quicksave : bool = f
 	save_data.save_index = save_index
 	save_data.save_name = save_name
 	
+	save_data.scene_name = get_tree().current_scene.name
+	
 	var current_player = get_tree().get_first_node_in_group("Player")
 	save_data.player_info = current_player.get_player_info()
+	
+	save_data.memory = MemoryManager.memory.duplicate()
+	save_data.level_memory = MemoryManager.level_memory.duplicate()
 	
 	# Save current scene root
 	var root := get_tree().current_scene
@@ -125,7 +132,11 @@ func SAVE_GAME(save_name : String, save_index : int = 0, is_quicksave : bool = f
 
 
 func LOAD_GAME(load_index : int) -> void:
-	var save_data = ResourceLoader.load(get_save_file(str(load_index)))
+	var save_file = get_save_file(str(load_index))
+	if save_file == "":
+		return
+		
+	var save_data = ResourceLoader.load(save_file)
 	
 	if save_data is GameSaveData:
 		var instances : Array = []
@@ -134,13 +145,19 @@ func LOAD_GAME(load_index : int) -> void:
 		var old_root := get_tree().current_scene
 		if old_root:
 			old_root.queue_free()
-
+		
+		await get_tree().process_frame
 		# Replace root with saved scene
 		if save_data.level_data.scene_root && save_data.level_data.scene_root is PackedScene:
 			var new_root = save_data.level_data.scene_root.instantiate()
 			get_tree().root.add_child(new_root)
 			get_tree().current_scene = new_root
-
+			
+			get_tree().current_scene.name = save_data.scene_name
+			
+			MemoryManager.level_memory = save_data.level_memory.duplicate()
+			MemoryManager.memory = save_data.memory.duplicate()
+			MemoryManager.get_general_memory()
 			# Replace GameObjects under new root
 			var game_objects : Array = new_root.get_tree().get_nodes_in_group("GameObject")
 			for obj in game_objects:
@@ -165,6 +182,8 @@ func LOAD_GAME(load_index : int) -> void:
 					instance.call_deferred("after_load_init")
 		
 		get_canvas_layer()
+		DialogueManager.get_canvas_layer()
+		DialogueManager.reset()
 		MAIN_ACTIVE = true
 		await get_tree().process_frame
 		show_label("Loaded", Popup_Label.Save_Text_Type.Exclamation)
@@ -180,6 +199,9 @@ func show_label(text : String, type : Popup_Label.Save_Text_Type) -> void:
 
 
 func TOGGLE_GAME_MENU() -> void:
+	if IN_MINIGAME:
+		return
+	
 	if current_game_menu == null:
 		current_game_menu = load(game_menu).instantiate()
 		canvas_layer.add_child(current_game_menu)

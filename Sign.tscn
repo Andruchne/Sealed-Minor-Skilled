@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://bbsv6b7oadbx0"]
+
+[ext_resource type="Texture2D" uid="uid://dcno3wsqe7b2c" path="res://Assets/Sprites/Objects/Interactable/Sign/Sign.png" id="1_kffo2"]
+[ext_resource type="Script" uid="uid://cy88hqmwuaevo" path="res://Sign.gd" id="2_428cn"]
+[ext_resource type="Script" uid="uid://xyplbx32rpcu" path="res://Scripts/Dialogue/DialogueHolder.gd" id="3_6nv8m"]
+[ext_resource type="Script" uid="uid://dwsjnhqw2h1fy" path="res://Scripts/Dialogue/DialogueHolderObject.gd" id="4_428cn"]
+
+[sub_resource type="Resource" id="Resource_6nv8m"]
+script = ExtResource("4_428cn")
+order = 1
+dialogues = Array[String]([])
+eyes_mood = Array[int]([])
+mouth_mood = Array[int]([])
+options = Dictionary[String, ExtResource("4_428cn")]({})
+add_condition = ""
+finish_id = ""
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
+[sub_resource type="Resource" id="Resource_38upd"]
+script = ExtResource("4_428cn")
+order = 0
+dialogues = Array[String](["sign_02_tutorial", "sign_03_tutorial", "dirr_01_dot", "sign_04_tutorial"])
+eyes_mood = Array[int]([0, 0, 0, 0])
+mouth_mood = Array[int]([0, 0, 0, 0])
+options = Dictionary[String, ExtResource("4_428cn")]({})
+add_condition = ""
+finish_id = ""
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
+[sub_resource type="Resource" id="Resource_alscu"]
+script = ExtResource("4_428cn")
+order = 0
+dialogues = Array[String](["sign_01_tutorial"])
+eyes_mood = Array[int]([0])
+mouth_mood = Array[int]([0])
+options = Dictionary[String, ExtResource("4_428cn")]({
+"dirr_01_choice_no": SubResource("Resource_6nv8m"),
+"dirr_01_choice_yes": SubResource("Resource_38upd")
+})
+add_condition = ""
+finish_id = ""
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_38upd"]
+radius = 24.0208
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_428cn"]
+size = Vector2(14, 3)
+
+[node name="Sign" type="Sprite2D"]
+texture = ExtResource("1_kffo2")
+script = ExtResource("2_428cn")
+
+[node name="DialogueHolder" type="Node2D" parent="."]
+script = ExtResource("3_6nv8m")
+dialogues = Dictionary[String, ExtResource("4_428cn")]({
+"control_tutorial": SubResource("Resource_alscu")
+})
+
+[node name="Area2D" type="Area2D" parent="." groups=["Interactable"]]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_38upd")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_428cn")

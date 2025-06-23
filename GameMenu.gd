@@ -13,6 +13,7 @@ extends Control
 @onready var main_menu : Control = $Main
 @onready var save_menu : Control = $Save
 @onready var load_menu : Control = $Load
+@onready var option_menu : Control = $Option
 
 const MAX_ROTATION : float = 8
 const MIN_ROTATION : float = -8
@@ -64,7 +65,7 @@ func on_load_button_pressed() -> void:
 
 
 func on_option_button_pressed() -> void:
-	pass
+	change_menu(option_menu)
 
 
 func on_exit_button_pressed() -> void:

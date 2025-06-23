@@ -55,3 +55,111 @@ cobweb_stone_01_can;Du nimmst es… weil du Snacks liebst!;You take it… becaus
 ;;
 door_01_intro_touch;Trotz der Flammen, berührst du die Tür;Despite the flames, you proceed to touch the door
 door_01_intro_move;Du spürst, wie sich etwas in dir bewegt und deine Sicht ändert;You feel something move inside you, and see your vision change
+;;
+;;
+;;
+;;
+soul_01_intro_first_talk;Es ist soweit!;It's time, it's time!
+soul_02_intro_first_talk;Oh warte, hab vergessen dass du's vergessen hast…;Oh wait, I forgot that you forgot…
+soul_03_intro_first_talk;Lass mich dir vorstellen;Let me introduce myself
+soul_04_intro_first_talk;Ich bin deine ganz eigene Seele! Nett dich kennenzulernen ;I am your very own full-time soul! Nice to make your acquaintance
+soul_05_intro_first_talk;Aber genug davon, wir haben eine Aufgabe vor uns!;But enough about that, we have a task at hand!
+soul_06_intro_first_talk;Siehst du diese langweiligen Punkte dort drüben? Diesen grünen da?;You see those dull points over there? Specifically the green one?
+soul_07_intro_first_talk;Bring mich einfach dort hin und wir sind in Nu raus;Just guide me over there and we'll be out in no time!
+;;
+soul_01_intro_second_try;Hier sind wir wieder!;Here we go again!
+soul_02_intro_second_try;Denk daran den {color} zu fangen und meine Spur nicht anzufassen…;Remember, catch the {color} one, avoid touching my trail…
+soul_03_intro_second_try;Du schaffst das, ich glaub an dich!;You can do it, I believe in you!
+;;
+soul_01_intro_green_hit;Perfekt!;Neat!
+soul_02_intro_green_hit;Sieht aber so aus als wär da noch ein {color}er…;Looks like there's another {color} one though...
+soul_03_intro_green_hit;Mach's einfach nochmal, dann sollt's gehen;Just do it again and it should be fine
+;;
+soul_01_intro_ungreen_hit;Sieht das für dich wie grün aus? Versuch mal den anderen;Does that look like green to you? Try the other one
+soul_02_intro_ungreen_hit;Bist du… farbenblind?;Are you... color blind?
+soul_03_intro_ungreen_hit;Hmmm, ok… Moment, hab ne Idee!;Hmmm, I see... Wait, I have an idea!
+soul_04_intro_ungreen_hit;Wie's es jetzt? Kannst du mich zum {color}en führen?;What about now? Guide me to the blue one, would you?
+soul_05_intro_ungreen_hit;Bitte…?;Please...?
+;;
+soul_01_intro_ungreen_same;Haha, dummerchen… Du hast den gleichen wieder berührt…;Haha, silly you... You caught the same one…
+soul_02_intro_ungreen_same;Mhm… Immernoch derselbe…;Yep... Still the very same…
+soul_03_intro_ungreen_same;…;…
+;;
+soul_01_intro_path_crossed;EWWWW!!;EWWWW!!
+soul_02_intro_path_crossed;Sorry, das hätte ich erwähnen sollen…;Sorry, I forgot to mention this…
+soul_03_intro_path_crossed;Es ekelt mich meine eigene Spur anzufassen…;I get an ick whenever I touch my own trail…
+soul_04_intro_path_crossed;Ich kann nie anders als mich aufzulösen wenn's passiert… Bluueeghhh…;Can't help but dissolve every time it happens... Bluueeghhh…
+;;
+soul_01_intro_finish;Du hast's geschafft!;You did it!
+soul_02_intro_finish;Erstmal ne Pause. Du kannst dein eigenes Ding solange tun, ok?;Now let me rest a bit. You can continue doing your thing, alright?
+soul_03_intro_finish;Glaub ich hab auch jemanden auf der anderen Seite der Tür gehört…;Think I've heard someone outside this door too…
+soul_04_intro_finish;Soll heißen dass genug Gesellschaft für dich da sein wird!;Meaning there will be company enough for you!
+;;
+color_green;grün;green
+color_blue;blau;blue
+;;
+;;
+;;
+;;
+dirr_02_hmm;Hmmm…;Hmmm…
+dirr_02_found_treasure;Gyoo! Hab den Schatz gefunden!!;Gyoo! I found the treasure!!
+dirr_02_best_snacks;Daraus kann ich die besten Snacks überhaupt machen;I can make the best snacks ever out of this
+dirr_02_come;Komm mit!;Come!
+;;
+;;
+;;
+;;
+brick_gate_green;Eine Lücke, die mit Blättern und Ranken bedeckt ist;There's a gap, fully covered by leafs and vines
+brick_gate_squeeze;Dich durchquetschen?;Squeeze through it?
+brick_gate_try;Du drückst dein Gesicht gegen die Masse…;You push your face against the blockade…
+brick_gate_nice;Es riecht gut…;It smells nice…
+brick_gate_stop;Zufrieden hörst du mit deinem Versuch auf;Content, you pull your face back
+brick_gate_smell;Nochmal riechen?;Smell it again?
+brick_gate_try_again;Du riechst es nochmal… Es hat sich nichts geändert;You smell it again… It hasn't changed
+;;
+;;
+;;
+;;
+soul_01_final_intro;Hmm… Sieht so aus als hätten wir erstmal das Ende erreicht...;Hmm… Looks like we've hit the end for now…
+soul_02_final_intro;Halb so schlimm, wenigstens hats Spaß gemacht!;Well, at least it was fun!
+;;
+dirr_01_final_window_race_win;Gyoo! Du bist vor mir angekommen?;Gyoo! You were faster than ME?
+dirr_02_final_window_race_win;Na gut… Wenn du jemals mein Fenster zu sehen bekommst…;Alright… If you ever get to see my window…
+dirr_03_final_window_race_win;Darfst du von mir aus da rausschauen…;You're allowed to look out of it…
+;;
+dirr_01_final_snack;Hey, willst du nicht wissen wie dieses Spinnennetz schmeckt?;Hey, aren't you curious what this cobweb tastes like?
+dirr_02_final_snack;Na gut… Mehr für mich!;Alright… More for me then!
+;;
+dirr_01_final_window_race_lose;Haha! Ich war als Erstes da!;Haha! I arrived first!
+dirr_02_final_window_race_lose;Was bedeutet, ich darf aus meinem Fenster gucken und du nicht!;Which means, I get to look out my window and you don't!
+dirr_03_final_window_race_lose;Gyooooooo!;Gyooooooo!
+;;
+dirr_01_final_offend;Ja! komm bloß nicht näher!;Yes! Don't come any closer!
+dirr_02_final_offend;Oh, und du bist viel ekliger als ich!;Oh, and you're way more ugly than me!
+dirr_03_final_offend;Nur jemand der nicht eklig ist darf weiter durch, bestimmt!;Only someone not ugly can continue further, for sure!
+;;
+dirr_01_final_bye;Wie auch immer… Bye bye;Anyways… Bye bye
+dirr_02_final_bye;Hoffe du mochtest deine kurze Zeit hier!;Hope you enjoyed your short stay here!
+;;
+dirr_01_final_followed;Alsooo…;Sooo...
+dirr_02_final_followed;Ich bleib dann einfach mal trotzdem bei dir…;I'll still stick with you anyways...
+dirr_03_final_followed;Will mich immerhin nicht verirren oder so…;Don't want to get lost or anything after all…
+dirr_04_final_followed;Ist ja nicht so als wärst du lange weg, oder?;Not like you'll be gone for long, right?
+dirr_05_final_followed;Oder?;Right?
+;;
+soul_01_final_cobweb;Und was dieses Spinnennetz angeht…;And about this cobweb of yours…
+soul_02_final_cobweb;Uhm… Behalt's einfach in deiner Hosentasche…;Uhm… Just keep it in your pockets for now…
+soul_03_final_cobweb;Ist ja nicht so als könnts irgendwie schlecht werden…;Not like it could go bad or anything…
+;;
+soul_01_final_bye;Ich verabschiede mich dann auch fürs Erste;Well, goodbye for now
+soul_02_final_bye;Danke fürs Spielen!;Thank you for playing!
+;;
+dirr_01_final_waiting;Ich warte immernoch in deinem Raum!;Still waiting in that room for you!
+;;
+;;
+;;
+;;
+sign_01_tutorial;"Auf dem Schild steht ""Steuerung"". Es lesen?";"This sign reads ""Controls"". Read it?"
+sign_02_tutorial;Drücke F5 fürs Schnellspeichern und F7 fürs Schnellladen;Press F5 to Quicksave and F7 to Quickload
+sign_03_tutorial;Drücke ESCAPE um das Menü zu öffnen;Press ESCAPE to open the Menu
+sign_04_tutorial;Rutsch nicht auf deiner Tastatur aus?;Don't slip and trip on your keyboard?

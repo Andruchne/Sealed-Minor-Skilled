@@ -1,14 +1,20 @@
-[gd_scene load_steps=207 format=3 uid="uid://b7e1s3cp2l1b8"]
+[gd_scene load_steps=210 format=3 uid="uid://b7e1s3cp2l1b8"]
 
 [ext_resource type="Script" uid="uid://hsjcq70wbq6e" path="res://Scripts/Player/Player.gd" id="1_tbwei"]
 [ext_resource type="Texture2D" uid="uid://cn8guyn7hna73" path="res://Assets/Sprites/Player/Shadow/Player_Shadow.png" id="2_hoh10"]
+[ext_resource type="FontFile" uid="uid://c4vkhox6clp7l" path="res://Assets/Fonts/FiveFontsatFreddy's-Regular.ttf" id="2_ji083"]
 [ext_resource type="Texture2D" uid="uid://cplucyioefl0q" path="res://Assets/Sprites/Player/Body/Player_Body.png" id="2_ml5qx"]
+[ext_resource type="Script" uid="uid://d37am7uiijuii" path="res://Scenes/Player/FloatyText.gd" id="3_0kmp4"]
 [ext_resource type="Texture2D" uid="uid://d06s8nrvdxsui" path="res://Assets/Sprites/Player/Eyes/Eyes_Lens.png" id="3_o1wp0"]
 [ext_resource type="Texture2D" uid="uid://dg2027tgat8e1" path="res://Assets/Sprites/Player/Eyes/Eyes_White.png" id="4_xaxgv"]
 [ext_resource type="Texture2D" uid="uid://cwe38lqct7mm1" path="res://Assets/Sprites/Player/Clothes/Shirt/Player_Casual_Shirt.png" id="5_825xp"]
 [ext_resource type="PackedScene" uid="uid://62xjx060th7d" path="res://Scenes/Components/step_handler.tscn" id="6_fjucl"]
 [ext_resource type="Texture2D" uid="uid://be5yoo7j3b31k" path="res://Assets/Sprites/Player/Clothes/Pants/Player_Casual_Pants.png" id="6_ji083"]
 [ext_resource type="PackedScene" uid="uid://bp82tmcyldyxa" path="res://Scenes/Components/Transitioner.tscn" id="7_tuvdi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0kmp4"]
+font = ExtResource("2_ji083")
+font_size = 8
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t26db"]
 size = Vector2(12, 2)
@@ -1814,6 +1820,18 @@ collision_mask = 7
 script = ExtResource("1_tbwei")
 speed = 75.0
 
+[node name="InteractText" type="Label" parent="."]
+visible = false
+z_index = 2
+offset_left = -44.0
+offset_top = -32.0
+offset_right = 86.0
+offset_bottom = -9.0
+scale = Vector2(0.7, 0.7)
+text = "Press E/ENTER to Interact"
+label_settings = SubResource("LabelSettings_0kmp4")
+script = ExtResource("3_0kmp4")
+
 [node name="StepHandler" parent="." instance=ExtResource("6_fjucl")]
 
 [node name="Node2D" parent="StepHandler" index="0"]
@@ -1858,28 +1876,28 @@ texture = ExtResource("2_hoh10")
 modulate = Color(1, 0.878431, 0.74902, 1)
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_fy5nt")
-animation = &"Sit_Up"
+animation = &"Idle_Bottom"
 autoplay = "Idle_Bottom"
 
 [node name="ShirtAnimSprite" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.67, 0.6499, 0.469, 1)
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_yi34y")
-animation = &"Sit_Up"
+animation = &"Idle_Bottom"
 autoplay = "Idle_Bottom"
 
 [node name="PantsAnimSprite" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.389243, 0.133021, 0.088455, 1)
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_ciswq")
-animation = &"Sit_Up"
+animation = &"Idle_Bottom"
 autoplay = "Idle_Bottom"
 
 [node name="LensAnimSprite" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.6, 0.768627, 1, 1)
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_rw06s")
-animation = &"Sit_Up"
+animation = &"Idle_Bottom"
 autoplay = "Idle_Bottom"
 
 [node name="LensHalfAnimSprite" type="AnimatedSprite2D" parent="."]
@@ -1893,7 +1911,7 @@ autoplay = "Idle_Bottom"
 [node name="WhiteAnimSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_u52po")
-animation = &"Sit_Up"
+animation = &"Idle_Bottom"
 autoplay = "Idle_Bottom"
 
 [node name="WhiteHalfAnimSprite" type="AnimatedSprite2D" parent="."]

@@ -8,9 +8,6 @@ class_name TreePlatform
 
 var entered_count : int = 0
 
-# Indicates, to which access it belongs to
-var access_index : int = 0
-
 
 func _ready() -> void:
 	await get_tree().process_frame

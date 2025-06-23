@@ -326,6 +326,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n6qra")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": false,
 "name": &"Despawn",
@@ -524,7 +527,7 @@ theme_override_font_sizes/normal_font_size = 16
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_fmd76")
-animation = &"Talk"
+animation = &"Despawn"
 autoplay = "Idle"
 
 [node name="Timer2" type="Timer" parent="."]

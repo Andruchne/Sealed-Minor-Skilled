@@ -5,8 +5,15 @@ var active : bool = false
 
 var was_activated : bool = false
 
+@export var specific_ids : Array[int] = [0]
+@export var access_indexes : Array[int] = [0]
+@export var total : bool = false
+
 signal activated()
 signal deactivated()
+
+signal total_activated()
+signal total_deactivated()
 
 
 func get_save_state() -> Dictionary:
@@ -22,6 +29,15 @@ func apply_save_state(state : Dictionary) -> void:
 	was_activated = state.get("was_activated")
 
 
-func signals() -> void:
-	emit_signal("activated")
-	emit_signal("deactivated")
+func emit_activated() -> void:
+	if !total:
+		emit_signal("activated")
+	else:
+		emit_signal("total_activated")
+
+
+func emit_deactivated() -> void:
+	if !total:
+		emit_signal("deactivated")
+	else:
+		emit_signal("total_deactivated")

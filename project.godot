@@ -13,7 +13,10 @@ config_version=5
 config/name="Minor Skilled"
 run/main_scene="uid://cklfgfl3vlnmv"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.176419, 0.176419, 0.176419, 1)
+boot_splash/fullsize=false
+boot_splash/image="uid://0h72dfk4u6a4"
+config/icon="uid://yxxadb3son0w"
 
 [autoload]
 
@@ -86,6 +89,7 @@ Interactable=""
 Canvas=""
 GameObject=""
 Activator=""
+Level=""
 
 [gui]
 

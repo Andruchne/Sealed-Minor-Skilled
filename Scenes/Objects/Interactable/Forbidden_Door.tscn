@@ -1,10 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://dp0lg3ljd68hc"]
+[gd_scene load_steps=35 format=3 uid="uid://dp0lg3ljd68hc"]
 
 [ext_resource type="Script" uid="uid://caj2mi8odx2ju" path="res://Scripts/Objects/Doors/ForbiddenDoor.gd" id="1_2m2se"]
 [ext_resource type="Texture2D" uid="uid://cg5jhhn5kukvt" path="res://Assets/Sprites/Objects/Interactable/Doors/ForbiddenDoor/Forbidden_Wish_Door.png" id="2_km8bn"]
 [ext_resource type="PackedScene" uid="uid://bvaw7tm34ue3" path="res://Scenes/Utility/32x_32_soul_flame.tscn" id="3_y4p1b"]
 [ext_resource type="PackedScene" uid="uid://btkcjmwu3wo6u" path="res://Scenes/Dialogue/Dialogue_Holder.tscn" id="4_d5xwb"]
 [ext_resource type="Script" uid="uid://dwsjnhqw2h1fy" path="res://Scripts/Dialogue/DialogueHolderObject.gd" id="5_10eso"]
+[ext_resource type="PackedScene" uid="uid://d2340qye6b18a" path="res://Scenes/Levels/Scene_Changer.tscn" id="6_ok0jl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ul4xt"]
 atlas = ExtResource("2_km8bn")
@@ -266,5 +267,15 @@ dialogues = Dictionary[String, ExtResource("5_10eso")]({
 "door_intro": SubResource("Resource_ok0jl")
 })
 
+[node name="SceneChanger" parent="." instance=ExtResource("6_ok0jl")]
+visible = false
+position = Vector2(0, 18)
+load_level = "res://Scenes/Levels/SealedCave_1.tscn"
+
+[node name="CollisionShape2D" parent="SceneChanger/Area2D" index="0"]
+position = Vector2(0.5, -10)
+
 [connection signal="animation_finished" from="Door" to="." method="_on_door_animation_finished"]
 [connection signal="animation_finished" from="32x32_SoulFlame" to="." method="_on_32_soul_flame_animation_finished"]
+
+[editable path="SceneChanger"]

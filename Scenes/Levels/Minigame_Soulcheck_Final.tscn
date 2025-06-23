@@ -1,0 +1,167 @@
+[gd_scene load_steps=15 format=3 uid="uid://hentnxpif2ue"]
+
+[ext_resource type="Script" uid="uid://dqxqj61mmxqd6" path="res://Scripts/Minigames/MinigameManager.gd" id="1_q2clj"]
+[ext_resource type="Shader" uid="uid://bkgth65dxr8wx" path="res://Scripts/Shaders/FlameDrawShader.gdshader" id="2_5i85b"]
+[ext_resource type="FontFile" uid="uid://c4vkhox6clp7l" path="res://Assets/Fonts/FiveFontsatFreddy's-Regular.ttf" id="2_nmx0n"]
+[ext_resource type="Script" uid="uid://dah0h0t3keebb" path="res://Scripts/Minigames/Soul_Check/BrushDrawer.gd" id="3_nmx0n"]
+[ext_resource type="Script" uid="uid://b1ev6rfjysqoo" path="res://Scenes/Levels/Lerper.gd" id="3_vnefw"]
+[ext_resource type="Texture2D" uid="uid://o0347m1nse4" path="res://Assets/MiniGame/Brushes/Brush.png" id="4_vnefw"]
+[ext_resource type="Texture2D" uid="uid://cjcla5o6jx5hb" path="res://Assets/MiniGame/UI/Soulcheck_Border.png" id="5_3beq2"]
+[ext_resource type="PackedScene" uid="uid://bbcmh5nkjdc4m" path="res://Scenes/Player/PlayerSoul.tscn" id="8_70og5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm0wi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_25vd1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqlxp"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_feac2"]
+shader = ExtResource("2_5i85b")
+shader_parameter/time_scale = 1.5
+shader_parameter/distortion_strength = 2.0
+shader_parameter/flicker_speed = 2.0
+shader_parameter/flicker_intensity = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_urs5v"]
+size = Vector2(334, 77)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3st1b"]
+normal = Vector2(3.61353e-06, -1)
+distance = 6.0
+
+[node name="Minigame_Soulcheck" type="Node2D"]
+z_index = 5
+script = ExtResource("1_q2clj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 5)
+zoom = Vector2(4, 4)
+process_callback = 0
+
+[node name="UI" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WindowSize" type="Panel" parent="Camera2D/UI"]
+layout_mode = 0
+offset_left = -240.0
+offset_top = -130.0
+offset_right = 240.0
+offset_bottom = 140.0
+
+[node name="Left" type="Panel" parent="Camera2D/UI/WindowSize"]
+modulate = Color(0.08, 0.08, 0.08, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.15
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bm0wi")
+
+[node name="Right" type="Panel" parent="Camera2D/UI/WindowSize"]
+modulate = Color(0.08, 0.08, 0.08, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.85
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_25vd1")
+
+[node name="Main" type="Panel" parent="Camera2D/UI/WindowSize"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_right = 0.85
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uqlxp")
+
+[node name="RESTARTLABEL" type="Label" parent="Camera2D/UI/WindowSize" groups=["RestartLabel"]]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.277083
+anchor_top = 0.533333
+anchor_right = 0.735417
+anchor_bottom = 0.659259
+theme_override_fonts/font = ExtResource("2_nmx0n")
+text = "Press Enter To Replay"
+script = ExtResource("3_vnefw")
+metadata/_edit_use_anchors_ = true
+
+[node name="Drawer" type="Node2D" parent="Camera2D/UI"]
+visible = false
+modulate = Color(0.580392, 0.854902, 1, 1)
+material = SubResource("ShaderMaterial_feac2")
+script = ExtResource("3_nmx0n")
+brush_texture = ExtResource("4_vnefw")
+
+[node name="Border" type="NinePatchRect" parent="Camera2D/UI"]
+layout_mode = 0
+offset_left = -170.0
+offset_top = -130.0
+offset_right = 1.0
+offset_bottom = 5.0
+scale = Vector2(2, 2)
+texture = ExtResource("5_3beq2")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+axis_stretch_horizontal = 1
+
+[node name="Area2D" type="Area2D" parent="." groups=["Soulcheck_Top"]]
+position = Vector2(1, -116)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 28.5)
+shape = SubResource("RectangleShape2D_urs5v")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-1, 141)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-173, -141)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 2)
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(177, -141)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -275)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_3st1b")
+debug_color = Color(0, 0.595, 0.7, 1)
+
+[node name="PlayerSoul" parent="." node_paths=PackedStringArray("drawer") instance=ExtResource("8_70og5")]
+collision_layer = 8
+collision_mask = 8
+speed = 100.0
+drawer = NodePath("../Camera2D/UI/Drawer")
+final_speech = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["Canvas"]]

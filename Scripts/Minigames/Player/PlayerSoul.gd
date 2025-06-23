@@ -14,6 +14,8 @@ var initial_box_pos : Vector2
 @export var speed : float = 80.0
 @export var drawer : Node2D
 
+@export var final_speech : bool
+
 var last_direction : Vector2
 var current_direction : Vector2
 
@@ -55,6 +57,18 @@ var path_crossed_index : int = 0
 var finished_active : bool = false
 var finished_index : int = 0
 
+# Final Talk
+var final_intro_active : bool = false
+var final_intro_index : int = 0
+
+var final_cobweb_active : bool = false
+var final_cobweb_index : int = 0
+
+var final_bye_active : bool = false
+var final_bye_index : int = 0
+
+var final : bool = false
+
 # For the win animation
 var is_won : bool = false
 var finished_won : bool = false
@@ -82,7 +96,7 @@ func _ready() -> void:
 	if checkpoint_manager:
 		checkpoint_manager.checkpoints_cleared.connect(on_checkpoints_complete)
 	
-	if MemoryManager.memory.soul_intro_played:
+	if checkpoint_manager && MemoryManager.memory.soul_intro_played:
 		checkpoint_manager.set_first_checkpoint_activeness()
 
 
@@ -102,26 +116,33 @@ func _process(_delta: float) -> void:
 			talk_finished()
 		elif second_talk_active:
 			talk_second_try()
+		elif final_intro_active:
+			talk_final_intro()
+		elif final_cobweb_active:
+			talk_final_cobweb()
+		elif final_bye_active:
+			talk_final_bye()
 	elif Input.is_action_just_pressed("Interact") && is_talking && !speech_text.is_finished:
 		speech_text.finish_current_dialogue()
+
 
 func talk_intro() -> void:
 	match first_talk_index:
 		0:
-			show_message("It's time, it's time!")
+			show_message(tr("soul_01_intro_first_talk"))
 		1:
-			show_message("Oh wait, I forgot that you forgot...")
+			show_message(tr("soul_02_intro_first_talk"))
 		2: 
-			show_message("Let me introduce myself")
+			show_message(tr("soul_03_intro_first_talk"))
 		3:
-			show_message("I am your very own full-time soul! Nice to make your acquaintance")
+			show_message(tr("soul_04_intro_first_talk"))
 		4: 
-			show_message("But enough about that, we have a task at hand!")
+			show_message(tr("soul_05_intro_first_talk"))
 		5:
-			show_message("You see those dull points over there? Specifically the green one?")
+			show_message(tr("soul_06_intro_first_talk"))
 			checkpoint_manager.set_first_checkpoint_activeness()
 		6:
-			show_message("Just guide me over there and we'll be out in no time!")
+			show_message(tr("soul_07_intro_first_talk"))
 		7:
 			stop_messages()
 			tutorial_talk_active = false
@@ -137,13 +158,13 @@ func talk_intro() -> void:
 func talk_second_try() -> void:
 	match second_talk_index:
 		0:
-			show_message("Here we go again!")
+			show_message(tr("soul_01_intro_second_try"))
 		1:
 			var color : String = get_primary_color()
-			show_message("Remember, catch the " + color + " one, avoid touching my trail...")
+			show_message(tr("soul_02_intro_second_try").format({"color" : tr("color_" + color)}))
 			checkpoint_manager.set_first_checkpoint_activeness()
 		2: 
-			show_message("You can do it, I believe in you!")
+			show_message(tr("soul_03_intro_second_try"))
 		3:
 			stop_messages()
 			second_talk_active = false
@@ -154,12 +175,12 @@ func talk_second_try() -> void:
 func talk_green_hit() -> void:
 	match green_talk_index:
 		0:
-			show_message("Neat!")
+			show_message(tr("soul_01_intro_green_hit"))
 		1:
 			var color : String = get_primary_color()
-			show_message("Looks like there's another " + color + " one though...")
+			show_message(tr("soul_02_intro_green_hit").format({"color" : tr("color_" + color)}))
 		2:
-			show_message("Just do it again and it should be fine")
+			show_message(tr("soul_03_intro_green_hit"))
 		_:
 			stop_messages()
 			green_talk_active = false
@@ -170,31 +191,23 @@ func talk_green_hit() -> void:
 func talk_ungreen_hit() -> void:
 	match ungreen_talk_index:
 		0:
-			show_message("Does that look like green to you? Try the other one")
+			show_message(tr("soul_01_intro_ungreen_hit"))
 		1:
 			stop_messages()
 			ungreen_talk_active = false
-		2:
-			show_message("Nah that's not green either... But there's only one left now!")
+		2: 
+			show_message(tr("soul_02_intro_ungreen_hit"))
 		3:
-			stop_messages()
-			ungreen_talk_active = false
-		4: 
-			show_message("Are you... color blind?")
+			show_message(tr("soul_03_intro_ungreen_hit"))
+		4:
+			checkpoint_manager.set_alt_color(true)
+			show_message(tr("soul_04_intro_ungreen_hit"))
 		5:
 			stop_messages()
 			ungreen_talk_active = false
 		6:
-			show_message("Hmmm, I see... Wait, I have an idea!")
+			show_message(tr("soul_05_intro_ungreen_hit"))
 		7:
-			checkpoint_manager.set_alt_color(true)
-			show_message("What about now? Guide me to the blue one, would you?")
-		8:
-			stop_messages()
-			ungreen_talk_active = false
-		9:
-			show_message("Please...?")
-		10:
 			stop_messages()
 			ungreen_talk_active = false
 		_:
@@ -207,17 +220,17 @@ func talk_ungreen_hit() -> void:
 func talk_ungreen_hit_same() -> void:
 	match ungreen_talk_same_index:
 		0:
-			show_message("Haha, silly you... You caught the same one...")
+			show_message(tr("soul_01_intro_ungreen_same"))
 		1:
 			stop_messages()
 			ungreen_talk_same_active = false
 		2:
-			show_message("Yep... Still the very same...")
+			show_message(tr("soul_02_intro_ungreen_same"))
 		3: 
 			stop_messages()
 			ungreen_talk_same_active = false
 		2:
-			show_message("...")
+			show_message(tr("soul_03_intro_ungreen_same"))
 		_:
 			stop_messages()
 			ungreen_talk_same_active = false
@@ -228,13 +241,13 @@ func talk_ungreen_hit_same() -> void:
 func talk_path_crossed() -> void:
 	match path_crossed_index:
 		0:
-			show_message("EWWWW!!")
+			show_message(tr("soul_01_intro_path_crossed"))
 		1:
-			show_message("Sorry, I forgot to mention this...")
+			show_message(tr("soul_02_intro_path_crossed"))
 		2:
-			show_message("I get an ick whenever I touch my own trail...")
+			show_message(tr("soul_03_intro_path_crossed"))
 		3:
-			show_message("Can't help but dissolve every time it happens... Bluueeghhh...")
+			show_message(tr("soul_04_intro_path_crossed"))
 		_:
 			MemoryManager.memory.soul_intro_second_try = true
 			path_crossed_active = false
@@ -247,13 +260,13 @@ func talk_path_crossed() -> void:
 func talk_finished() -> void:
 	match finished_index:
 		0:
-			show_message("You did it!")
+			show_message(tr("soul_01_intro_finish"))
 		1:
-			show_message("Now let me rest a bit. You can continue doing your thing, alright?")
+			show_message(tr("soul_02_intro_finish"))
 		2:
-			show_message("Think I've heard someone outside this door too...")
+			show_message(tr("soul_03_intro_finish"))
 		3:
-			show_message("Meaning there will be company enough for you!")
+			show_message(tr("soul_04_intro_finish"))
 		4:
 			finished_active = false
 			stop_messages()
@@ -264,6 +277,89 @@ func talk_finished() -> void:
 			is_won = true
 	
 	finished_index += 1
+
+
+func talk_final_intro() -> void:
+	match final_intro_index:
+		0:
+			show_message(tr("soul_01_final_intro"))
+		1:
+			show_message(tr("soul_02_final_intro"))
+		2:
+			final_intro_active = false
+			speech_box.visible = false
+			trigger_dirr_reaction()
+		_:
+			final_intro_active = false
+			speech_box.visible = false
+			trigger_dirr_reaction()
+	
+	final_intro_index += 1
+
+
+func talk_final_cobweb() -> void:
+	match final_cobweb_index:
+		0:
+			show_message(tr("soul_01_final_cobweb"))
+		1:
+			show_message(tr("soul_02_final_cobweb"))
+		2:
+			show_message(tr("soul_03_final_cobweb"))
+		3:
+			final_cobweb_active = false
+			final_bye_active = true
+			talk_final_bye()
+		_:
+			final_cobweb_active = false
+			final_bye_active = true
+			talk_final_bye()
+	
+	final_cobweb_index += 1
+
+
+func talk_final_bye() -> void:
+	match final_bye_index:
+		0:
+			show_message(tr("soul_01_final_bye"))
+		1:
+			show_message(tr("soul_02_final_bye"))
+		3:
+			final_bye_active = false
+			speech_box.visible = false
+			final = true
+			anim_sprite.play("Despawn")
+		_:
+			final_bye_active = false
+			speech_box.visible = false
+			final = true
+			anim_sprite.play("Despawn")
+	
+	final_bye_index += 1
+
+
+func trigger_dirr_reaction() -> void:
+	var dirr_load = preload("res://Scenes/Characters/Dirr.tscn")
+	var dirr : Dirr = dirr_load.instantiate()
+	dirr.global_position = global_position + Vector2(260, 0)
+	get_tree().current_scene.add_child(dirr)
+	dirr.scale *= 2
+	dirr.speed *= 2
+	dirr.final_scene = true
+	dirr.final_scene_finish.connect(final_dirr_finished)
+	
+	if !MemoryManager.memory.dirr_at_0:
+		dirr.current_target_position = global_position + Vector2(100, 0)
+	else:
+		dirr.current_target_position = dirr.global_position + Vector2(1, 0)
+
+
+func final_dirr_finished() -> void:
+	if MemoryManager.memory.cobweb:
+		final_cobweb_active = true
+		talk_final_cobweb()
+	else:
+		final_bye_active = true
+		talk_final_bye()
 
 
 func show_message(show_text : String) -> void:
@@ -420,7 +516,11 @@ func _on_animated_sprite_2d_animation_looped() -> void:
 		handle_animation(current_direction)
 	# Beginning spawn finished
 	elif !is_won && is_spawning:
-		if !MemoryManager.memory.soul_intro_played:
+		if final_speech:
+			is_spawning = false
+			final_intro_active = true
+			talk_final_intro()
+		elif !MemoryManager.memory.soul_intro_played:
 			is_spawning = false
 			tutorial_talk_active = true
 			MemoryManager.memory.soul_intro_played = true
@@ -458,6 +558,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	# After a single loop animation finishes, an end-condition is settled
 	if is_won && !death_triggered:
 		emit_signal("minigame_finished", true)
+	elif final:
+		var label : Label = get_tree().get_first_node_in_group("RestartLabel")
+		label.visible = true
 	else:
 		emit_signal("minigame_finished", false)
 

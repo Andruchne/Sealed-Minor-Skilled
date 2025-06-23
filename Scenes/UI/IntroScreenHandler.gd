@@ -14,6 +14,7 @@ var animating : bool
 
 
 func _ready() -> void:
+	GameManager.IN_MINIGAME = true
 	text.text_finished.connect(next_section)
 	text.space_time = 0.1
 	text.punctuation_time = 0.2
@@ -21,7 +22,7 @@ func _ready() -> void:
 	show_text()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	skip_section()
 
 
@@ -63,6 +64,7 @@ func show_text() -> void:
 		8:
 			text.show_dialogue("Where ever you are, all you want to do, is follow this new purpose")
 		9:
+			GameManager.IN_MINIGAME = false
 			GameManager.CHANGE_SCENE(level_to_load, 1)
 	
 	current_stage += 1
@@ -76,7 +78,8 @@ func animate_image() -> void:
 		elif image.region_rect.position.x == 192 && image.region_rect.position.y == 216:
 			first_anim = true
 			animating = false
-			show_text()
+			if !skip_pause:
+				show_text()
 		else:
 			next_image()
 	else:

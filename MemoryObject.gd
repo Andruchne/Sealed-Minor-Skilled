@@ -1,27 +1,56 @@
-extends Node2D
+extends Resource
 class_name MemoryObject
 
-# For memory kept over saves
-var memory_keeper : MemoryKeeperObject
+@export var current_level : String = ""
 
 # Temporarily holds items
-var cobweb : bool
+@export var cobweb : bool
 
-var alt_color : bool
+# Player memory
+@export var alt_color : bool
+
+# General memory
+var knows_cobweb : bool
+var squeezed_gap : bool
+var knows_interact : bool
 
 # Actual memory of actions
-var dirr_look_back : bool
-var dirr_nothing : bool
-var dirr_prepare_snack : bool
+@export var dirr_look_back : bool
+@export var dirr_nothing : bool
+@export var dirr_prepare_snack : bool
+@export var dirr_ugly : bool
+@export var dirr_important : bool
+@export var dirr_follow_player : bool
+
+@export var dirr_collected_cobweb : bool
+
+@export var window_race : bool
+@export var dirr_first_arrived : bool
+
+@export var dirr_offended : bool
+
+# Environmental
+@export var sc0_gate_open : bool
+@export var sc2_gate_open_0 : bool
+@export var sc2_gate_open_1 : bool
 
 # Soul actions
-var soul_intro_played : bool
-var soul_green_guide : bool
-var soul_green_hit_once : bool
-var soul_warned_trace : bool
-var soul_first_win : bool
-var soul_intro_second_try : bool
+@export var soul_intro_played : bool
+@export var soul_green_guide : bool
+@export var soul_green_hit_once : bool
+@export var soul_warned_trace : bool
+@export var soul_first_win : bool
+@export var soul_intro_second_try : bool
 
+# Temp memory, just for faster coding
+@export var dirr_spawned_01 : bool
+@export var dirr_spawned_02 : bool
+@export var dirr_spawned_03 : bool
+@export var dirr_go_home : bool
+
+@export var dirr_at_0 : bool
+@export var dirr_at_1 : bool = true
+@export var dirr_at_2 : bool
 
 func check_memory(entry : String) -> bool:
 	var result : bool = get(entry)
@@ -31,15 +60,6 @@ func check_memory(entry : String) -> bool:
 		return false
 
 
-func check_keeper_memory(entry : String) -> bool:
-	return memory_keeper.check_memory(entry)
-
-
 func set_memory(entry : String, state : bool) -> void:
 	if get(entry) != null:
 		set(entry, state)
-
-
-func set_memory_keeper(entry : String, state : bool) -> void:
-	if get(entry) != null:
-		memory_keeper.set(entry, state)
