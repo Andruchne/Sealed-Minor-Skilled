@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://bo2yk1ic0vnp8" path="res://Scripts/Shaders/CaveEntrance.gdshader" id="1_1um16"]
 [ext_resource type="PackedScene" uid="uid://b7e1s3cp2l1b8" path="res://Scenes/Player/Player.tscn" id="1_i7tye"]
-[ext_resource type="Script" uid="uid://cgft0lkld5wgi" path="res://Scenes/Levels/Sealed_Cave_0.gd" id="1_xaaj0"]
+[ext_resource type="Script" uid="uid://cgft0lkld5wgi" path="res://Scenes/Levels/Handlers/Sealed_Cave_0.gd" id="1_xaaj0"]
 [ext_resource type="Texture2D" uid="uid://bmuc5gfcf8aws" path="res://Assets/Tiles/BeginningCave/Ground/Stone_Ground.png" id="2_s13ij"]
 [ext_resource type="Texture2D" uid="uid://dgu15fj8p0gty" path="res://Assets/Tiles/BeginningCave/Ground/Water.png" id="3_kfh0u"]
 [ext_resource type="Texture2D" uid="uid://cglcy4336r6n7" path="res://Assets/Tiles/BeginningCave/Ground/Stone_Ground_Moss.png" id="3_xaaj0"]
@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://cyun3hxycwjtq" path="res://Scenes/Player/Player_Spawn.tscn" id="12_6e0nw"]
 [ext_resource type="PackedScene" uid="uid://dp0lg3ljd68hc" path="res://Scenes/Objects/Interactable/Forbidden_Door.tscn" id="13_h0b32"]
 [ext_resource type="PackedScene" uid="uid://crf2qavhveqf3" path="res://Scenes/Objects/Interactable/Cobweb_Stone.tscn" id="13_xaaj0"]
-[ext_resource type="Script" uid="uid://bsyatrown6ocw" path="res://DirrTrigger_SealedCave0.gd" id="14_3o4k2"]
-[ext_resource type="PackedScene" uid="uid://bbsv6b7oadbx0" path="res://Sign.tscn" id="15_8mork"]
+[ext_resource type="Script" uid="uid://bsyatrown6ocw" path="res://Scenes/ZoneTriggers/DirrTrigger_SealedCave0.gd" id="14_3o4k2"]
+[ext_resource type="PackedScene" uid="uid://bbsv6b7oadbx0" path="res://Scenes/Objects/Interactable/Sign.tscn" id="15_8mork"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3e4s4"]
 light_mode = 2

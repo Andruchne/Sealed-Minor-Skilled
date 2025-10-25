@@ -350,7 +350,7 @@ func trigger_dirr_reaction() -> void:
 	if !MemoryManager.memory.dirr_at_0:
 		dirr.current_target_position = global_position + Vector2(100, 0)
 	else:
-		dirr.current_target_position = dirr.global_position + Vector2(1, 0)
+		dirr.current_target_position = dirr.global_position + Vector2(dirr.min_distance_for_move + 1, 0)
 
 
 func final_dirr_finished() -> void:

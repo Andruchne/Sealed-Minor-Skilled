@@ -16,9 +16,7 @@ func _ready() -> void:
 
 func activate_english() -> void:
 	GameManager.SET_LANGUAGE("en") 
-	print(TranslationServer.get_locale())
 
 
 func activate_german() -> void:
 	GameManager.SET_LANGUAGE("de") 
-	print(TranslationServer.get_locale())

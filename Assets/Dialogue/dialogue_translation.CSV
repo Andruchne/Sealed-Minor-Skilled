@@ -68,7 +68,7 @@ soul_06_intro_first_talk;Siehst du diese langweiligen Punkte dort drüben? Diese
 soul_07_intro_first_talk;Bring mich einfach dort hin und wir sind in Nu raus;Just guide me over there and we'll be out in no time!
 ;;
 soul_01_intro_second_try;Hier sind wir wieder!;Here we go again!
-soul_02_intro_second_try;Denk daran den {color} zu fangen und meine Spur nicht anzufassen…;Remember, catch the {color} one, avoid touching my trail…
+soul_02_intro_second_try;Denk daran {color} zu fangen und meine Spur nicht anzufassen…;Remember, catch the {color} one, avoid touching my trail…
 soul_03_intro_second_try;Du schaffst das, ich glaub an dich!;You can do it, I believe in you!
 ;;
 soul_01_intro_green_hit;Perfekt!;Neat!
@@ -78,7 +78,7 @@ soul_03_intro_green_hit;Mach's einfach nochmal, dann sollt's gehen;Just do it ag
 soul_01_intro_ungreen_hit;Sieht das für dich wie grün aus? Versuch mal den anderen;Does that look like green to you? Try the other one
 soul_02_intro_ungreen_hit;Bist du… farbenblind?;Are you... color blind?
 soul_03_intro_ungreen_hit;Hmmm, ok… Moment, hab ne Idee!;Hmmm, I see... Wait, I have an idea!
-soul_04_intro_ungreen_hit;Wie's es jetzt? Kannst du mich zum {color}en führen?;What about now? Guide me to the blue one, would you?
+soul_04_intro_ungreen_hit;Wie's es jetzt? Kannst du mich zum blauen führen?;What about now? Guide me to the blue one, would you?
 soul_05_intro_ungreen_hit;Bitte…?;Please...?
 ;;
 soul_01_intro_ungreen_same;Haha, dummerchen… Du hast den gleichen wieder berührt…;Haha, silly you... You caught the same one…
@@ -163,3 +163,5 @@ sign_01_tutorial;"Auf dem Schild steht ""Steuerung"". Es lesen?";"This sign read
 sign_02_tutorial;Drücke F5 fürs Schnellspeichern und F7 fürs Schnellladen;Press F5 to Quicksave and F7 to Quickload
 sign_03_tutorial;Drücke ESCAPE um das Menü zu öffnen;Press ESCAPE to open the Menu
 sign_04_tutorial;Rutsch nicht auf deiner Tastatur aus?;Don't slip and trip on your keyboard?
+;;
+dir_01_final_important;Aber… Ich konnte dich noch nicht mal richtig kennenlernen…;But... I didn't even get to know you any better…

@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://dgp2gohgsbany"]
+[gd_scene load_steps=96 format=3 uid="uid://dgp2gohgsbany"]
 
 [ext_resource type="Script" uid="uid://b2d60okgxvxqm" path="res://Scripts/Characters/Dirr/Dirr.gd" id="1_cjx07"]
 [ext_resource type="Texture2D" uid="uid://cclu3a3t61dj3" path="res://Assets/Characters/Dirr/Dirr.png" id="2_3vps4"]
@@ -668,6 +668,17 @@ add_condition = ""
 finish_id = "final_followed"
 metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
 
+[sub_resource type="Resource" id="Resource_agx3x"]
+script = ExtResource("5_btq82")
+order = 0
+dialogues = Array[String](["dir_01_final_important"])
+eyes_mood = Array[int]([1])
+mouth_mood = Array[int]([0])
+options = Dictionary[String, ExtResource("5_btq82")]({})
+add_condition = ""
+finish_id = "final"
+metadata/_custom_type_script = "uid://dwsjnhqw2h1fy"
+
 [sub_resource type="Resource" id="Resource_pvh5o"]
 script = ExtResource("5_btq82")
 order = 0
@@ -847,6 +858,7 @@ dialogues = Dictionary[String, ExtResource("5_btq82")]({
 "beginning_dialogue": SubResource("Resource_elbl2"),
 "final_bye": SubResource("Resource_m66dv"),
 "final_followed": SubResource("Resource_k86bp"),
+"final_important": SubResource("Resource_agx3x"),
 "final_offend": SubResource("Resource_pvh5o"),
 "final_snack": SubResource("Resource_qullk"),
 "final_waiting": SubResource("Resource_qq0sp"),

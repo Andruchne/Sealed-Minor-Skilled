@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bvaw7tm34ue3" path="res://Scenes/Utility/32x_32_soul_flame.tscn" id="3_y4p1b"]
 [ext_resource type="PackedScene" uid="uid://btkcjmwu3wo6u" path="res://Scenes/Dialogue/Dialogue_Holder.tscn" id="4_d5xwb"]
 [ext_resource type="Script" uid="uid://dwsjnhqw2h1fy" path="res://Scripts/Dialogue/DialogueHolderObject.gd" id="5_10eso"]
-[ext_resource type="PackedScene" uid="uid://d2340qye6b18a" path="res://Scenes/Levels/Scene_Changer.tscn" id="6_ok0jl"]
+[ext_resource type="PackedScene" uid="uid://d2340qye6b18a" path="res://Scenes/ZoneTriggers/Scene_Changer.tscn" id="6_ok0jl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ul4xt"]
 atlas = ExtResource("2_km8bn")

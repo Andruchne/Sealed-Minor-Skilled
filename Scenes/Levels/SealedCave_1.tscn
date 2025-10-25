@@ -1,8 +1,8 @@
 [gd_scene load_steps=24 format=4 uid="uid://bbl6ag5sg3wrf"]
 
 [ext_resource type="PackedScene" uid="uid://b7e1s3cp2l1b8" path="res://Scenes/Player/Player.tscn" id="1_75qh5"]
-[ext_resource type="Script" uid="uid://fb6jf468yqs2" path="res://Scenes/Levels/SealedCave1.gd" id="1_aes8s"]
-[ext_resource type="Shader" uid="uid://dfbjxdtjt00i1" path="res://Scenes/Levels/RBGroundShader.gdshader" id="1_y6bl3"]
+[ext_resource type="Script" uid="uid://fb6jf468yqs2" path="res://Scenes/Levels/Handlers/SealedCave1.gd" id="1_aes8s"]
+[ext_resource type="Shader" uid="uid://dfbjxdtjt00i1" path="res://Scripts/Shaders/RBGroundShader.gdshader" id="1_y6bl3"]
 [ext_resource type="Texture2D" uid="uid://bxow0tronkv8x" path="res://Assets/Tiles/BrickyPassages/Ground/Textures/BrickGround.png" id="2_4k3px"]
 [ext_resource type="Texture2D" uid="uid://d0ny4s66twmka" path="res://Assets/Tiles/BrickyPassages/Ground/Textures/DirtGround.png" id="3_y6a1b"]
 [ext_resource type="Texture2D" uid="uid://dirwuwwkci1jh" path="res://Assets/Tiles/BrickyPassages/Ground/Tiles/Brick_Tileset.png" id="4_8t6e3"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b72r66dvb5ahr" path="res://Scenes/Objects/Interactable/Wooden_Crate.tscn" id="12_7fsbe"]
 [ext_resource type="PackedScene" uid="uid://dtoy0xoadnplx" path="res://Scenes/Objects/Interactable/Brick_Gate.tscn" id="12_man6d"]
 [ext_resource type="PackedScene" uid="uid://cyun3hxycwjtq" path="res://Scenes/Player/Player_Spawn.tscn" id="13_0b7g3"]
-[ext_resource type="PackedScene" uid="uid://d2340qye6b18a" path="res://Scenes/Levels/Scene_Changer.tscn" id="14_aes8s"]
+[ext_resource type="PackedScene" uid="uid://d2340qye6b18a" path="res://Scenes/ZoneTriggers/Scene_Changer.tscn" id="14_aes8s"]
 [ext_resource type="PackedScene" uid="uid://ka4r5qo7w2c7" path="res://Scenes/Objects/Platform.tscn" id="14_kivmp"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_man6d"]

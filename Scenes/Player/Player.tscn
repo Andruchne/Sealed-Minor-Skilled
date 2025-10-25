@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cn8guyn7hna73" path="res://Assets/Sprites/Player/Shadow/Player_Shadow.png" id="2_hoh10"]
 [ext_resource type="FontFile" uid="uid://c4vkhox6clp7l" path="res://Assets/Fonts/FiveFontsatFreddy's-Regular.ttf" id="2_ji083"]
 [ext_resource type="Texture2D" uid="uid://cplucyioefl0q" path="res://Assets/Sprites/Player/Body/Player_Body.png" id="2_ml5qx"]
-[ext_resource type="Script" uid="uid://d37am7uiijuii" path="res://Scenes/Player/FloatyText.gd" id="3_0kmp4"]
+[ext_resource type="Script" uid="uid://b1ev6rfjysqoo" path="res://Scenes/Components/Lerper.gd" id="3_0kmp4"]
 [ext_resource type="Texture2D" uid="uid://d06s8nrvdxsui" path="res://Assets/Sprites/Player/Eyes/Eyes_Lens.png" id="3_o1wp0"]
 [ext_resource type="Texture2D" uid="uid://dg2027tgat8e1" path="res://Assets/Sprites/Player/Eyes/Eyes_White.png" id="4_xaxgv"]
 [ext_resource type="Texture2D" uid="uid://cwe38lqct7mm1" path="res://Assets/Sprites/Player/Clothes/Shirt/Player_Casual_Shirt.png" id="5_825xp"]
@@ -1831,6 +1831,7 @@ scale = Vector2(0.7, 0.7)
 text = "Press E/ENTER to Interact"
 label_settings = SubResource("LabelSettings_0kmp4")
 script = ExtResource("3_0kmp4")
+player_label = true
 
 [node name="StepHandler" parent="." instance=ExtResource("6_fjucl")]
 

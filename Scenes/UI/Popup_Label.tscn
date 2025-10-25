@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cj0ohwh0bvugc"]
 
 [ext_resource type="FontFile" uid="uid://c4vkhox6clp7l" path="res://Assets/Fonts/FiveFontsatFreddy's-Regular.ttf" id="1_bros3"]
-[ext_resource type="Script" uid="uid://braypr24mc755" path="res://PopupLabel.gd" id="1_rwm5f"]
+[ext_resource type="Script" uid="uid://braypr24mc755" path="res://Scripts/UI/PopupLabel.gd" id="1_rwm5f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0eoht"]
 font = ExtResource("1_bros3")

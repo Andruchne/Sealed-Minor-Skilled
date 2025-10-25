@@ -220,6 +220,7 @@ func dialogue_01_you_ugly() -> void:
 func dialogue_01_point_important() -> void:
 	state_move_through_gate = true
 	
+	MemoryManager.memory.dirr_go_home = true
 	MemoryManager.memory.dirr_at_1 = false
 	MemoryManager.memory.dirr_at_0 = false
 	MemoryManager.memory.dirr_at_2 = true
@@ -230,6 +231,7 @@ func dialogue_01_snack_creature() -> void:
 	MemoryManager.memory.knows_cobweb = true
 	MemoryManager.update_general_memory()
 	
+	MemoryManager.memory.dirr_go_home = true
 	MemoryManager.memory.dirr_at_1 = false
 	MemoryManager.memory.dirr_at_0 = false
 	MemoryManager.memory.dirr_at_2 = true
@@ -243,6 +245,7 @@ func dialogue_01_snack_given() -> void:
 	MemoryManager.memory.dirr_collected_cobweb = true
 	MemoryManager.memory.cobweb = false
 	
+	MemoryManager.memory.dirr_go_home = true
 	MemoryManager.memory.dirr_at_1 = false
 	MemoryManager.memory.dirr_at_0 = false
 	MemoryManager.memory.dirr_at_2 = true
@@ -303,7 +306,7 @@ func dialogue_final_bye_finished() -> void:
 	if !MemoryManager.memory.dirr_at_0:
 		current_target_position = global_position + Vector2(150, 0)
 	else:
-		current_target_position = global_position + Vector2(1, 0)
+		current_target_position = global_position + Vector2(30, 0)
 
 
 func dialogue_final_followed() -> void:
@@ -419,7 +422,7 @@ func final_interactions() -> void:
 	elif MemoryManager.memory.dirr_at_0:
 		start_dialogue("final_waiting")
 	else:
-		start_dialogue("final_bye")
+		start_dialogue("final_important")
 
 
 func get_save_state() -> Dictionary:

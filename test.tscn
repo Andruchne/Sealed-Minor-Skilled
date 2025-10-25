@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://bu1lydnio1c1x"]
+
+[ext_resource type="Texture2D" uid="uid://cjcla5o6jx5hb" path="res://Assets/MiniGame/UI/Soulcheck_Border.png" id="1_37kl0"]
+[ext_resource type="Texture2D" uid="uid://yxxadb3son0w" path="res://Icon.png" id="2_6uqi0"]
+[ext_resource type="FontFile" uid="uid://c4vkhox6clp7l" path="res://Assets/Fonts/FiveFontsatFreddy's-Regular.ttf" id="3_ppyta"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8uh7m"]
+bg_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ykrsh"]
+font = ExtResource("3_ppyta")
+font_size = 96
+font_color = Color(0.929715, 0.929715, 0.929715, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8uh7m")
+
+[node name="Border" type="NinePatchRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1760.0
+offset_bottom = -990.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(12, 12)
+texture = ExtResource("1_37kl0")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+axis_stretch_horizontal = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 765.0
+offset_top = 258.0
+offset_right = 1125.0
+offset_bottom = 618.0
+texture = ExtResource("2_6uqi0")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.260417
+anchor_top = 0.532407
+anchor_right = 0.720834
+anchor_bottom = 0.784259
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(435, 70)
+text = "Sealed"
+label_settings = SubResource("LabelSettings_ykrsh")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

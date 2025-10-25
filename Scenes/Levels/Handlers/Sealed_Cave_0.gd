@@ -14,6 +14,8 @@ func setup() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	
+	MemoryManager.get_general_memory()
+	
 	if !MemoryManager.memory.dirr_at_0 && !MemoryManager.memory.dirr_follow_player:
 		var old_dirr : Dirr = get_tree().get_first_node_in_group("Dirr")
 		if old_dirr != null:

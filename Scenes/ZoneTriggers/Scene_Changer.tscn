@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2340qye6b18a"]
 
-[ext_resource type="Script" uid="uid://b4k6h3f2tv54c" path="res://SceneChanger.gd" id="1_ritpj"]
+[ext_resource type="Script" uid="uid://b4k6h3f2tv54c" path="res://Scenes/ZoneTriggers/SceneChanger.gd" id="1_ritpj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d63pq"]
 size = Vector2(27, 14)

@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Minor Skilled"
-run/main_scene="uid://cklfgfl3vlnmv"
+config/name="Sealed"
+run/main_scene="uid://dbhq18acemyf8"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0.176419, 0.176419, 0.176419, 1)
 boot_splash/fullsize=false
@@ -22,9 +22,9 @@ config/icon="uid://yxxadb3son0w"
 
 GameManager="*res://Scripts/Globals/GameManager.gd"
 DialogueManager="*res://Scripts/Globals/DialogueManager.gd"
-Useful="*res://Useful.gd"
-InputManager="*res://InputManager.gd"
-MemoryManager="*res://MemoryManager.gd"
+Useful="*res://Scripts/Globals/Useful.gd"
+InputManager="*res://Scripts/Globals/InputManager.gd"
+MemoryManager="*res://Scripts/Globals/MemoryManager.gd"
 
 [dialogic]
 

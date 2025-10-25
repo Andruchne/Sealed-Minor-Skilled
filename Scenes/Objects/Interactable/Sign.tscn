@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bbsv6b7oadbx0"]
 
 [ext_resource type="Texture2D" uid="uid://dcno3wsqe7b2c" path="res://Assets/Sprites/Objects/Interactable/Sign/Sign.png" id="1_kffo2"]
-[ext_resource type="Script" uid="uid://cy88hqmwuaevo" path="res://Sign.gd" id="2_428cn"]
+[ext_resource type="Script" uid="uid://cy88hqmwuaevo" path="res://Scripts/Objects/Sign/Sign.gd" id="2_428cn"]
 [ext_resource type="Script" uid="uid://xyplbx32rpcu" path="res://Scripts/Dialogue/DialogueHolder.gd" id="3_6nv8m"]
 [ext_resource type="Script" uid="uid://dwsjnhqw2h1fy" path="res://Scripts/Dialogue/DialogueHolderObject.gd" id="4_428cn"]
 

@@ -185,6 +185,7 @@ func LOAD_GAME(load_index : int) -> void:
 		DialogueManager.get_canvas_layer()
 		DialogueManager.reset()
 		MAIN_ACTIVE = true
+		IN_MINIGAME = false
 		await get_tree().process_frame
 		show_label("Loaded", Popup_Label.Save_Text_Type.Exclamation)
 

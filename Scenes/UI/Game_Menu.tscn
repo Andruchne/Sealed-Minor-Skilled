@@ -1,18 +1,18 @@
 [gd_scene load_steps=19 format=3 uid="uid://drtc6bekpkmus"]
 
 [ext_resource type="Texture2D" uid="uid://t3tug4fs0fmd" path="res://Assets/UI/Dialogue/DialogueBox.png" id="1_f60yo"]
-[ext_resource type="Script" uid="uid://5b143mgi61rw" path="res://GameMenu.gd" id="1_go8lt"]
+[ext_resource type="Script" uid="uid://5b143mgi61rw" path="res://Scripts/UI/GameMenu.gd" id="1_go8lt"]
 [ext_resource type="PackedScene" uid="uid://bvi606w45k54p" path="res://Scenes/UI/Option_Button.tscn" id="2_55bfj"]
 [ext_resource type="FontFile" uid="uid://c4vkhox6clp7l" path="res://Assets/Fonts/FiveFontsatFreddy's-Regular.ttf" id="2_phepk"]
-[ext_resource type="Script" uid="uid://6vl1qahxepu4" path="res://SavesMenu.gd" id="5_hv635"]
+[ext_resource type="Script" uid="uid://6vl1qahxepu4" path="res://Scripts/UI/SavesMenu.gd" id="5_hv635"]
 [ext_resource type="PackedScene" uid="uid://cjtu2m2m61c1h" path="res://Scenes/UI/Save_Slot.tscn" id="5_wtucc"]
 [ext_resource type="PackedScene" uid="uid://k75lcewr1yuu" path="res://Scenes/UI/Load_Slot.tscn" id="7_amb2j"]
 [ext_resource type="Texture2D" uid="uid://dp8jlgw0h2lbs" path="res://Assets/UI/BackButton/Back_Button.png" id="7_tc12t"]
-[ext_resource type="PackedScene" uid="uid://fjb8lh7ob11w" path="res://Toggle_Button.tscn" id="8_dro2m"]
+[ext_resource type="PackedScene" uid="uid://fjb8lh7ob11w" path="res://Scenes/UI/Toggle_Button.tscn" id="8_dro2m"]
 [ext_resource type="Script" uid="uid://bmp6tom4c7x3l" path="res://Scenes/UI/OptionMenu.gd" id="8_ghs8l"]
 [ext_resource type="Texture2D" uid="uid://cfqe77236xewr" path="res://Assets/UI/BackButton/Back_Button_Hover.png" id="9_amb2j"]
 [ext_resource type="Texture2D" uid="uid://bd5h8t7f4emaf" path="res://Assets/UI/BackButton/Back_Button_Pressed.png" id="10_dro2m"]
-[ext_resource type="Script" uid="uid://bwjrlyjkk1480" path="res://CustomBaseButton.gd" id="10_ghs8l"]
+[ext_resource type="Script" uid="uid://bwjrlyjkk1480" path="res://Scripts/UI/CustomBaseButton.gd" id="10_ghs8l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_go8lt"]
 font = ExtResource("2_phepk")

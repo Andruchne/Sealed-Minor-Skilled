@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://bkgth65dxr8wx" path="res://Scripts/Shaders/FlameDrawShader.gdshader" id="2_5i85b"]
 [ext_resource type="FontFile" uid="uid://c4vkhox6clp7l" path="res://Assets/Fonts/FiveFontsatFreddy's-Regular.ttf" id="2_nmx0n"]
 [ext_resource type="Script" uid="uid://dah0h0t3keebb" path="res://Scripts/Minigames/Soul_Check/BrushDrawer.gd" id="3_nmx0n"]
-[ext_resource type="Script" uid="uid://b1ev6rfjysqoo" path="res://Scenes/Levels/Lerper.gd" id="3_vnefw"]
+[ext_resource type="Script" uid="uid://b1ev6rfjysqoo" path="res://Scenes/Components/Lerper.gd" id="3_vnefw"]
 [ext_resource type="Texture2D" uid="uid://o0347m1nse4" path="res://Assets/MiniGame/Brushes/Brush.png" id="4_vnefw"]
 [ext_resource type="Texture2D" uid="uid://cjcla5o6jx5hb" path="res://Assets/MiniGame/UI/Soulcheck_Border.png" id="5_3beq2"]
 [ext_resource type="PackedScene" uid="uid://bbcmh5nkjdc4m" path="res://Scenes/Player/PlayerSoul.tscn" id="8_70og5"]
